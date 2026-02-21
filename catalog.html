@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M38 | Каталог проектов</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header role="banner">
+        <a href="index.html" class="logo" style="text-decoration: none; color: inherit;" aria-label="M38 — главная страница">
+            <span>M38</span>
+        </a>
+        <button class="burger-menu" aria-label="Открыть меню навигации" aria-expanded="false" aria-controls="mobileNavOverlay">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav aria-label="Основная навигация">
+            <a href="catalog.html" class="active" aria-current="page">Каталог</a>
+            <a href="production.html">Производство</a>
+            <a href="docs.html">Тех. документация</a>
+            <a href="sro-gost.html">Сро/ГОСТ</a>
+            <a href="contacts.html">Контакты</a>
+        </nav>
+        <div class="header-right">
+            <div class="contact-info">
+                <span class="phone">+7.3952.00.00.00</span>
+                <span class="location">РЕГИОН_38 / ИРКУТСК</span>
+            </div>
+            <a href="configurator.html" class="btn-primary" style="text-decoration:none;">Начать проект</a>
+        </div>
+    </header>
+
+    <main class="fade-in" id="main-content">
+
+        <!-- Same Page Hero as Index/Catalog for consistency -->
+        <section class="page-hero catalog-hero" aria-label="Каталог — шапка раздела">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <span class="spec-id">КАТАЛОГ_2024</span>
+
+                <h1>Каталог<br>Модулей</h1>
+                <p style="color: var(--text-dim); max-width: 500px; margin-top: 20px;">Готовые решения&nbsp;для жизни и
+                    бизнеса.<br> Выверенная эргономика&nbsp;и гарантированное качество заводской сборки.</p>
+            </div>
+        </section>
+
+        <section class="catalog-section-refined contacts-grid-section">
+            <div class="catalog-controls-refined catalog-controls-row">
+                <div class="filters-industrial filters-row" id="catalogFilters">
+                    <button class="filter-btn-industrial active" data-filter="all">ВСЕ МОДЕЛИ</button>
+                    <button class="filter-btn-industrial" data-filter="residential">ЖИЛЫЕ</button>
+
+                    <button class="filter-btn-industrial" data-filter="commercial">КОММЕРЦИЯ</button>
+                    <button class="filter-btn-industrial" data-filter="special">СПЕЦНАЗНАЧЕНИЕ</button>
+                </div>
+                <div class="controls-right-industrial controls-right-row">
+                    <div class="industrial-slider-group slider-group-sm">
+                        <div class="slider-label-row">
+                            <span>ЦЕНА (₽) <span class="slider-value-display" id="priceVal">10.0M</span></span>
+                        </div>
+                        <input type="range" class="industrial-range" id="priceSlider" min="0" max="10" step="0.1"
+                            value="10">
+                    </div>
+                    <div class="industrial-slider-group slider-group-xs">
+                        <div class="slider-label-row">
+                            <span>ПЛОЩАДЬ (м²) <span class="slider-value-display" id="areaVal">150</span></span>
+                        </div>
+                        <input type="range" class="industrial-range" id="areaSlider" min="0" max="150" step="1"
+                            value="150">
+                    </div>
+                </div>
+            </div>
+
+            <div class="catalog-grid-refined catalog-grid-auto" id="catalogGrid">
+                <!-- Project 1: А-фрейм «Призма» -->
+                <div class="catalog-card-industrial" data-category="residential" data-area="30" data-price="1.95">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/1. А-фрейм.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 1.95 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ&nbsp;А / ГЛЭМПИНГ</span>
+                        <h3 class="card-title-lg">
+                            А-ФРЕЙМ «ПРИЗМА»</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Жилая
+                                    площадь</span>
+                                <span class="tech-value">30 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Основание</span>
+                                <span class="tech-value">6.0 x 6.0м</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2: Барнхаус «Стиль» -->
+                <div class="catalog-card-industrial" data-category="residential" data-area="36" data-price="2.45">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/2. Барнхаус.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 2.45 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ Б / БАРНХАУС</span>
+                        <h3 class="card-title-lg">
+                            БАРНХАУС «СТИЛЬ»</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Площадь</span>
+                                <span class="tech-value">36 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Второй
+                                    свет</span>
+                                <span class="tech-value">H - 4.2м</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3: Модуль-L «Уют» -->
+                <div class="catalog-card-industrial" data-category="residential" data-area="45" data-price="3.1">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/3. Модуль-L.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 3.1 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ Л / ДВОЙНОЙ БЛОК</span>
+                        <h3 class="card-title-lg">
+                            МОДУЛЬ-L «УЮТ»</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Общая
+                                    площадь</span>
+                                <span class="tech-value">45 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Сборка</span>
+                                <span class="tech-value">2 дня</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 4: Куб-Терраса -->
+                <div class="catalog-card-industrial" data-category="residential" data-area="24" data-price="2.85">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/4. Куб-Терраса.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 2.85 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ К / СМАРТ-КУБ</span>
+                        <h3 class="card-title-lg">
+                            КУБ-ТЕРРАСА</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Жилая</span>
+                                <span class="tech-value">24 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Кровля</span>
+                                <span class="tech-value">+24 м² терраса</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 5: Скандинавский Дуплекс -->
+                <div class="catalog-card-industrial" data-category="residential" data-area="36" data-price="3.95">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/5. Скандинавский Дуплекс.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 3.95 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ Д / ДУПЛЕКС</span>
+                        <h3 class="card-title-lg">
+                            СКАНД. ДУПЛЕКС</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Площадь</span>
+                                <span class="tech-value">36 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Этажность</span>
+                                <span class="tech-value">2 этажа</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 6: Глэмпинг-Под «Орбита» -->
+                <div class="catalog-card-industrial" data-category="residential" data-area="24" data-price="1.75">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/6. Глэмпинг-Под «Орбита».png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 1.75 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ П / КАПСУЛА</span>
+                        <h3 class="card-title-lg">
+                           &nbsp;ПОД «ОРБИТА»</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Площадь</span>
+                                <span class="tech-value">24 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Форма</span>
+                                <span class="tech-value">Арочная</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 7: Трансформер «Гравитация» -->
+                <div class="catalog-card-industrial" data-category="residential" data-area="42" data-price="4.5">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/7. Трансформер «Гравитация».png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 4.5 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ Т / ТРАНСФОРМЕР</span>
+                        <h3 class="card-title-lg">
+                            «ГРАВИТАЦИЯ»</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Площадь</span>
+                                <span class="tech-value">42 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Монтаж</span>
+                                <span class="tech-value">3-5 часов</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 8: Бизнес-Юнит «Витрина» -->
+                <div class="catalog-card-industrial" data-category="residential" data-area="21" data-price="1.9">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/8. Бизнес-Юнит «Витрина».png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 1.9 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ ОФИС / БИЗНЕС</span>
+                        <h3 class="card-title-lg">
+                            БИЗНЕС «ВИТРИНА»</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Площадь</span>
+                                <span class="tech-value">21 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Витраж</span>
+                                <span class="tech-value">Алюминий</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 9: Павильон «Бабочка» -->
+                <div class="catalog-card-industrial" data-category="residential" data-area="40" data-price="3.3">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/9. Павильон «Бабочка.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 3.3 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ ВИП / ПАВИЛЬОН</span>
+                        <h3 class="card-title-lg">
+                            «БАБОЧКА»</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Площадь</span>
+                                <span class="tech-value">40 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Дизайн</span>
+                                <span class="tech-value">Инверсия</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 10: Тайни-хаус «Свобода» -->
+                <div class="catalog-card-industrial" data-category="residential" data-area="21" data-price="1.55">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/10. Тайни-хаус «Свобода».png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 1.55 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ МИНИ / ТАЙНИ-ХАУС</span>
+                        <h3 class="card-title-lg">
+                            ТАЙНИ «СВОБОДА»</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Общая
+                                    S</span>
+                                <span class="tech-value">21 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Тип</span>
+                                <span class="tech-value">Лофт 1.5 эт.</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Industrial 1: Модуль-общежитие «Сибирский кластер» -->
+                <div class="catalog-card-industrial" data-category="special" data-area="36" data-price="1.8">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/Модуль-общежитие.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 1.8 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ С / ОБЩЕЖИТИЕ</span>
+                        <h3 class="card-title-lg">
+                            СИБИРСКИЙ КЛАСТЕР</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Площадь</span>
+                                <span class="tech-value">36 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Вместимость</span>
+                                <span class="tech-value">4-8 чел.</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Industrial 2: Командно-штабной модуль «Command Center» -->
+                <div class="catalog-card-industrial" data-category="special" data-area="18" data-price="1.4">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/Штаб строительства.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 1.4 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ Ш / ШТАБ</span>
+                        <h3 class="card-title-lg">
+                            КОМАНДНЫЙ ЦЕНТР</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Площадь</span>
+                                <span class="tech-value">18 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Остекление</span>
+                                <span class="tech-value">Обзор 270°</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+
+
+                <!-- Industrial 4: Санитарно-бытовой модуль «Hygienic» -->
+                <div class="catalog-card-industrial" data-category="special" data-area="22.5" data-price="2.2">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/Санитарно-бытовой модуль.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 2.2 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ Г / ГИГИЕНА</span>
+                        <h3 class="card-title-lg">
+                            САН. МОДУЛЬ</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Габариты</span>
+                                <span class="tech-value">2.5x9.0м</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Оснащение</span>
+                                <span class="tech-value">Душ + Прачка</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Industrial 5: Автономный медпункт-изолятор «Sanitar» -->
+                <div class="catalog-card-industrial" data-category="special" data-area="24" data-price="2.6">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/Автономный медпункт-изолятор.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 2.6 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ М / МЕДИЦИНА</span>
+                        <h3 class="card-title-lg">
+                            МЕДПУНКТ</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Площадь</span>
+                                <span class="tech-value">24 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Стандарт</span>
+                                <span class="tech-value">HPL / СанПиН</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Industrial 6: Модуль-сушилка «Dry Loft» -->
+                <div class="catalog-card-industrial" data-category="special" data-area="14.4" data-price="1.1">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/Модуль-сушилка  (Цех подготовки спецодежды).png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 1.1 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ СУ / СУШКА</span>
+                        <h3 class="card-title-lg">
+                            ЦЕХ-СУШИЛКА</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Габариты</span>
+                                <span class="tech-value">2.4x6.0м</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Мощность</span>
+                                <span class="tech-value">30 компл.</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Industrial 7: Лабораторный модуль «Analytica» -->
+                <div class="catalog-card-industrial" data-category="special" data-area="27" data-price="2.9">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/Лабораторный модуль.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 2.9 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ ЛБ / ЛАБОРАТОРИЯ</span>
+                        <h3 class="card-title-lg">
+                            ЛАБОРАТОРИЯ</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Площадь</span>
+                                <span class="tech-value">27 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Основание</span>
+                                <span class="tech-value">Виброгашение</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Industrial 8: Энергоблок «Power Box» -->
+                <div class="catalog-card-industrial" data-category="special" data-area="9.6" data-price="1.5">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/Энергоблок  Дизель-генераторная.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 1.5 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ Э / ЭНЕРГИЯ</span>
+                        <h3 class="card-title-lg">
+                            ЭНЕРГОБЛОК</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Габариты</span>
+                                <span class="tech-value">2.4x4.0м</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Защита</span>
+                                <span class="tech-value">Пожаротушение</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Industrial 9: Модульная мастерская «Technic» -->
+                <div class="catalog-card-industrial" data-category="special" data-area="48" data-price="3.2">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/Модульная мастерская «Technic.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 3.2 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ М / МАСТЕРСКАЯ</span>
+                        <h3 class="card-title-lg">
+                            ТЕХНИК</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Площадь</span>
+                                <span class="tech-value">48 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Оснащение</span>
+                                <span class="tech-value">Кран-балка 0.5т</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Industrial 10: Модуль-КПП «Checkpoint Pro» -->
+                <div class="catalog-card-industrial" data-category="special" data-area="18" data-price="1.65">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/Модуль-КПП с досмотровой зоной.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 1.65 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ КПП / КОНТРОЛЬ</span>
+                        <h3 class="card-title-lg">
+                            КПП ПРО</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Площадь</span>
+                                <span class="tech-value">18 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Безопасность</span>
+                                <span class="tech-value">Бронестекло</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- COMMERCIAL PROJECTS BLOCK -->
+
+                <!-- Commercial 1: БИЗНЕС «ВИТРИНА» -->
+                <div class="catalog-card-industrial" data-category="commercial office" data-area="21" data-price="1.95">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/8. Бизнес-Юнит «Витрина».png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 1.95 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ ОФИС / КОММЕРЦИЯ</span>
+                        <h3 class="card-title-lg">
+                            БИЗНЕС «ВИТРИНА»</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Площадь</span>
+                                <span class="tech-value">21 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Остекление</span>
+                                <span class="tech-value">Панорамное</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Commercial 2: КПП «СТРАЖ» -->
+                <div class="catalog-card-industrial" data-category="commercial special" data-area="21"
+                    data-price="1.45">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/Ресепшн-холл  КПП.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 1.45 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ КПП / БЕЗОПАСНОСТЬ</span>
+                        <h3 class="card-title-lg">
+                            КПП «СТРАЖ»</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Обзор</span>
+                                <span class="tech-value">270 Градусов</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Назначение</span>
+                                <span class="tech-value">Пост Охраны</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Commercial 3: ИНФО-ЦЕНТР «БРИЗ» -->
+                <div class="catalog-card-industrial" data-category="commercial" data-area="36" data-price="2.1">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/Модульный инфо-центр  Пункт проката.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 2.1 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ ИНФО / СЕРВИС</span>
+                        <h3 class="card-title-lg">
+                            ИНФО-ЦЕНТР «БРИЗ»</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Площадь</span>
+                                <span class="tech-value">36 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Остекление</span>
+                                <span class="tech-value">Панорамное</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Commercial 4: SPA-КОМПЛЕКС «ВОЛНА» -->
+                <div class="catalog-card-industrial" data-category="commercial" data-area="40" data-price="2.8">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/Модульный SPA-комплекс «Par & Wave» (Баня-сауна с панорамным видом).png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 2.8 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ SPA / ЗДОРОВЬЕ</span>
+                        <h3 class="card-title-lg">
+                            SPA-КОМПЛЕКС «ВОЛНА»</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Зоны</span>
+                                <span class="tech-value">Парная + Душ</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Фишка</span>
+                                <span class="tech-value">Вид&nbsp;из парной</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Commercial 5: ГАСТРО-ХОЛЛ «КУБ» -->
+                <div class="catalog-card-industrial" data-category="commercial" data-area="72" data-price="4.2">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/Event-холл  Конференц-зал.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 4.2 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ EVENT / HORECA</span>
+                        <h3 class="card-title-lg">
+                            ГАСТРО-ХОЛЛ «КУБ»</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Вместимость</span>
+                                <span class="tech-value">до 50 чел.</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Конструктив</span>
+                                <span class="tech-value">Усиленный пол</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Commercial 6: ОФИС «ФОКУС» -->
+                <div class="catalog-card-industrial" data-category="commercial office" data-area="12.5"
+                    data-price="0.95">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/Микро-офис  Точка продаж.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 0.95 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ ОФИС / КАПСУЛА</span>
+                        <h3 class="card-title-lg">
+                            ОФИС «ФОКУС»</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Площадь</span>
+                                <span class="tech-value">12.5 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Акустика</span>
+                                <span class="tech-value">Sound Lock</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Commercial 7: ШОУРУМ «СИЯНИЕ» -->
+                <div class="catalog-card-industrial" data-category="commercial" data-area="48" data-price="2.9">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/Инфо-центр  Офис приема 1.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 2.9 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ ШОУРУМ / РИТЕЙЛ</span>
+                        <h3 class="card-title-lg">
+                            ШОУРУМ «СИЯНИЕ»</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Остекление</span>
+                                <span class="tech-value">Optiwhite</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Свет</span>
+                                <span class="tech-value">Трековый</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Commercial 8: МЕДПУНКТ «ЛИНИЯ» -->
+                <div class="catalog-card-industrial" data-category="commercial special" data-area="36" data-price="2.2">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/Автономный медпункт-изолятор.png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 2.2 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ МЕД / ФАРМА</span>
+                        <h3 class="card-title-lg">
+                            МЕДПУНКТ «ЛИНИЯ»</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Стандарт</span>
+                                <span class="tech-value">Лицензия</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Отделка</span>
+                                <span class="tech-value">HPL Панели</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Commercial 9: СТУДИЯ «БАЛАНС» -->
+                <div class="catalog-card-industrial" data-category="commercial" data-area="50" data-price="2.7">
+                    <div class="card-image-wrap card-image-wrap-std">
+                        <div class="card-img"
+                            style="background: url('image/7. Трансформер «Гравитация».png') center center/cover;">
+                        </div>
+                        <div class="price-terminal">от 2.7 млн ₽</div>
+                    </div>
+                    <div class="card-content-industrial card-content-std">
+                        <span class="product-meta-terminal">СЕРИЯ СПОРТ / ЙОГА</span>
+                        <h3 class="card-title-lg">
+                            СТУДИЯ «БАЛАНС»</h3>
+                        <div class="card-tech-grid">
+                            <div class="tech-item-small">
+                                <span class="tech-label">Пространство</span>
+                                <span class="tech-value">50 м²</span>
+                            </div>
+                            <div class="tech-item-small">
+                                <span class="tech-label">Потолки</span>
+                                <span class="tech-value">3.5 метра</span>
+                            </div>
+                        </div>
+                        <a href="contacts.html" class="btn-card-industrial btn-full" role="button">
+                            ПОСМОТРЕТЬ ПРОЕКТ
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-info">
+                <div class="logo" aria-label="M38"><span>M38</span></div>
+                <p class="footer-desc">
+                    Производство высокотехнологичных модульных зданий<span class="mobile-break"> </span>&nbsp;в Иркутске.
+                </p>
+            </div>
+            <nav class="footer-links" aria-label="Навигация по сайту">
+                <div class="link-group">
+                    <h4>Производство</h4>
+                    <ul>
+                        <li><a href="catalog.html">Жилые</a></li>
+                        <li><a href="catalog.html">Коммерция</a></li>
+                        <li><a href="catalog.html">Спецназначение</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="production.html">Технология</a></li>
+                        <li><a href="docs.html">Документация</a></li>
+                        <li><a href="sro-gost.html">Сро/ГОСТ</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 M38. Все права защищены.</span>
+            <a href="#" class="footer-policy-link" data-privacy>Политика конфиденциальности</a>
+            <span>Дизайн&nbsp;и разработка: EgTroshin</span>
+        </div>
+    </footer>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay" role="dialog" aria-modal="true" aria-label="Меню навигации">
+        <button class="mobile-nav-close" aria-label="Закрыть меню">&times;</button>
+
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo" aria-hidden="true"><span>M38</span></div>
+            <div class="mobile-menu-typewriter" id="mobileTypewriter" aria-hidden="true"></div>
+        </div>
+
+        <nav class="mobile-nav-links" aria-label="Мобильная навигация">
+            <a href="catalog.html" class="mobile-nav-link" aria-current="page">КАТАЛОГ</a>
+            <a href="production.html" class="mobile-nav-link">ПРОИЗВОДСТВО</a>
+            <a href="docs.html" class="mobile-nav-link">ДОКУМЕНТЫ</a>
+            <a href="sro-gost.html" class="mobile-nav-link">СРО / ГОСТ</a>
+            <a href="contacts.html" class="mobile-nav-link">КОНТАКТЫ</a>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('catalogGrid');
+            const cards = Array.from(grid.querySelectorAll('.catalog-card-industrial'));
+            const filterBtns = document.querySelectorAll('.filter-btn-industrial');
+
+            const priceSlider = document.getElementById('priceSlider');
+            const areaSlider = document.getElementById('areaSlider');
+            const priceVal = document.getElementById('priceVal');
+            const areaVal = document.getElementById('areaVal');
+
+            let activeCategory = 'all';
+
+            function updateFilters() {
+                const maxPrice = parseFloat(priceSlider.value);
+                const maxArea = parseFloat(areaSlider.value);
+
+                priceVal.textContent = maxPrice.toFixed(1) + 'M';
+                areaVal.textContent = maxArea;
+
+                cards.forEach(card => {
+                    const price = parseFloat(card.dataset.price);
+                    const area = parseFloat(card.dataset.area);
+                    const category = card.dataset.category;
+
+                    const matchesCategory = activeCategory === 'all' || category === activeCategory;
+                    const matchesPrice = price <= maxPrice;
+                    const matchesArea = area <= maxArea;
+
+                    if (matchesCategory && matchesPrice && matchesArea) {
+                        card.style.display = 'block';
+                        setTimeout(() => card.style.opacity = '1', 10);
+                    } else {
+                        card.style.display = 'none';
+                        card.style.opacity = '0';
+                    }
+                });
+            }
+
+            // Category Filter Click
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    activeCategory = btn.dataset.filter;
+                    updateFilters();
+                });
+            });
+
+            // Slider Updates
+            priceSlider.addEventListener('input', updateFilters);
+            areaSlider.addEventListener('input', updateFilters);
+
+            // Initial Filter Run
+            updateFilters();
+
+            console.log('Industrial Control Center: Online');
+        });
+    </script>
+    <!-- Project Details Modal -->
+    <div id="projectModal" class="modal-overlay">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-image-col">
+                <img src="" alt="Project Image" class="modal-img" id="modalImg">
+            </div>
+            <div class="modal-info-col">
+                <div>
+                    <div class="modal-series" id="modalSeries">SERIES NAME</div>
+                    <h2 class="modal-title" id="modalTitle">PROJECT TITLE</h2>
+                    <p class="modal-desc" id="modalDesc">Description goes here...</p>
+                </div>
+
+                <div>
+                    <h4 class="modal-specs-title">Характеристики</h4>
+                    <ul class="modal-specs-list" id="modalSpecs">
+                        <!-- Specs injected here -->
+                    </ul>
+                </div>
+
+                <div class="modal-price-block">
+                    <div class="modal-price-row">
+                        <span class="modal-price-label">Теплый контур:</span>
+                        <span class="modal-price-val" id="modalPriceWarm">-</span>
+                    </div>
+                    <div class="modal-price-row">
+                        <span class="modal-price-label">Под ключ:</span>
+                        <span class="modal-price-val highlight" id="modalPriceKey">-</span>
+                    </div>
+                    <div class="modal-price-row" id="modalOptionRow"
+                        style="margin-top: 10px; border-top: 1px solid #333; padding-top: 10px;">
+                        <span class="modal-price-label" id="modalOptionLabel">Опция:</span>
+                        <span class="modal-price-val" id="modalOptionPrice">-</span>
+                    </div>
+                </div>
+
+                <a href="contacts.html" class="btn-modal-contact">Связаться&nbsp;со специалистом</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Project Data Source
+        const projectsData = {
+            // --- RESIDENTIAL ---
+            "А-ФРЕЙМ «ПРИЗМА»": {
+                title: "А-ФРЕЙМ «ПРИЗМА»",
+                series: "СЕРИЯ А / ГЛЭМПИНГ",
+                img: "image/1. А-фрейм.png",
+                desc: "Треугольный дом — это готовая фотозона. Его выбирают за необычный вид, который сам себя продает в соцсетях. Весь первый этаж — это открытое пространство (open space) с панорамным видом. Идеально подходит для установки на винтовые сваи в лесной зоне.",
+                specs: {
+                    "Основание": "6.0 × 6.0 м",
+                    "Жилая площадь": "24 м² + 6 м² антресоль",
+                    "Высота": "5.5 м",
+                    "Утепление": "200 мм (перекрестное)",
+                    "Остекление": "Закаленное стекло, мультифункциональное"
+                },
+                priceWarm: "1 450 000 руб.",
+                priceKey: "1 950 000 руб.",
+                optionLabel: "Терраса (12 м²)",
+                optionPrice: "+ 120 000 руб."
+            },
+            "БАРНХАУС «СТИЛЬ»": {
+                title: "БАРНХАУС «СТИЛЬ»",
+                series: "СЕРИЯ Б / БАРНХАУС",
+                img: "image/2. Барнхаус.png",
+                desc: "Выглядит дорого, современно и идеально вписывается в любой ландшафт. Благодаря отсутствию перекрытия над гостиной («второй свет»), дом кажется огромным. Панорамное остекление стирает границы с природой.",
+                specs: {
+                    "Габариты": "4.0 × 9.0 м",
+                    "Площадь": "36 м²",
+                    "Потолки": "2.4 - 4.2 м",
+                    "Кровля": "Кликфальц",
+                    "Утепление": "200 мм"
+                },
+                priceWarm: "1 850 000 руб.",
+                priceKey: "2 450 000 руб.",
+                optionLabel: "Панорамная терраса",
+                optionPrice: "+ 190 000 руб."
+            },
+            // Commercial Projects
+            "БИЗНЕС «ВИТРИНА»": {
+                title: "БИЗНЕС «ВИТРИНА»",
+                series: "СЕРИЯ ОФИС / КОММЕРЦИЯ",
+                img: "image/8. Бизнес-Юнит «Витрина».png",
+                desc: "Это база для любого бизнеса, которому нужно встать в проходном месте. Кофейня, точка продаж или мини-офис.",
+                specs: {
+                    "Габариты": "3.0 x 6.0 м",
+                    "Площадь": "18 - 21 м²",
+                    "Остекление": "Панорамное закаленное",
+                    "Утепление": "200мм (Зимнее)"
+                },
+                priceWarm: "1 950 000 руб. (База)",
+                priceKey: "2 400 000 руб. (Полный)",
+                optionLabel: "Терраса-подиум",
+                optionPrice: "+ 180 000 руб."
+            },
+            "КПП «СТРАЖ»": {
+                title: "КПП «СТРАЖ»",
+                series: "СЕРИЯ КПП / БЕЗОПАСНОСТЬ",
+                img: "image/Ресепшн-холл  КПП.png",
+                desc: "Модуль КПП и ресепшн. Лицо жилого комплекса или базы отдыха. Обзор 270 градусов, место для охраны и зона ожидания.",
+                specs: {
+                    "Габариты": "3.0 x 7.0 м",
+                    "Площадь": "21 м²",
+                    "Обзор": "270 градусов",
+                    "Опции": "Бронированное стекло"
+                },
+                priceWarm: "1 450 000 руб. (Охрана)",
+                priceKey: "1 950 000 руб. (Консьерж Плюс)",
+                optionLabel: "Бронь А1/А2",
+                optionPrice: "+ 300 000 руб."
+            },
+            "ИНФО-ЦЕНТР «БРИЗ»": {
+                title: "ИНФО-ЦЕНТР «БРИЗ»",
+                series: "СЕРИЯ ИНФО / СЕРВИС",
+                img: "image/Модульный инфо-центр  Пункт проката.png",
+                desc: "Легкое, прозрачное здание для инфо-центров и пунктов проката. Транслирует открытость сервиса.",
+                specs: {
+                    "Габариты": "4.0 x 9.0 м",
+                    "Площадь": "36 м²",
+                    "Фасад": "Лиственница + Стекло",
+                    "Климат": "Промышленный сплит"
+                },
+                priceWarm: "2 100 000 руб. (Бизнес)",
+                priceKey: "2 850 000 руб. (Полный Сервис)",
+                optionLabel: "Эксплуатируемая кровля",
+                optionPrice: "+ 350 000 руб."
+            },
+            "SPA-КОМПЛЕКС «ВОЛНА»": {
+                title: "SPA-КОМПЛЕКС «ВОЛНА»",
+                series: "СЕРИЯ SPA / ЗДОРОВЬЕ",
+                img: "image/Модульный SPA-комплекс «Par & Wave» (Баня-сауна с панорамным видом).png",
+                desc: "Полноценный SPA-комплекс. Парная с отделкой кедром и панорамным видом на природу.",
+                specs: {
+                    "Габариты": "4.0 x 10.0 м",
+                    "Площадь": "40 м²",
+                    "Парная": "Канадский кедр",
+                    "Печь": "Премиум (Дрова/Electro)"
+                },
+                priceWarm: "2 800 000 руб. (Велнес)",
+                priceKey: "3 600 000 руб. (Премиум SPA)",
+                optionLabel: "Панорамная терраса",
+                optionPrice: "+ 250 000 руб."
+            },
+            "ГАСТРО-ХОЛЛ «КУБ»": {
+                title: "ГАСТРО-ХОЛЛ «КУБ»",
+                series: "СЕРИЯ EVENT / HORECA",
+                img: "image/Event-холл  Конференц-зал.png",
+                desc: "Модульный ресторан или банкетный зал. Быстрое масштабирование бизнеса без капитального строительства.",
+                specs: {
+                    "Габариты": "6.0 x 12.0 м",
+                    "Площадь": "72 м²",
+                    "Вместимость": "до 50 гостей",
+                    "Конструктив": "Усиленный пол"
+                },
+                priceWarm: "4 200 000 руб. (Для Мероприятий)",
+                priceKey: "5 600 000 руб. (Ресторан)",
+                optionLabel: "Раздвижные перегородки",
+                optionPrice: "+ 450 000 руб."
+            },
+            "ОФИС «ФОКУС»": {
+                title: "ОФИС «ФОКУС»",
+                series: "СЕРИЯ ОФИС / КАПСУЛА",
+                img: "image/Микро-офис  Точка продаж.png",
+                desc: "Компактный бизнес-центр в одной коробке. Идеальная акустика и связь для удаленной работы и переговоров.",
+                specs: {
+                    "Габариты": "2.5 x 5.0 м",
+                    "Площадь": "12.5 м²",
+                    "Звукоизоляция": "Акустический контур",
+                    "Свет": "Безбликовый"
+                },
+                priceWarm: "950 000 руб. (Базовый Офис)",
+                priceKey: "1 350 000 руб. (Хай-тек Хаб)",
+                optionLabel: "Смарт-стекло",
+                optionPrice: "+ 150 000 руб."
+            },
+            "ШОУРУМ «СИЯНИЕ»": {
+                title: "ШОУРУМ «СИЯНИЕ»",
+                series: "СЕРИЯ ШОУРУМ / РИТЕЙЛ",
+                img: "image/Инфо-центр  Офис приема 1.png",
+                desc: "Здание-витрина для ритейла. Сплошное остекление Optiwhite, трековый свет. Товар выглядит на миллион.",
+                specs: {
+                    "Габариты": "4.0 x 12.0 м",
+                    "Площадь": "48 м²",
+                    "Остекление": "Optiwhite 2 Стены",
+                    "Пол": "Кварц-винил"
+                },
+                priceWarm: "2 900 000 руб. (Шоурум Лайт)",
+                priceKey: "3 850 000 руб. (Люкс Ритейл)",
+                optionLabel: "Зеркальное напыление",
+                optionPrice: "+ 200 000 руб."
+            },
+            "МЕДПУНКТ «ЛИНИЯ»": {
+                title: "МЕДПУНКТ «ЛИНИЯ»",
+                series: "СЕРИЯ МЕД / ФАРМА",
+                img: "image/Автономный медпункт-изолятор.png",
+                desc: "Модульный медпункт или аптека. Соответствует санитарным нормам (HPL панели, вентиляция, изолятор).",
+                specs: {
+                    "Габариты": "4.0 x 9.0 м",
+                    "Площадь": "36 м²",
+                    "Отделка": "HPL / Антибактериальная",
+                    "Резерв": "ИБП для холодильников"
+                },
+                priceWarm: "2 200 000 руб. (Аптека)",
+                priceKey: "3 100 000 руб. (Медцентр)",
+                optionLabel: "Пандус с подогревом",
+                optionPrice: "+ 120 000 руб."
+            },
+            "СТУДИЯ «БАЛАНС»": {
+                title: "СТУДИЯ «БАЛАНС»",
+                series: "СЕРИЯ СПОРТ / ЙОГА",
+                img: "image/7. Трансформер «Гравитация».png",
+                desc: "Пространство для йоги и медитаций. Высокие потолки (3.5м), зеркальная стена и связь с природой.",
+                specs: {
+                    "Габариты": "5.0 x 10.0 м",
+                    "Площадь": "50 м²",
+                    "Потолки": "3.5 метра",
+                    "Стены": "Зеркало + Окна"
+                },
+                priceWarm: "2 700 000 руб. (Студия База)",
+                priceKey: "3 500 000 руб. (Йога Про)",
+                optionLabel: "Подогрев пола",
+                optionPrice: "+ 180 000 руб."
+            },
+
+            "МОДУЛЬ-L «УЮТ»": {
+                title: "МОДУЛЬ-L «УЮТ»",
+                series: "СЕРИЯ Л / ДВОЙНОЙ БЛОК",
+                img: "image/3. Модуль-L.png",
+                desc: "Дом-конструктор из двух блоков. Четкое разделение на «шумную» гостиную и «тихую» спальню. Образует уютную защищенную от ветра террасу. Монтируется за 2 дня.",
+                specs: {
+                    "Габариты": "2 модуля (6x3 и 5x3)",
+                    "Площадь": "45 м²",
+                    "Терраса": "Г-образная, 15-20 м²",
+                    "Отделка": "Металл + Лиственница"
+                },
+                priceWarm: "2 300 000 руб.",
+                priceKey: "3 100 000 руб.",
+                optionLabel: "Терраса из лиственницы",
+                optionPrice: "+ 250 000 руб."
+            },
+            "КУБ-ТЕРРАСА": {
+                title: "КУБ-ТЕРРАСА",
+                series: "СЕРИЯ К / СМАРТ-КУБ",
+                img: "image/4. Куб-Терраса.png",
+                desc: "Манифест минимализма с эксплуатируемой кровлей. Крыша — это полноценная зона отдыха или солярий. Внешняя винтовая лестница. Идеально для участков с видом на Байкал.",
+                specs: {
+                    "Габариты": "6.0 × 4.0 м",
+                    "Площадь": "24 м² жилая + 24 м² терраса",
+                    "Конструктив": "Усиленный каркас (до 400 кг/м²)",
+                    "Kровля": "Инверсионная, ДПК"
+                },
+                priceWarm: "2 100 000 руб.",
+                priceKey: "2 850 000 руб.",
+                optionLabel: "Стекло на кровле",
+                optionPrice: "+ 180 000 руб."
+            },
+            "СКАНД. ДУПЛЕКС": {
+                title: "СКАНДИНАВСКИЙ ДУПЛЕКС",
+                series: "СЕРИЯ Д / ДУПЛЕКС",
+                img: "image/5. Скандинавский Дуплекс.png",
+                desc: "Двухэтажный модульный дом. Эффект «стеклянной башни». Первый этаж — студия, второй — спальня. Занимает минимум места на участке.",
+                specs: {
+                    "Габариты": "Два модуля 6.0 × 3.0 м",
+                    "Площадь": "36 м²",
+                    "Высота": "6.0 м",
+                    "Остекление": "Панорамное на 2 этажах"
+                },
+                priceWarm: "2 950 000 руб.",
+                priceKey: "3 950 000 руб.",
+                optionLabel: "Балкон со стеклом",
+                optionPrice: "+ 150 000 руб."
+            },
+
+            "ПОД «ОРБИТА»": {
+                title: "ПОД «ОРБИТА»",
+                series: "СЕРИЯ П / КАПСУЛА",
+                img: "image/6. Глэмпинг-Под «Орбита».png",
+                desc: "Футуристичный жилой модуль арочной формы. Идеальное решение для глэмпингов. Панорамное остекление торцевого фасада открывает потрясающий вид.",
+                specs: {
+                    "Габариты": "4.0 × 6.0 м",
+                    "Площадь": "24 м²",
+                    "Форма": "Арочная",
+                    "Утепление": "150 мм (Базальт)"
+                },
+                priceWarm: "1 750 000 руб.",
+                priceKey: "2 250 000 руб.",
+                optionLabel: "Терраса с навесом",
+                optionPrice: "+ 140 000 руб."
+            },
+
+            "«ГРАВИТАЦИЯ»": {
+                title: "«ГРАВИТАЦИЯ»",
+                series: "СЕРИЯ Т / ТРАНСФОРМЕР",
+                img: "image/7. Трансформер «Гравитация».png",
+                desc: "Уникальный дом-трансформер. Раскладывается на участке за считанные часы, увеличивая полезную площадь в разы. Технологичный дизайн и максимальная мобильность.",
+                specs: {
+                    "Габариты": "Сложный модуль",
+                    "Площадь": "42 м²",
+                    "Монтаж": "3-5 часов",
+                    "Механизм": "Гидравлика / Ручной"
+                },
+                priceWarm: "4 500 000 руб.",
+                priceKey: "5 400 000 руб.",
+                optionLabel: "Автономный пакет",
+                optionPrice: "+ 450 000 руб."
+            },
+
+            "БИЗНЕС «ВИТРИНА»": {
+                title: "БИЗНЕС «ВИТРИНА»",
+                series: "СЕРИЯ ОФИС / КОММЕРЦИЯ",
+                img: "image/8. Бизнес-Юнит «Витрина».png",
+                desc: "Модульный офис или магазин. Выглядит как дорогой бутик. Максимальное остекление «в пол», плоская кровля с парапетом. Светло даже в пасмурный день.",
+                specs: {
+                    "Габариты": "6.0 × 3.5 м",
+                    "Площадь": "21 м²",
+                    "Остекление": "Алюминиевые витражи",
+                    "Пол": "Коммерческий (износостойкий)"
+                },
+                priceWarm: "1 950 000 руб.",
+                priceKey: "2 450 000 руб.",
+                optionLabel: "Кофейня (вода/вытяжка)",
+                optionPrice: "+ 250 000 руб."
+            },
+            "КПП «СТРАЖ»": {
+                title: "КПП «СТРАЖ»",
+                series: "СЕРИЯ КПП / БЕЗОПАСНОСТЬ",
+                img: "image/Ресепшн-холл  КПП.png",
+                desc: "Пост охраны нового поколения. Круговой обзор 270 градусов. Бронированное стекло (опция). Выглядит внушительно и современно.",
+                specs: {
+                    "Габариты": "6.0 × 3.5 м",
+                    "Обзор": "270 Градусов",
+                    "Назначение": "Пост Охраны / Ресепшн",
+                    "Безопасность": "Бронезащита (Опция)"
+                },
+                priceWarm: "1 450 000 руб.",
+                priceKey: "1 950 000 руб.",
+                optionLabel: "Бронекапсула",
+                optionPrice: "+ 450 000 руб."
+            },
+            "ИНФО-ЦЕНТР «БРИЗ»": {
+                title: "ИНФО-ЦЕНТР «БРИЗ»",
+                series: "СЕРИЯ ИНФО / СЕРВИС",
+                img: "image/Модульный инфо-центр  Пункт проката.png",
+                desc: "Универсальный инфо-центр или пункт проката. Панорамное остекление привлекает внимание. Открытая планировка для гибкого использования.",
+                specs: {
+                    "Габариты": "6.0 × 6.0 м",
+                    "Площадь": "36 м²",
+                    "Остекление": "Панорамное",
+                    "Функция": "Ресепшн / Прокат"
+                },
+                priceWarm: "2 100 000 руб.",
+                priceKey: "2 800 000 руб.",
+                optionLabel: "Стойка ресепшн",
+                optionPrice: "+ 120 000 руб."
+            },
+            "SPA-КОМПЛЕКС «ВОЛНА»": {
+                title: "SPA-КОМПЛЕКС «ВОЛНА»",
+                series: "СЕРИЯ SPA / ЗДОРОВЬЕ",
+                img: "image/Модульный SPA-комплекс «Par & Wave» (Баня-сауна с панорамным видом).png",
+                desc: "SPA-комплекс с панорамной парной. Вид на природу прямо из сауны. Просторная комната отдыха и душевая зона.",
+                specs: {
+                    "Габариты": "4.0 × 10.0 м",
+                    "Зоны": "Парная + Душ + Отдых",
+                    "Фишка": "Вид из парной",
+                    "Печь": "Дровяная / Электро"
+                },
+                priceWarm: "2 800 000 руб.",
+                priceKey: "3 800 000 руб.",
+                optionLabel: "Купель на террасе",
+                optionPrice: "+ 280 000 руб."
+            },
+            "ГАСТРО-ХОЛЛ «КУБ»": {
+                title: "ГАСТРО-ХОЛЛ «КУБ»",
+                series: "СЕРИЯ EVENT / HORECA",
+                img: "image/Event-холл  Конференц-зал.png",
+                desc: "Модульный ресторан или банкетный зал. Быстровозводимое решение для HoReCa. Усиленные полы для высокой проходимости.",
+                specs: {
+                    "Габариты": "12.0 × 6.0 м",
+                    "Вместимость": "до 50 чел.",
+                    "Конструктив": "Усиленный пол",
+                    "Вентиляция": "Промышленная"
+                },
+                priceWarm: "4 200 000 руб.",
+                priceKey: "5 500 000 руб.",
+                optionLabel: "Барная стойка",
+                optionPrice: "+ 350 000 руб."
+            },
+            "ОФИС «ФОКУС»": {
+                title: "ОФИС «ФОКУС»",
+                series: "СЕРИЯ ОФИС / КАПСУЛА",
+                img: "image/Микро-офис  Точка продаж.png",
+                desc: "Персональная рабочая капсула. Идеальная звукоизоляция. Полностью готовое рабочее место, которое можно поставить где угодно.",
+                specs: {
+                    "Габариты": "2.5 × 5.0 м",
+                    "Площадь": "12.5 м²",
+                    "Акустика": "Sound Lock",
+                    "Климат": "Рекуператор AirFlow"
+                },
+                priceWarm: "950 000 руб.",
+                priceKey: "1 250 000 руб.",
+                optionLabel: "Умный замок",
+                optionPrice: "+ 45 000 руб."
+            },
+            "ШОУРУМ «СИЯНИЕ»": {
+                title: "ШОУРУМ «СИЯНИЕ»",
+                series: "СЕРИЯ ШОУРУМ / РИТЕЙЛ",
+                img: "image/Инфо-центр  Офис приема 1.png",
+                desc: "Светящийся шоурум. Стеклянные стены Optiwhite для максимальной прозрачности. Товар виден как на ладони. Эффектная подсветка.",
+                specs: {
+                    "Габариты": "6.0 × 8.0 м",
+                    "Остекление": "Optiwhite (Осветленное)",
+                    "Свет": "Трековый Pro",
+                    "Экспозиция": "360 градусов"
+                },
+                priceWarm: "2 900 000 руб.",
+                priceKey: "3 600 000 руб.",
+                optionLabel: "Подиумы",
+                optionPrice: "+ 180 000 руб."
+            },
+            "МЕДПУНКТ «ЛИНИЯ»": {
+                title: "МЕДПУНКТ «ЛИНИЯ»",
+                series: "СЕРИЯ МЕД / ФАРМА",
+                img: "image/Автономный медпункт-изолятор.png",
+                desc: "Автономный медицинский пункт. Соответствует санитарным нормам. Моющаяся отделка, шлюз, изолятор. Готов к лицензированию.",
+                specs: {
+                    "Габариты": "6.0 × 6.0 м",
+                    "Стандарт": "СанПиН / Лицензия",
+                    "Отделка": "HPL Панели (Мед)",
+                    "Зоны": "Приемная + Изолятор"
+                },
+                priceWarm: "2 200 000 руб.",
+                priceKey: "2 900 000 руб.",
+                optionLabel: "Холодильник для вакцин",
+                optionPrice: "+ 80 000 руб."
+            },
+            "СТУДИЯ «БАЛАНС»": {
+                title: "СТУДИЯ «БАЛАНС»",
+                series: "СЕРИЯ СПОРТ / ЙОГА",
+                img: "image/7. Трансформер «Гравитация».png",
+                desc: "Студия для йоги и фитнеса. Высокие потолки 3.5 метра дарят ощущение воздуха. Экологичные материалы. Панорамный вид для медитаций.",
+                specs: {
+                    "Габариты": "5.0 × 10.0 м",
+                    "Пространство": "50 м²",
+                    "Потолки": "3.5 метра",
+                    "Пол": "Спортивный паркет"
+                },
+                priceWarm: "2 700 000 руб.",
+                priceKey: "3 500 000 руб.",
+                optionLabel: "Зеркальная стена",
+                optionPrice: "+ 120 000 руб."
+            },
+            "«БАБОЧКА»": {
+                title: "ПАВИЛЬОН «БАБОЧКА»",
+                series: "СЕРИЯ ВИП / ПАВИЛЬОН",
+                img: "image/9. Павильон «Бабочка.png",
+                desc: "Легкий парковый павильон с выразительной архитектурой. Кровля в форме крыльев бабочки. Пространство для отдыха, йоги или летнего кафе.",
+                specs: {
+                    "Габариты": "5.0 × 8.0 м",
+                    "Площадь": "40 м²",
+                    "Потолки": "2.4 - 3.8 м",
+                    "Отделка": "Планкен (лиственница/кедр)"
+                },
+                priceWarm: "2 400 000 руб.",
+                priceKey: "3 300 000 руб.",
+                optionLabel: "Световые окна в крыше",
+                optionPrice: "+ 220 000 руб."
+            },
+            "ТАЙНИ «СВОБОДА»": {
+                title: "ТАЙНИ «СВОБОДА»",
+                series: "СЕРИЯ МИНИ / ТАЙНИ-ХАУС",
+                img: "image/10. Тайни-хаус «Свобода».png",
+                desc: "Дом-трансформер с антресолью. Спальное место наверху, внизу — полноценная кухня-гостиная. Полностью автономен, готов к проживанию в день доставки.",
+                specs: {
+                    "Габариты": "2.5 × 6.0 м",
+                    "Площадь": "21 м² (15 + 6 лофт)",
+                    "Каркас": "Доска 150х50 мм",
+                    "Утепление": "150 мм (до -35°C)"
+                },
+                priceWarm: "1 150 000 руб.",
+                priceKey: "1 550 000 руб.",
+                optionLabel: "-",
+                optionPrice: "-"
+            },
+
+            // --- SPECIAL PURPOSE ---
+            "СИБИРСКИЙ КЛАСТЕР": {
+                title: "СИБИРСКИЙ КЛАСТЕР",
+                series: "СЕРИЯ С / ОБЩЕЖИТИЕ",
+                img: "image/Модуль-общежитие.png",
+                desc: "База любого удаленного объекта. Усиленный стальной каркас для многократных перебросок. Износостойкая отделка.",
+                specs: {
+                    "Габариты": "3.0 × 12.0 м",
+                    "Вместимость": "4–8 человек",
+                    "Утепление": "Арктическое (200-250 мм)",
+                    "Вентиляция": "Рекуперация тепла"
+                },
+                priceWarm: "1 800 000 руб. (Стандарт)",
+                priceKey: "2 350 000 руб. (Нордик Про)",
+                optionLabel: "Стыковка модулей",
+                optionPrice: "По запросу"
+            },
+            "КОМАНДНЫЙ ЦЕНТР": {
+                title: "КОМАНДНЫЙ ЦЕНТР",
+                series: "СЕРИЯ Ш / ШТАБ",
+                img: "image/Командно-штабной модуль.png",
+                desc: "Мобильный офис бизнес-класса. Угловое окно 270° для обзора стройплощадки. Место под серверную и спутниковый интернет.",
+                specs: {
+                    "Габариты": "3.0 × 6.0 м",
+                    "Площадь": "18 м²",
+                    "Связь": "Серверная стойка",
+                    "Отделка": "Офисный стиль, маркерные стены"
+                },
+                priceWarm: "1 400 000 руб. (Инженер)",
+                priceKey: "1 900 000 руб. (Руководитель)",
+                optionLabel: "-",
+                optionPrice: "-"
+            },
+            "БЛОК-СТОЛОВАЯ": {
+                title: "БЛОК-СТОЛОВАЯ",
+                series: "СЕРИЯ П / ПИТАНИЕ",
+                img: "image/Блок-столовая.png",
+                desc: "Автономная фабрика кухни. Полный цикл приготовления. Стены из пищевой нержавейки/сэндвичей. Соответствует СанПиН.",
+                specs: {
+                    "Площадь": "от 72 м² (стык модулей)",
+                    "Посадка": "20-30 мест",
+                    "Безопасность": "Пожаротушение, жироуловители",
+                    "Оборудование": "Включено в max компл."
+                },
+                priceWarm: "4 500 000 руб. (База)",
+                priceKey: "6 800 000 руб. (Полная кухня)",
+                optionLabel: "-",
+                optionPrice: "-"
+            },
+            "САН. МОДУЛЬ": {
+                title: "САН. МОДУЛЬ «ГИГИЕНА»",
+                series: "СЕРИЯ Г / ГИГИЕНА",
+                img: "image/Санитарно-бытовой модуль.png",
+                desc: "Душевые + Прачечная. Антивандальные материалы, влагостойкий пластик, керамогранит с трапами. Бойлеры на 1000л.",
+                specs: {
+                    "Габариты": "2.5 × 9.0 м",
+                    "Оснащение": "6 душевых, 4 стиралки",
+                    "Бойлеры": "1000–1500 л",
+                    "Пол": "Керамогранит"
+                },
+                priceWarm: "2 200 000 руб. (База)",
+                priceKey: "2 950 000 руб. (С оборудованием)",
+                optionLabel: "-",
+                optionPrice: "-"
+            },
+            "МЕДПУНКТ": {
+                title: "МЕДПУНКТ «САНИТАР»",
+                series: "СЕРИЯ М / МЕДИЦИНА",
+                img: "image/Автономный медпункт-изолятор.png",
+                desc: "Изолятор и кабинет врача. Стены HPL (медицинский пластик), устойчивость к кварцеванию. Резервное питание для вакцин.",
+                specs: {
+                    "Габариты": "3.0 × 8.0 м",
+                    "Зоны": "Приемная, Процедурная, Изолятор",
+                    "Отделка": "HPL пластик",
+                    "Особенность": "Разделение потоков"
+                },
+                priceWarm: "2 600 000 руб. (Первая Помощь)",
+                priceKey: "3 400 000 руб. (Госпиталь)",
+                optionLabel: "-",
+                optionPrice: "-"
+            },
+            "ЦЕХ-СУШИЛКА": {
+                title: "ЦЕХ-СУШИЛКА «СУШКА»",
+                series: "СЕРИЯ СУ / СУШКА",
+                img: "image/Модуль-сушилка  (Цех подготовки спецодежды).png",
+                desc: "Промышленная сушка спецодежды. Мощный поток воздуха, ионизаторы. Сушит 30 комплектов за 6-8 часов.",
+                specs: {
+                    "Габариты": "2.4 × 6.0 м",
+                    "Мощность": "30 комплектов",
+                    "Оборудование": "Тепловые пушки, стеллажи",
+                    "Безопасность": "Датчики перегрева"
+                },
+                priceWarm: "1 100 000 руб. (Базовый)",
+                priceKey: "1 550 000 руб. (Смарт)",
+                optionLabel: "-",
+                optionPrice: "-"
+            },
+            "ЛАБОРАТОРИЯ": {
+                title: "ЛАБОРАТОРИЯ «АНАЛИТИКА»",
+                series: "СЕРИЯ ЛБ / ЛАБОРАТОРИЯ",
+                img: "image/Лабораторный модуль.png",
+                desc: "Полевая лаборатория с виброгашением. Химстойкие столешницы, вытяжные шкафы, подвод газов.",
+                specs: {
+                    "Габариты": "3.0 × 9.0 м",
+                    "Пол": "Виброгашение",
+                    "Столы": "Химстойкие",
+                    "Вентиляция": "Спец. шкафы"
+                },
+                priceWarm: "2 900 000 руб. (База)",
+                priceKey: "4 200 000 руб. (Лаборатория)",
+                optionLabel: "-",
+                optionPrice: "-"
+            },
+            "ЭНЕРГОБЛОК": {
+                title: "ЭНЕРГОБЛОК «ЭНЕРГИЯ»",
+                series: "СЕРИЯ Э / ЭНЕРГИЯ",
+                img: "image/Энергоблок  Дизель-генераторная.png",
+                desc: "Защищенный контейнер для ДГУ. Виброопоры, шумоизоляция, автопожаротушение. Гарантирует запуск в -50°C.",
+                specs: {
+                    "Габариты": "2.4 × 4.0 м",
+                    "Защита": "Пожаротушение, Шумоизоляция",
+                    "Пол": "Виброопоры",
+                    "Доп": "Подогрев топлива"
+                },
+                priceWarm: "1 500 000 руб. (База)",
+                priceKey: "2 100 000 руб. (Авто Про)",
+                optionLabel: "-",
+                optionPrice: "-"
+            },
+            "ТЕХНИК": {
+                title: "МАСТЕРСКАЯ «ТЕХНИК»",
+                series: "СЕРИЯ М / МАСТЕРСКАЯ",
+                img: "image/Модульная мастерская «Technic.png",
+                desc: "Ремонтный бокс с кран-балкой (0.5т). Усиленный пол, верстаки, пневмолиния. Для ремонта тяжелой техники на месте.",
+                specs: {
+                    "Габариты": "4.0 × 12.0 м",
+                    "Оснащение": "Кран-балка, Верстаки",
+                    "Ворота": "Утепленные распашные",
+                    "Свет": "500+ Люкс"
+                },
+                priceWarm: "3 200 000 руб. (База)",
+                priceKey: "4 500 000 руб. (Мастер)",
+                optionLabel: "-",
+                optionPrice: "-"
+            },
+            "КПП ПРО": {
+                title: "КПП «ПРО»",
+                series: "СЕРИЯ КПП / КОНТРОЛЬ",
+                img: "image/Модуль-КПП с досмотровой зоной.png",
+                desc: "Режимный объект контроля доступа. Бронестекло, зона досмотра, санузел. Интеграция со СКУД и шлагбаумами.",
+                specs: {
+                    "Габариты": "3.0 × 6.0 м",
+                    "Безопасность": "Бронестекло",
+                    "Зоны": "Охрана, Проходная, Досмотр",
+                    "Инженерия": "СКУД, Видеонаблюдение"
+                },
+                priceWarm: "1 650 000 руб. (Охрана)",
+                priceKey: "2 400 000 руб. (Максимум)",
+                optionLabel: "-",
+                optionPrice: "-"
+            }
+        };
+
+        // Modal Logic
+        const modal = document.getElementById('projectModal');
+        const btns = document.querySelectorAll('.btn-card-industrial');
+        const closeBtn = document.querySelector('.close'); // There might be a class conflict, let's use the one in HTML
+
+        // Element References
+        const mImg = document.getElementById('modalImg');
+        const mSeries = document.getElementById('modalSeries');
+        const mTitle = document.getElementById('modalTitle');
+        const mDesc = document.getElementById('modalDesc');
+        const mSpecs = document.getElementById('modalSpecs');
+        const mPriceWarm = document.getElementById('modalPriceWarm');
+        const mPriceKey = document.getElementById('modalPriceKey');
+        const mOptLabel = document.getElementById('modalOptionLabel');
+        const mOptPrice = document.getElementById('modalOptionPrice');
+        const mOptRow = document.getElementById('modalOptionRow');
+
+        function openModal(data) {
+            if (!data) return;
+
+            mImg.src = data.img;
+            mSeries.textContent = data.series;
+            mTitle.textContent = data.title;
+            mDesc.textContent = data.desc;
+            mPriceWarm.textContent = data.priceWarm;
+            mPriceKey.textContent = data.priceKey;
+
+            // Options
+            if (data.optionLabel && data.optionLabel !== "-") {
+                mOptRow.style.display = "flex";
+                mOptLabel.textContent = "Опция: " + data.optionLabel;
+                mOptPrice.textContent = data.optionPrice;
+            } else {
+                mOptRow.style.display = "none";
+            }
+
+            // Specs Builder
+            mSpecs.innerHTML = '';
+            for (const [key, value] of Object.entries(data.specs)) {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${key}:</strong> <span>${value}</span>`;
+                mSpecs.appendChild(li);
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Attach Event Listeners to Buttons
+        // We find the parent card, get the title h3, and look it up in projectsData
+        btns.forEach(btn => {
+            btn.onclick = function (e) {
+                // Prevent default navigation
+                e.preventDefault();
+
+                // Find title in the card
+                const card = this.closest('.catalog-card-industrial');
+                let title = card.querySelector('h3').innerText.trim();
+
+                // Normalize title for lookup (some might have formatting like newlines)
+                // In our data keys, we used exact strings from recent edits.
+                // Let's try direct lookup, if fail, try fuzzy or clean up.
+
+                let data = projectsData[title];
+
+                // Fallback for tricky titles (e.g. line breaks)
+                if (!data) {
+                    title = title.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+                    data = projectsData[title];
+                }
+
+                if (data) {
+                    openModal(data);
+                } else {
+                    console.log("Data not found for:", title);
+                    // Fallback to contacts if data missing
+                    window.location.href = 'contacts.html';
+                }
+            };
+        });
+
+        // Close on overlay click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Escape key close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+    </script>
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay">
+        <div class="mobile-nav-close">&times;</div>
+
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo"><span>M38</span></div>
+            <div class="mobile-menu-typewriter" id="mobileTypewriter"></div>
+        </div>
+
+        <nav class="mobile-nav-links">
+            <a href="catalog.html" class="mobile-nav-link">КАТАЛОГ</a>
+            <a href="production.html" class="mobile-nav-link">ПРОИЗВОДСТВО</a>
+            <a href="docs.html" class="mobile-nav-link">ДОКУМЕНТЫ</a>
+            <a href="sro-gost.html" class="mobile-nav-link">СРО / ГОСТ</a>
+            <a href="contacts.html" class="mobile-nav-link">КОНТАКТЫ</a>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

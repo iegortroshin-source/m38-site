@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M38 | СРО и ГОСТ</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header role="banner">
+        <a href="index.html" class="logo" style="text-decoration: none; color: inherit;" aria-label="M38 — главная страница">
+            <span>M38</span>
+        </a>
+        <button class="burger-menu" aria-label="Открыть меню навигации" aria-expanded="false" aria-controls="mobileNavOverlay">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav aria-label="Основная навигация">
+            <a href="catalog.html">Каталог</a>
+            <a href="production.html">Производство</a>
+            <a href="docs.html">Тех. документация</a>
+            <a href="sro-gost.html" class="active" aria-current="page">Сро/ГОСТ</a>
+            <a href="contacts.html">Контакты</a>
+        </nav>
+        <div class="header-right">
+            <div class="contact-info">
+                <span class="phone">+7.3952.00.00.00</span>
+                <span class="location">РЕГИОН_38 / ИРКУТСК</span>
+            </div>
+            <button class="btn-primary">Начать проект</button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="page-hero sro-hero" aria-label="Лицензии и стандарты — шапка раздела">
+            <div class="hero-content">
+                <span class="spec-id">СЕРТИФИКАЦИЯ И СООТВЕТСТВИЕ</span>
+                <h1>Лицензии<br>и Стандарты</h1>
+                <p class="hero-desc">Официальные допуски СРО и
+                    подтверждение соответствия государственным стандартам качества.</p>
+            </div>
+        </section>
+
+        <section class="cert-grid-section" aria-labelledby="sro-section-title">
+            <div class="section-title-wrap">
+                <span class="spec-id">ОФИЦИАЛЬНЫЕ ДОКУМЕНТЫ</span>
+                <h2 id="sro-section-title" class="cert-section-title">Допуски СРО</h2>
+            </div>
+
+            <div class="doc-cards-grid" role="list">
+                <!-- SRO Item 1 -->
+                <article class="doc-card-refined" role="listitem">
+                    <div class="doc-meta-terminal">
+                        <span class="terminal-tag">СРО_СТРОИТЕЛЬСТВО</span>
+                        <span class="terminal-tag">ID: 38-1244-01</span>
+                    </div>
+                    <div class="doc-main-info">
+                        <h5>Свидетельство СРО</h5>
+                        <p>Допуск к работам по строительству, реконструкции и капитальному ремонту объектов капитального
+                            строительства.</p>
+                    </div>
+                    <div class="doc-actions-refined">
+                        <span class="file-info">JPG / 1.5 MB</span>
+                        <button class="btn-download-refined" aria-label="Посмотреть Свидетельство СРО">СМОТРЕТЬ</button>
+                    </div>
+                </article>
+
+                <!-- SRO Item 2 -->
+                <article class="doc-card-refined" role="listitem">
+                    <div class="doc-meta-terminal">
+                        <span class="terminal-tag">СРО_ПРОЕКТИРОВАНИЕ</span>
+                        <span class="terminal-tag">ID: P-38-0952</span>
+                    </div>
+                    <div class="doc-main-info">
+                        <h5>Проектный допуск</h5>
+                        <p>Свидетельство о допуске к подготовке проектной документации для объектов гражданского и
+                            промышленного назначения.</p>
+                    </div>
+                    <div class="doc-actions-refined">
+                        <span class="file-info">PDF / 2.1 MB</span>
+                        <button class="btn-download-refined" aria-label="Посмотреть Проектный допуск">СМОТРЕТЬ</button>
+                    </div>
+                </article>
+            </div>
+
+            <div class="section-title-wrap" style="margin: 100px 0 60px;">
+                <span class="spec-id">СТАНДАРТЫ КАЧЕСТВА</span>
+                <h2 class="cert-section-title">ГОСТ Продукции</h2>
+            </div>
+
+            <div class="doc-cards-grid" role="list">
+                <!-- GOST Item -->
+                <article class="doc-card-refined" role="listitem">
+                    <div class="doc-meta-terminal">
+                        <span class="terminal-tag">ISO_9001_2015</span>
+                        <span class="terminal-tag">СИСТЕМА: КАЧЕСТВО</span>
+                    </div>
+                    <div class="doc-main-info">
+                        <h5>Менеджмент качества</h5>
+                        <p>Сертификат соответствия системы менеджмента качества применительно к производству модульных
+                            зданий.</p>
+                    </div>
+                    <div class="doc-actions-refined">
+                        <span class="file-info">PDF / 1.8 MB</span>
+                        <button class="btn-download-refined" aria-label="Скачать сертификат ISO 9001">СКАЧАТЬ</button>
+                    </div>
+                </article>
+
+                <!-- GOST Item -->
+                <article class="doc-card-refined" role="listitem">
+                    <div class="doc-meta-terminal">
+                        <span class="terminal-tag">ПОЖАРНАЯ БЕЗОПАСНОСТЬ</span>
+                        <span class="terminal-tag">КЛАСС: KM1-KM2</span>
+                    </div>
+                    <div class="doc-main-info">
+                        <h5>Пожарный сертификат</h5>
+                        <p>Сертификат соответствия требованиям пожарной безопасности для используемых в отделке
+                            материалов.</p>
+                    </div>
+                    <div class="doc-actions-refined">
+                        <span class="file-info">PDF / 3.2 MB</span>
+                        <button class="btn-download-refined" aria-label="Скачать пожарный сертификат">СКАЧАТЬ</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-info">
+                <div class="logo" aria-label="M38"><span>M38</span></div>
+                <p class="footer-desc">
+                    Производство высокотехнологичных модульных зданий<span class="mobile-break"> </span>&nbsp;в Иркутске.
+                </p>
+            </div>
+            <nav class="footer-links" aria-label="Навигация по сайту">
+                <div class="link-group">
+                    <h4>Производство</h4>
+                    <ul>
+                        <li><a href="catalog.html">Жилые</a></li>
+                        <li><a href="catalog.html">Коммерция</a></li>
+                        <li><a href="catalog.html">Спецназначение</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="production.html">Технология</a></li>
+                        <li><a href="docs.html">Документация</a></li>
+                        <li><a href="sro-gost.html">Сро/ГОСТ</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 M38. Все права защищены.</span>
+            <a href="#" class="footer-policy-link" data-privacy>Политика конфиденциальности</a>
+            <span>Дизайн и разработка: EgTroshin</span>
+        </div>
+    </footer>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay" role="dialog" aria-modal="true" aria-label="Меню навигации">
+        <button class="mobile-nav-close" aria-label="Закрыть меню">&times;</button>
+
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo" aria-hidden="true"><span>M38</span></div>
+            <div class="mobile-menu-typewriter" id="mobileTypewriter" aria-hidden="true"></div>
+        </div>
+
+        <nav class="mobile-nav-links" aria-label="Мобильная навигация">
+            <a href="catalog.html" class="mobile-nav-link">КАТАЛОГ</a>
+            <a href="production.html" class="mobile-nav-link">ПРОИЗВОДСТВО</a>
+            <a href="docs.html" class="mobile-nav-link">ДОКУМЕНТЫ</a>
+            <a href="sro-gost.html" class="mobile-nav-link" aria-current="page">СРО / ГОСТ</a>
+            <a href="contacts.html" class="mobile-nav-link">КОНТАКТЫ</a>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

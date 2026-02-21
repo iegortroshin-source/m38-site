@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M38 | Контакты</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+</head>
+
+<body>
+    <header role="banner">
+        <a href="index.html" class="logo" style="text-decoration: none; color: inherit;" aria-label="M38 — главная страница">
+            <span>M38</span>
+        </a>
+        <button class="burger-menu" aria-label="Открыть меню навигации" aria-expanded="false" aria-controls="mobileNavOverlay">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav aria-label="Основная навигация">
+            <a href="catalog.html">Каталог</a>
+            <a href="production.html">Производство</a>
+            <a href="docs.html">Тех. документация</a>
+            <a href="sro-gost.html">Сро/ГОСТ</a>
+            <a href="contacts.html" class="active" aria-current="page">Контакты</a>
+        </nav>
+        <div class="header-right">
+            <div class="contact-info">
+                <span class="phone">+7.3952.00.00.00</span>
+                <span class="location">РЕГИОН_38 / ИРКУТСК</span>
+            </div>
+            <a href="configurator.html" class="btn-primary" style="text-decoration:none;">Начать проект</a>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="page-hero contacts-hero" aria-label="Контакты — шапка раздела">
+            <div class="hero-content">
+                <span class="spec-id">ЦЕНТР_СВЯЗИ</span>
+                <h1>Контакты</h1>
+                <p class="hero-desc">Мы всегда&nbsp;на связи&nbsp;для обсуждения
+                    ваших проектов<br>&nbsp;и ответов&nbsp;на технические вопросы.</p>
+            </div>
+        </section>
+
+        <section class="contacts-grid-section" aria-label="Контактная информация и форма">
+            <div class="contact-layout">
+                <!-- Left: Contact Info -->
+                <div class="contact-info-panel">
+                    <div class="section-title-wrap">
+                        <span class="spec-id">АДРЕС_ОФИСА</span>
+                        <h2 class="section-title-wrap--lg">Главный офис</h2>
+                    </div>
+
+                    <div class="contact-cards-stack">
+                        <address class="contact-item-card" style="font-style: normal;">
+                            <span>Адрес</span>
+                            <p>г. Иркутск, ул. Лермонтова, 130</p>
+                            <span class="contact-sub">Технопарк ИРНИТУ</span>
+                        </address>
+
+                        <div class="contact-item-card">
+                            <span>Телефон</span>
+                            <p><a href="tel:+73952000000" style="color: inherit; text-decoration: none;">+7 (3952) 00-00-00</a></p>
+                            <span class="contact-sub">Пн-Пт: 09:00 — 18:00</span>
+                        </div>
+
+                        <div class="contact-item-card">
+                            <span>Email</span>
+                            <p><a href="mailto:info@modul38.ru" style="color: inherit; text-decoration: none;">info@modul38.ru</a></p>
+                            <span class="contact-sub">Для коммерческих предложений</span>
+                        </div>
+                    </div>
+
+                    <div id="map" class="contact-map" role="img" aria-label="Карта расположения офиса M38 в Иркутске"></div>
+                </div>
+
+                <!-- Right: Contact Form -->
+                <div class="contact-form-panel">
+                    <div class="section-title-wrap">
+                        <span class="spec-id">ЗАПРОС_ПРОЕКТА</span>
+                        <h2 class="section-title-wrap--lg">Связаться с нами</h2>
+                    </div>
+
+                    <!-- Success message (hidden by default) -->
+                    <div class="form-success" id="formSuccess" role="alert" aria-live="polite">
+                        <div class="form-success-icon" aria-hidden="true">&#10003;</div>
+                        <h3>Запрос отправлен</h3>
+                        <p>Мы свяжемся с вами&nbsp;в течение рабочего дня.</p>
+                    </div>
+
+                    <form class="industrial-form" id="contactForm" novalidate aria-label="Форма обратной связи">
+                        <div class="form-group">
+                            <label for="contactName">Ваше имя</label>
+                            <input type="text" id="contactName" name="name" placeholder="ИВАН ИВАНОВ"
+                                autocomplete="name" required aria-required="true"
+                                aria-describedby="contactNameError">
+                            <span class="field-error" id="contactNameError" role="alert">Введите ваше имя</span>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="contactPhone">Телефон</label>
+                                <input type="tel" id="contactPhone" name="phone" placeholder="+7 000 000 0000"
+                                    autocomplete="tel" required aria-required="true"
+                                    aria-describedby="contactPhoneError">
+                                <span class="field-error" id="contactPhoneError" role="alert">Введите телефон</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">Email</label>
+                                <input type="email" id="contactEmail" name="email" placeholder="MAIL@EXAMPLE.RU"
+                                    autocomplete="email" aria-describedby="contactEmailError">
+                                <span class="field-error" id="contactEmailError" role="alert">Введите корректный email</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactMessage">Сообщение</label>
+                            <textarea id="contactMessage" name="message"
+                                placeholder="ОПИШИТЕ ВАШ ПРОЕКТ ИЛИ ЗАДАЙТЕ ВОПРОС..."
+                                class="form-textarea-fixed"
+                                required aria-required="true"
+                                aria-describedby="contactMessageError"></textarea>
+                            <span class="field-error" id="contactMessageError" role="alert">Введите сообщение</span>
+                        </div>
+
+                        <button type="submit" class="btn-primary btn-full">Отправить запрос</button>
+
+                        <p class="form-disclaimer">
+                            Нажимая кнопку, вы соглашаетесь с
+                            <a href="#" class="footer-policy-link" data-privacy>политикой конфиденциальности</a>.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-info">
+                <div class="logo" aria-label="M38"><span>M38</span></div>
+                <p class="footer-desc">
+                    Производство высокотехнологичных модульных зданий<span class="mobile-break"> </span>&nbsp;в Иркутске.
+                </p>
+            </div>
+            <nav class="footer-links" aria-label="Навигация по сайту">
+                <div class="link-group">
+                    <h4>Производство</h4>
+                    <ul>
+                        <li><a href="catalog.html">Жилые</a></li>
+                        <li><a href="catalog.html">Коммерция</a></li>
+                        <li><a href="catalog.html">Спецназначение</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="production.html">Технология</a></li>
+                        <li><a href="docs.html">Документация</a></li>
+                        <li><a href="sro-gost.html">Сро/ГОСТ</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 M38. Все права защищены.</span>
+            <a href="#" class="footer-policy-link" data-privacy>Политика конфиденциальности</a>
+            <span>Дизайн&nbsp;и разработка: EgTroshin</span>
+        </div>
+    </footer>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay" role="dialog" aria-modal="true" aria-label="Меню навигации">
+        <button class="mobile-nav-close" aria-label="Закрыть меню">&times;</button>
+
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo" aria-hidden="true"><span>M38</span></div>
+            <div class="mobile-menu-typewriter" id="mobileTypewriter" aria-hidden="true"></div>
+        </div>
+
+        <nav class="mobile-nav-links" aria-label="Мобильная навигация">
+            <a href="catalog.html" class="mobile-nav-link">КАТАЛОГ</a>
+            <a href="production.html" class="mobile-nav-link">ПРОИЗВОДСТВО</a>
+            <a href="docs.html" class="mobile-nav-link">ДОКУМЕНТЫ</a>
+            <a href="sro-gost.html" class="mobile-nav-link">СРО / ГОСТ</a>
+            <a href="contacts.html" class="mobile-nav-link" aria-current="page">КОНТАКТЫ</a>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+        // Map initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            const map = L.map('map', { attributionControl: false }).setView([52.2978, 104.2964], 13);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                subdomains: 'abcd',
+                maxZoom: 20
+            }).addTo(map);
+            const m38Icon = L.divIcon({
+                className: 'custom-map-marker',
+                html: '<div class="marker-body"><span class="marker-text">M38</span></div><div class="marker-tail"></div>',
+                iconSize: [56, 64],
+                iconAnchor: [28, 64]
+            });
+            L.marker([52.2978, 104.2964], { icon: m38Icon }).addTo(map);
+        });
+
+        // Form validation
+        (function () {
+            const form = document.getElementById('contactForm');
+            const successBlock = document.getElementById('formSuccess');
+            if (!form) return;
+
+            function showError(inputId, errorId, show) {
+                const input = document.getElementById(inputId);
+                const error = document.getElementById(errorId);
+                if (!input || !error) return;
+                if (show) {
+                    input.classList.add('error');
+                    input.setAttribute('aria-invalid', 'true');
+                    error.classList.add('visible');
+                } else {
+                    input.classList.remove('error');
+                    input.removeAttribute('aria-invalid');
+                    error.classList.remove('visible');
+                }
+            }
+
+            function validateField(input) {
+                const id = input.id;
+                const value = input.value.trim();
+                if (id === 'contactName') {
+                    const invalid = value.length < 2;
+                    showError('contactName', 'contactNameError', invalid);
+                    return !invalid;
+                }
+                if (id === 'contactPhone') {
+                    const invalid = value.length < 6;
+                    showError('contactPhone', 'contactPhoneError', invalid);
+                    return !invalid;
+                }
+                if (id === 'contactEmail' && value.length > 0) {
+                    const invalid = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+                    showError('contactEmail', 'contactEmailError', invalid);
+                    return !invalid;
+                }
+                if (id === 'contactMessage') {
+                    const invalid = value.length < 5;
+                    showError('contactMessage', 'contactMessageError', invalid);
+                    return !invalid;
+                }
+                return true;
+            }
+
+            // Live validation on blur
+            ['contactName', 'contactPhone', 'contactEmail', 'contactMessage'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener('blur', () => validateField(el));
+                    el.addEventListener('input', () => {
+                        if (el.classList.contains('error')) validateField(el);
+                    });
+                }
+            });
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const nameOk = validateField(document.getElementById('contactName'));
+                const phoneOk = validateField(document.getElementById('contactPhone'));
+                const emailEl = document.getElementById('contactEmail');
+                const emailOk = emailEl.value.trim() === '' || validateField(emailEl);
+                const msgOk = validateField(document.getElementById('contactMessage'));
+
+                if (nameOk && phoneOk && emailOk && msgOk) {
+                    const submitBtn = form.querySelector('[type="submit"]');
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Отправка...';
+
+                    // ── Отправка заявки в CRM ──────────────────────────────
+                    const CRM_URL = 'https://m38-crm-production.up.railway.app';
+                    fetch(CRM_URL + '/api/leads', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            name:    document.getElementById('contactName').value.trim(),
+                            phone:   document.getElementById('contactPhone').value.trim(),
+                            email:   document.getElementById('contactEmail').value.trim(),
+                            message: document.getElementById('contactMessage').value.trim(),
+                            source:  'contacts-form'
+                        })
+                    })
+                    .catch(() => {}) // не блокируем UI даже при ошибке сети
+                    .finally(() => {
+                        form.style.display = 'none';
+                        successBlock.classList.add('visible');
+                        successBlock.focus();
+                    });
+                }
+            });
+        })();
+    </script>
+</body>
+
+</html>

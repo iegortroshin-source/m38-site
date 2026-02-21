@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тех. документация | M38</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* =============================================
+           DOCS PAGE — ADDITIONAL STYLES
+        ============================================= */
+
+        /* Filter mobile toggle */
+        .docs-filter-toggle {
+            display: none;
+            width: 100%;
+            background: #111;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 14px 20px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+        .docs-filter-toggle:hover { border-color: var(--primary-color); }
+        .docs-filter-toggle i { transition: transform 0.3s; }
+        .docs-filter-toggle.open i { transform: rotate(180deg); }
+
+        /* Sidebar collapse on mobile */
+        .docs-sidebar-inner {
+            display: block;
+        }
+
+        /* Category count badge */
+        .nav-count {
+            margin-left: auto;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: var(--text-dim);
+            font-size: 0.65rem;
+            font-weight: 900;
+            padding: 2px 7px;
+            letter-spacing: 0;
+            min-width: 24px;
+            text-align: center;
+        }
+        .docs-nav-group-refined a.active .nav-count {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
+
+        /* File type icon color */
+        .doc-type-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #333;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        .doc-type-icon.pdf  { color: #e74c3c; border-color: rgba(231,76,60,0.3); }
+        .doc-type-icon.dwg  { color: #3498db; border-color: rgba(52,152,219,0.3); }
+        .doc-type-icon.cert { color: #2ecc71; border-color: rgba(46,204,113,0.3); }
+        .doc-type-icon.book { color: #f39c12; border-color: rgba(243,156,18,0.3); }
+
+        /* Status badge */
+        .doc-status {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            padding: 3px 8px;
+            text-transform: uppercase;
+        }
+        .doc-status.valid   { color: #2ecc71; background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); }
+        .doc-status.active  { color: #3498db; background: rgba(52,152,219,0.1); border: 1px solid rgba(52,152,219,0.3); }
+        .doc-status.current { color: #f39c12; background: rgba(243,156,18,0.1); border: 1px solid rgba(243,156,18,0.3); }
+
+        /* Updated card layout */
+        .doc-card-refined {
+            grid-template-columns: 60px 1fr auto !important;
+            gap: 24px !important;
+            align-items: start !important;
+        }
+        .doc-card-refined:hover { cursor: pointer; }
+
+        .doc-main-info h5 {
+            font-size: 1rem !important;
+            margin-bottom: 6px !important;
+        }
+
+        .doc-main-info .doc-desc {
+            color: var(--text-dim);
+            font-size: 0.82rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .doc-actions-refined {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-end;
+            min-width: 130px;
+        }
+
+        .btn-download-refined {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        /* Download button — компактный размер для карточек */
+        .doc-actions-refined .btn-action {
+            padding: 10px 20px;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        /* Empty state */
+        .docs-empty {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            color: var(--text-dim);
+            text-align: center;
+        }
+        .docs-empty i { font-size: 3rem; margin-bottom: 20px; opacity: 0.3; }
+        .docs-empty p { font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; }
+
+        /* Sort controls */
+        .sort-controls select {
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .docs-filter-toggle { display: flex; }
+            .docs-sidebar-inner { display: none; }
+            .docs-sidebar-inner.open { display: block; }
+
+            .doc-card-refined {
+                grid-template-columns: 48px 1fr !important;
+                gap: 16px !important;
+            }
+            .doc-actions-refined {
+                grid-column: 1 / -1;
+                flex-direction: row !important;
+                justify-content: space-between;
+                align-items: center;
+                text-align: left;
+                min-width: unset;
+                border-top: 1px solid #222;
+                padding-top: 14px;
+                margin-top: 4px;
+            }
+            .doc-type-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .doc-card-refined {
+                padding: 20px !important;
+            }
+            .btn-download-refined {
+                padding: 8px 14px;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header role="banner">
+        <a href="index.html" class="logo" style="text-decoration: none; color: inherit;" aria-label="M38 — главная страница">
+            <span>M38</span>
+        </a>
+        <button class="burger-menu" aria-label="Открыть меню навигации" aria-expanded="false" aria-controls="mobileNavOverlay">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav aria-label="Основная навигация">
+            <a href="catalog.html">Каталог</a>
+            <a href="production.html">Производство</a>
+            <a href="docs.html" class="active" aria-current="page">Тех. документация</a>
+            <a href="sro-gost.html">Сро/ГОСТ</a>
+            <a href="contacts.html">Контакты</a>
+        </nav>
+        <div class="header-right">
+            <div class="contact-info">
+                <span class="phone">+7.3952.00.00.00</span>
+                <span class="location">РЕГИОН_38 / ИРКУТСК</span>
+            </div>
+            <a href="configurator.html" class="btn-primary" style="text-decoration:none;">Начать проект</a>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="page-hero docs-hero" aria-label="Документация — шапка раздела">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <span class="spec-id">ТЕХНИЧЕСКИЙ_АРХИВ_V2</span>
+                <h1>Библиотека<br>данных</h1>
+                <p class="hero-desc">Официальные стандарты,
+                    технические регламенты<span class="mobile-break"> </span>&nbsp;и проектная документация M38.</p>
+            </div>
+        </section>
+
+        <section class="docs-container-refined" aria-label="Документы и технические файлы">
+
+            <!-- ===== SIDEBAR ===== -->
+            <aside class="docs-sidebar-refined" aria-label="Фильтры документов">
+
+                <!-- Mobile toggle -->
+                <button class="docs-filter-toggle" id="docsFilterToggle" aria-expanded="false">
+                    <span>ФИЛЬТР ДОКУМЕНТОВ</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                </button>
+
+                <div class="docs-sidebar-inner" id="docsSidebarInner">
+                    <div class="docs-search-refined">
+                        <label for="docsSearch" class="visually-hidden">Поиск документов</label>
+                        <input type="search" id="docsSearch" placeholder="ПОИСК В РЕПОЗИТОРИИ..." aria-label="Поиск в репозитории" autocomplete="off">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </div>
+
+                    <nav class="docs-nav-group-refined" aria-label="Типы документов">
+                        <h4>ТИП ДОКУМЕНТА</h4>
+                        <ul>
+                            <li>
+                                <a href="#" class="active" data-filter="all" aria-current="true">
+                                    <i class="fas fa-folder-open" aria-hidden="true"></i>
+                                    Все файлы
+                                    <span class="nav-count" id="cnt-all">20</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-filter="gost">
+                                    <i class="fas fa-file-contract" aria-hidden="true"></i>
+                                    ГОСТ и СП
+                                    <span class="nav-count" id="cnt-gost">7</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-filter="dwg">
+                                    <i class="fas fa-drafting-compass" aria-hidden="true"></i>
+                                    Чертежи DWG
+                                    <span class="nav-count" id="cnt-dwg">5</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-filter="cert">
+                                    <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                                    Сертификаты
+                                    <span class="nav-count" id="cnt-cert">4</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-filter="guide">
+                                    <i class="fas fa-book" aria-hidden="true"></i>
+                                    Руководства
+                                    <span class="nav-count" id="cnt-guide">4</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- ===== CONTENT ===== -->
+            <div class="docs-content-refined">
+                <div class="docs-header-bar">
+                    <span class="results-count" id="resultsCount" aria-live="polite">НАЙДЕНО: 20 ОБЪЕКТОВ</span>
+                    <div class="sort-controls">
+                        <label for="sortSelect" class="visually-hidden">Сортировка</label>
+                        <select id="sortSelect" aria-label="Сортировка документов">
+                            <option value="date">СОРТИРОВКА: ДАТА</option>
+                            <option value="name">СОРТИРОВКА: НАЗВАНИЕ</option>
+                            <option value="size">СОРТИРОВКА: РАЗМЕР</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="doc-cards-grid" id="docGrid" role="list">
+
+                    <!-- ======== ГОСТ И СП ======== -->
+
+                    <article class="doc-card-refined" role="listitem" data-category="gost" data-name="ГОСТ 23118-2012 Конструкции стальные строительные" data-date="2024-01-15" data-size="2.4">
+                        <div class="doc-type-icon pdf"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">ГОСТ</span>
+                                <span class="doc-status valid">Действующий</span>
+                            </div>
+                            <h5>ГОСТ 23118-2012</h5>
+                            <p class="doc-desc">Конструкции стальные строительные. Общие технические условия для модульных систем. Допуски, методы контроля&nbsp;и приёмки.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">PDF / 2.4 МБ</span>
+                            <a href="docs/GOST_23118-2012.pdf" class="btn-action ghost btn-download-refined" download aria-label="Скачать ГОСТ 23118-2012">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="doc-card-refined" role="listitem" data-category="gost" data-name="СП 16.13330.2017 Стальные конструкции" data-date="2024-02-10" data-size="4.1">
+                        <div class="doc-type-icon pdf"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">СП</span>
+                                <span class="doc-status valid">Действующий</span>
+                            </div>
+                            <h5>СП 16.13330.2017</h5>
+                            <p class="doc-desc">Стальные конструкции. Актуализированная редакция СНиП II-23-81* для суровых климатических условий. Расчёт несущей способности.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">PDF / 4.1 МБ</span>
+                            <a href="docs/SP_16.13330.2017.pdf" class="btn-action ghost btn-download-refined" download aria-label="Скачать СП 16.13330.2017">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="doc-card-refined" role="listitem" data-category="gost" data-name="СП 20.13330.2017 Нагрузки и воздействия" data-date="2024-01-20" data-size="3.7">
+                        <div class="doc-type-icon pdf"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">СП</span>
+                                <span class="doc-status valid">Действующий</span>
+                            </div>
+                            <h5>СП 20.13330.2017</h5>
+                            <p class="doc-desc">Нагрузки&nbsp;и воздействия. Актуализированная редакция СНиП 2.01.07-85*. Снеговые нагрузки для&nbsp;IV климатического района.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">PDF / 3.7 МБ</span>
+                            <a href="docs/SP_20.13330.2017.pdf" class="btn-action ghost btn-download-refined" download aria-label="Скачать СП 20.13330.2017">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="doc-card-refined" role="listitem" data-category="gost" data-name="ГОСТ 30547-97 Листовые кровельные материалы" data-date="2023-11-05" data-size="1.8">
+                        <div class="doc-type-icon pdf"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">ГОСТ</span>
+                                <span class="doc-status valid">Действующий</span>
+                            </div>
+                            <h5>ГОСТ 30547-97</h5>
+                            <p class="doc-desc">Материалы рулонные кровельные&nbsp;и гидроизоляционные. Общие технические условия. Применяется при монтаже кровли модулей.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">PDF / 1.8 МБ</span>
+                            <a href="docs/GOST_30547-97.pdf" class="btn-action ghost btn-download-refined" download aria-label="Скачать ГОСТ 30547-97">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="doc-card-refined" role="listitem" data-category="gost" data-name="СП 50.13330.2012 Тепловая защита зданий" data-date="2024-03-01" data-size="5.2">
+                        <div class="doc-type-icon pdf"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">СП</span>
+                                <span class="doc-status valid">Действующий</span>
+                            </div>
+                            <h5>СП 50.13330.2012</h5>
+                            <p class="doc-desc">Тепловая защита зданий. Актуализированная редакция СНиП 23-02-2003. Нормы для&nbsp;Арктической серии M38&nbsp;при -50°C.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">PDF / 5.2 МБ</span>
+                            <a href="docs/SP_50.13330.2012.pdf" class="btn-action ghost btn-download-refined" download aria-label="Скачать СП 50.13330.2012">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="doc-card-refined" role="listitem" data-category="gost" data-name="ГОСТ Р 56204-2014 Модульные здания" data-date="2023-09-12" data-size="2.9">
+                        <div class="doc-type-icon pdf"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">ГОСТ Р</span>
+                                <span class="doc-status valid">Действующий</span>
+                            </div>
+                            <h5>ГОСТ Р 56204-2014</h5>
+                            <p class="doc-desc">Здания модульные мобильные. Требования безопасности. Единственный профильный ГОСТ для мобильных&nbsp;и модульных зданий.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">PDF / 2.9 МБ</span>
+                            <a href="docs/GOST_R_56204-2014.pdf" class="btn-action ghost btn-download-refined" download aria-label="Скачать ГОСТ Р 56204-2014">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="doc-card-refined" role="listitem" data-category="gost" data-name="СП 131.13330.2020 Строительная климатология" data-date="2024-01-08" data-size="8.4">
+                        <div class="doc-type-icon pdf"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">СП</span>
+                                <span class="doc-status valid">Действующий</span>
+                            </div>
+                            <h5>СП 131.13330.2020</h5>
+                            <p class="doc-desc">Строительная климатология. Данные по&nbsp;климатическим параметрам для&nbsp;проектирования в&nbsp;Иркутской области&nbsp;и Сибири.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">PDF / 8.4 МБ</span>
+                            <a href="docs/SP_131.13330.2020.pdf" class="btn-action ghost btn-download-refined" download aria-label="Скачать СП 131.13330.2020">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- ======== ЧЕРТЕЖИ DWG ======== -->
+
+                    <article class="doc-card-refined" role="listitem" data-category="dwg" data-name="Типовой узел стыковки модулей" data-date="2024-04-10" data-size="0.8">
+                        <div class="doc-type-icon dwg"><i class="fas fa-drafting-compass" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">DWG</span>
+                                <span class="doc-status active">BIM-интеграция</span>
+                            </div>
+                            <h5>Узел стыковки модулей</h5>
+                            <p class="doc-desc">Схема герметизации межмодульного пространства для Арктической серии. Совместимо с Revit&nbsp;2024, AutoCAD&nbsp;2024.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">DWG / 0.8 МБ</span>
+                            <a href="docs/node_joint_standard.dwg" class="btn-action ghost btn-download-refined" download aria-label="Скачать чертёж узла стыковки">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="doc-card-refined" role="listitem" data-category="dwg" data-name="Фундаментная рама FP-01 чертёж" data-date="2024-03-22" data-size="1.2">
+                        <div class="doc-type-icon dwg"><i class="fas fa-drafting-compass" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">DWG</span>
+                                <span class="doc-status active">BIM-интеграция</span>
+                            </div>
+                            <h5>Фундаментная рама FP-01</h5>
+                            <p class="doc-desc">Свайно-ростверковое основание для модулей серии Профи&nbsp;и Арктик. Чертёж с&nbsp;размерами, сечениями&nbsp;и спецификацией металла.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">DWG / 1.2 МБ</span>
+                            <a href="docs/foundation_frame_FP01.dwg" class="btn-action ghost btn-download-refined" download aria-label="Скачать чертёж FP-01">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="doc-card-refined" role="listitem" data-category="dwg" data-name="Силовой каркас SKR-02 чертёж" data-date="2024-02-14" data-size="2.1">
+                        <div class="doc-type-icon dwg"><i class="fas fa-drafting-compass" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">DWG</span>
+                                <span class="doc-status active">LOD 400</span>
+                            </div>
+                            <h5>Силовой каркас SKR-02</h5>
+                            <p class="doc-desc">Несущий металлокаркас жилого блока 6×3м. Полная спецификация сечений, узлов сварки&nbsp;и болтовых соединений по&nbsp;ГОСТ 23118.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">DWG / 2.1 МБ</span>
+                            <a href="docs/frame_SKR02.dwg" class="btn-action ghost btn-download-refined" download aria-label="Скачать чертёж SKR-02">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="doc-card-refined" role="listitem" data-category="dwg" data-name="Электрика типового блока E-STD чертёж" data-date="2024-01-30" data-size="1.5">
+                        <div class="doc-type-icon dwg"><i class="fas fa-drafting-compass" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">DWG</span>
+                                <span class="doc-status active">BIM-интеграция</span>
+                            </div>
+                            <h5>Электрика E-STD</h5>
+                            <p class="doc-desc">Принципиальная электрическая схема типового жилого блока. Разводка 220/380В, групповые линии, щитовая ВРУ, потребители.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">DWG / 1.5 МБ</span>
+                            <a href="docs/electric_E-STD.dwg" class="btn-action ghost btn-download-refined" download aria-label="Скачать электросхему E-STD">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="doc-card-refined" role="listitem" data-category="dwg" data-name="Схема ВК инженерной разводки чертёж" data-date="2024-01-18" data-size="1.3">
+                        <div class="doc-type-icon dwg"><i class="fas fa-drafting-compass" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">DWG</span>
+                                <span class="doc-status active">BIM-интеграция</span>
+                            </div>
+                            <h5>Водоснабжение&nbsp;и канализация ВК-01</h5>
+                            <p class="doc-desc">Схема трубопроводов ХВС, ГВС&nbsp;и канализации. Заводская разводка скрытым способом для серий Базис, Профи&nbsp;и Арктик.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">DWG / 1.3 МБ</span>
+                            <a href="docs/VK_engineering_01.dwg" class="btn-action ghost btn-download-refined" download aria-label="Скачать схему ВК-01">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- ======== СЕРТИФИКАТЫ ======== -->
+
+                    <article class="doc-card-refined" role="listitem" data-category="cert" data-name="Свидетельство СРО на строительство" data-date="2023-07-01" data-size="1.2">
+                        <div class="doc-type-icon cert"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">СРО</span>
+                                <span class="doc-status valid">До 2027</span>
+                            </div>
+                            <h5>Свидетельство СРО</h5>
+                            <p class="doc-desc">Допуск к&nbsp;работам, которые оказывают влияние на&nbsp;безопасность объектов капитального строительства. Выдано ассоциацией «СтройСибирь».</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">PDF / 1.2 МБ</span>
+                            <a href="docs/SRO_certificate.pdf" class="btn-action ghost btn-download-refined" download aria-label="Скачать свидетельство СРО">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="doc-card-refined" role="listitem" data-category="cert" data-name="Пожарный сертификат класс КМ0" data-date="2024-01-10" data-size="0.9">
+                        <div class="doc-type-icon cert"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">ПОЖБЕЗОПАСНОСТЬ</span>
+                                <span class="doc-status valid">До 2026</span>
+                            </div>
+                            <h5>Пожарный сертификат</h5>
+                            <p class="doc-desc">Класс пожарной опасности материалов КМ0. Сертификация МЧС России для&nbsp;наружных и&nbsp;внутренних конструкций модулей серии Арктик.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">PDF / 0.9 МБ</span>
+                            <a href="docs/fire_safety_cert.pdf" class="btn-action ghost btn-download-refined" download aria-label="Скачать пожарный сертификат">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="doc-card-refined" role="listitem" data-category="cert" data-name="ISO 9001 система менеджмента качества" data-date="2023-12-01" data-size="1.5">
+                        <div class="doc-type-icon cert"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">ISO 9001:2015</span>
+                                <span class="doc-status valid">До 2026</span>
+                            </div>
+                            <h5>Сертификат ISO&nbsp;9001</h5>
+                            <p class="doc-desc">Система менеджмента качества производственных процессов M38. Сертифицировано органом Bureau Veritas. Охватывает весь производственный цикл.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">PDF / 1.5 МБ</span>
+                            <a href="docs/ISO_9001_cert.pdf" class="btn-action ghost btn-download-refined" download aria-label="Скачать сертификат ISO 9001">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="doc-card-refined" role="listitem" data-category="cert" data-name="Сертификат энергоэффективности А+" data-date="2024-02-20" data-size="0.7">
+                        <div class="doc-type-icon cert"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">ЭНЕРГОЭФФЕКТИВНОСТЬ</span>
+                                <span class="doc-status valid">Класс A+</span>
+                            </div>
+                            <h5>Энергопаспорт A+</h5>
+                            <p class="doc-desc">Энергетический паспорт модулей серии Арктик. Класс энергоэффективности A+. Подтверждает расход тепла не&nbsp;более 25&nbsp;кВт·ч/м²·год.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">PDF / 0.7 МБ</span>
+                            <a href="docs/energy_passport_A+.pdf" class="btn-action ghost btn-download-refined" download aria-label="Скачать энергопаспорт A+">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- ======== РУКОВОДСТВА ======== -->
+
+                    <article class="doc-card-refined" role="listitem" data-category="guide" data-name="Руководство по монтажу модулей REV 3" data-date="2024-04-01" data-size="12.3">
+                        <div class="doc-type-icon book"><i class="fas fa-book" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">МОНТАЖ</span>
+                                <span class="doc-status current">Ред. 3.0</span>
+                            </div>
+                            <h5>Руководство по&nbsp;монтажу</h5>
+                            <p class="doc-desc">Пошаговая инструкция сборки модульного здания на&nbsp;объекте. Подготовка основания, строповка, стыковка, герметизация, подключение инженерии.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">PDF / 12.3 МБ</span>
+                            <a href="docs/assembly_guide_rev3.pdf" class="btn-action ghost btn-download-refined" download aria-label="Скачать руководство по монтажу">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="doc-card-refined" role="listitem" data-category="guide" data-name="Инструкция по техническому обслуживанию" data-date="2024-03-15" data-size="6.8">
+                        <div class="doc-type-icon book"><i class="fas fa-book" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">ОБСЛУЖИВАНИЕ</span>
+                                <span class="doc-status current">Ред. 2.1</span>
+                            </div>
+                            <h5>Техническое обслуживание</h5>
+                            <p class="doc-desc">Инструкция по&nbsp;эксплуатации и&nbsp;обслуживанию модульных зданий M38. Регламент ТО, периодические осмотры, ремонт конструктивных элементов.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">PDF / 6.8 МБ</span>
+                            <a href="docs/maintenance_manual.pdf" class="btn-action ghost btn-download-refined" download aria-label="Скачать инструкцию по ТО">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="doc-card-refined" role="listitem" data-category="guide" data-name="Паспорт изделия модульный блок серия Базис" data-date="2024-02-28" data-size="3.2">
+                        <div class="doc-type-icon book"><i class="fas fa-book" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">ПАСПОРТ</span>
+                                <span class="doc-status current">Актуально</span>
+                            </div>
+                            <h5>Паспорт изделия — Базис</h5>
+                            <p class="doc-desc">Технический паспорт блоков серии Базис. Характеристики, материалы, нагрузки, гарантийные обязательства. Прилагается к&nbsp;каждому модулю.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">PDF / 3.2 МБ</span>
+                            <a href="docs/product_passport_basis.pdf" class="btn-action ghost btn-download-refined" download aria-label="Скачать паспорт серии Базис">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="doc-card-refined" role="listitem" data-category="guide" data-name="Инструкция по транспортировке модулей" data-date="2024-01-05" data-size="4.6">
+                        <div class="doc-type-icon book"><i class="fas fa-book" aria-hidden="true"></i></div>
+                        <div class="doc-main-info">
+                            <div class="doc-meta-terminal" style="margin-bottom:8px;">
+                                <span class="terminal-tag">ЛОГИСТИКА</span>
+                                <span class="doc-status current">Актуально</span>
+                            </div>
+                            <h5>Транспортировка модулей</h5>
+                            <p class="doc-desc">Требования к&nbsp;перевозке модульных блоков автотранспортом, ж/д и&nbsp;речным транспортом. Схемы крепления, разрешённые маршруты, требования к&nbsp;дорогам.</p>
+                        </div>
+                        <div class="doc-actions-refined">
+                            <span class="file-info">PDF / 4.6 МБ</span>
+                            <a href="docs/transport_guide.pdf" class="btn-action ghost btn-download-refined" download aria-label="Скачать инструкцию по транспортировке">
+                                <i class="fas fa-download" aria-hidden="true"></i> СКАЧАТЬ
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- Empty state -->
+                <div class="docs-empty" id="docsEmpty" aria-live="polite">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <p>Документы не найдены</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-info">
+                <div class="logo" aria-label="M38"><span>M38</span></div>
+                <p class="footer-desc">
+                    Производство высокотехнологичных модульных зданий<span class="mobile-break"> </span>&nbsp;в Иркутске.
+                </p>
+            </div>
+            <nav class="footer-links" aria-label="Навигация по сайту">
+                <div class="link-group">
+                    <h4>Производство</h4>
+                    <ul>
+                        <li><a href="catalog.html">Жилые</a></li>
+                        <li><a href="catalog.html">Коммерция</a></li>
+                        <li><a href="catalog.html">Спецназначение</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="production.html">Технология</a></li>
+                        <li><a href="docs.html">Документация</a></li>
+                        <li><a href="sro-gost.html">Сро/ГОСТ</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 M38. Все права защищены.</span>
+            <a href="#" class="footer-policy-link" data-privacy>Политика конфиденциальности</a>
+            <span>Дизайн&nbsp;и разработка: EgTroshin</span>
+        </div>
+    </footer>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay" role="dialog" aria-modal="true" aria-label="Меню навигации">
+        <button class="mobile-nav-close" aria-label="Закрыть меню">&times;</button>
+
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo" aria-hidden="true"><span>M38</span></div>
+            <div class="mobile-menu-typewriter" id="mobileTypewriter" aria-hidden="true"></div>
+        </div>
+
+        <nav class="mobile-nav-links" aria-label="Мобильная навигация">
+            <a href="catalog.html" class="mobile-nav-link">КАТАЛОГ</a>
+            <a href="production.html" class="mobile-nav-link">ПРОИЗВОДСТВО</a>
+            <a href="docs.html" class="mobile-nav-link" aria-current="page">ДОКУМЕНТЫ</a>
+            <a href="sro-gost.html" class="mobile-nav-link">СРО / ГОСТ</a>
+            <a href="contacts.html" class="mobile-nav-link">КОНТАКТЫ</a>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+
+    <script>
+    // =========================================================
+    //  DOCS PAGE — FILTER + SEARCH + SORT
+    // =========================================================
+    (function () {
+        const grid         = document.getElementById('docGrid');
+        const cards        = Array.from(grid.querySelectorAll('.doc-card-refined'));
+        const resultsEl    = document.getElementById('resultsCount');
+        const emptyEl      = document.getElementById('docsEmpty');
+        const searchInput  = document.getElementById('docsSearch');
+        const sortSelect   = document.getElementById('sortSelect');
+        const filterLinks  = document.querySelectorAll('.docs-nav-group-refined a[data-filter]');
+
+        // Mobile sidebar toggle
+        const toggleBtn    = document.getElementById('docsFilterToggle');
+        const sidebarInner = document.getElementById('docsSidebarInner');
+
+        if (toggleBtn && sidebarInner) {
+            toggleBtn.addEventListener('click', function () {
+                const isOpen = sidebarInner.classList.toggle('open');
+                toggleBtn.classList.toggle('open', isOpen);
+                toggleBtn.setAttribute('aria-expanded', isOpen);
+            });
+        }
+
+        // State
+        let currentFilter = 'all';
+        let currentSearch = '';
+        let currentSort   = 'date';
+
+        // Apply all filters, search and sort
+        function applyAll() {
+            let visible = cards.filter(function (card) {
+                // Category filter
+                const cat = card.dataset.category;
+                if (currentFilter !== 'all' && cat !== currentFilter) return false;
+
+                // Search filter
+                if (currentSearch) {
+                    const name = (card.dataset.name || '').toLowerCase();
+                    const desc = card.querySelector('.doc-desc') ? card.querySelector('.doc-desc').textContent.toLowerCase() : '';
+                    if (!name.includes(currentSearch) && !desc.includes(currentSearch)) return false;
+                }
+
+                return true;
+            });
+
+            // Sort
+            visible.sort(function (a, b) {
+                if (currentSort === 'date') {
+                    return (b.dataset.date || '').localeCompare(a.dataset.date || '');
+                } else if (currentSort === 'name') {
+                    return (a.dataset.name || '').localeCompare(b.dataset.name || '', 'ru');
+                } else if (currentSort === 'size') {
+                    return parseFloat(b.dataset.size || 0) - parseFloat(a.dataset.size || 0);
+                }
+                return 0;
+            });
+
+            // Hide all
+            cards.forEach(function (c) { c.style.display = 'none'; });
+
+            // Show sorted visible
+            visible.forEach(function (c) {
+                c.style.display = '';
+                grid.appendChild(c); // reorder in DOM
+            });
+
+            // Update counter
+            const count = visible.length;
+            resultsEl.textContent = 'НАЙДЕНО: ' + count + ' ' + pluralObj(count);
+
+            // Empty state
+            if (count === 0) {
+                emptyEl.style.display = 'flex';
+            } else {
+                emptyEl.style.display = 'none';
+            }
+        }
+
+        function pluralObj(n) {
+            if (n % 100 >= 11 && n % 100 <= 14) return 'ОБЪЕКТОВ';
+            const r = n % 10;
+            if (r === 1) return 'ОБЪЕКТ';
+            if (r >= 2 && r <= 4) return 'ОБЪЕКТА';
+            return 'ОБЪЕКТОВ';
+        }
+
+        // Filter links
+        filterLinks.forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                filterLinks.forEach(function (l) {
+                    l.classList.remove('active');
+                    l.removeAttribute('aria-current');
+                });
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'true');
+                currentFilter = link.dataset.filter;
+                applyAll();
+
+                // Close sidebar on mobile after selecting filter
+                if (window.innerWidth <= 768 && sidebarInner) {
+                    sidebarInner.classList.remove('open');
+                    toggleBtn.classList.remove('open');
+                    toggleBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        // Search
+        searchInput.addEventListener('input', function () {
+            currentSearch = this.value.trim().toLowerCase();
+            applyAll();
+        });
+
+        // Sort
+        sortSelect.addEventListener('change', function () {
+            currentSort = this.value;
+            applyAll();
+        });
+
+        // Card click — whole card is clickable (opens download)
+        cards.forEach(function (card) {
+            card.addEventListener('click', function (e) {
+                // Only if click is NOT on the button/link itself
+                if (e.target.closest('.btn-download-refined')) return;
+                const btn = card.querySelector('.btn-download-refined');
+                if (btn) btn.click();
+            });
+        });
+
+        // Initial render
+        applyAll();
+    })();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M38 | Производство</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header role="banner">
+        <a href="index.html" class="logo" style="text-decoration: none; color: inherit;" aria-label="M38 — главная страница">
+            <span>M38</span>
+        </a>
+        <button class="burger-menu" aria-label="Открыть меню навигации" aria-expanded="false" aria-controls="mobileNavOverlay">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav aria-label="Основная навигация">
+            <a href="catalog.html">Каталог</a>
+            <a href="production.html" class="active" aria-current="page">Производство</a>
+            <a href="docs.html">Тех. документация</a>
+            <a href="sro-gost.html">Сро/ГОСТ</a>
+            <a href="contacts.html">Контакты</a>
+        </nav>
+        <div class="header-right">
+            <div class="contact-info">
+                <span class="phone">+7.3952.00.00.00</span>
+                <span class="location">РЕГИОН_38 / ИРКУТСК</span>
+            </div>
+            <button class="btn-primary">Начать проект</button>
+        </div>
+    </header>
+
+    <main id="main-content" class="fade-in">
+
+        <section class="page-hero production-hero" aria-label="Производство — шапка раздела">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <span class="spec-id">ТЕХНОЛОГИЯ_V2.0</span>
+                <h1>Наше<br>производство</h1>
+            </div>
+        </section>
+
+        <section class="production-process" aria-labelledby="production-cycle-title">
+            <div class="section-title-wrap production-process-header">
+                <span class="spec-id">ПРОИЗВОДСТВЕННЫЙ ЦИКЛ</span>
+                <h2 id="production-cycle-title" class="production-process-header-h2">Заводской цикл</h2>
+            </div>
+
+            <div class="production-grid-detailed">
+                <!-- Step 01 -->
+                <div class="gallery-item-detailed">
+                    <div class="process-image">
+                        <img src="image/BIM-Моделирование.png" alt="BIM-моделирование — цифровая 3D-модель здания" loading="lazy">
+                    </div>
+                    <div class="step-num-small">01</div>
+                    <h3 class="step-title-small">BIM-Моделирование</h3>
+                    <p class="step-desc-small">Каждое здание M38 рождается&nbsp;в цифровой среде. Мы создаем полную
+                        трехмерную модель, где рассчитан каждый болт.<br>Это исключает ошибки&nbsp;при сборке.</p>
+                    <div class="tech-tags-terminal">
+                        <div class="terminal-tag">Revit Structure</div>
+                        <div class="terminal-tag">LOD 400</div>
+                    </div>
+                </div>
+
+                <!-- Step 02 -->
+                <div class="gallery-item-detailed">
+                    <div class="process-image">
+                        <img src="image/Силовой каркас.png" alt="Роботизированная сварка силового каркаса" loading="lazy">
+                    </div>
+                    <div class="step-num-small">02</div>
+                    <h3 class="step-title-small">Роботизированная сварка</h3>
+                    <p class="step-desc-small">Силовой каркас сваривается&nbsp;на автоматизированной линии. Контроль швов
+                        осуществляется ультразвуковым методом. Геометрия идеальна&nbsp;до миллиметра.</p>
+                    <div class="tech-tags-terminal">
+                        <div class="terminal-tag">ГОСТ 23118-2012</div>
+                        <div class="terminal-tag">MIG/MAG</div>
+                    </div>
+                </div>
+
+                <!-- Step 03 -->
+                <div class="gallery-item-detailed">
+                    <div class="process-image">
+                        <img src="image/Арктический контур.png" alt="Энергоэффективный арктический контур утепления" loading="lazy">
+                    </div>
+                    <div class="step-num-small">03</div>
+                    <h3 class="step-title-small">Энергоэффективный контур</h3>
+                    <p class="step-desc-small">Бесшовное утепление базальтовой плитой с перекрестным нахлестом. Мембраны
+                        Pro Clima (Германия) создают герметичный термос, сохраняя тепло&nbsp;в -50°C.</p>
+                    <div class="tech-tags-terminal">
+                        <div class="terminal-tag">R-Value 4.2</div>
+                        <div class="terminal-tag">Zero-Bridge</div>
+                    </div>
+                </div>
+
+                <!-- Step 04 -->
+                <div class="gallery-item-detailed">
+                    <div class="process-image">
+                        <img src="image/Заводской финиш.png" alt="Премиальная заводская чистовая отделка" loading="lazy">
+                    </div>
+                    <div class="step-num-small">04</div>
+                    <h3 class="step-title-small">Премиальная отделка</h3>
+                    <p class="step-desc-small">Использование износостойких панелей, кварцвиниловых полов&nbsp;и скрытой
+                        разводки инженерии. Модуль приезжает&nbsp;на объект полностью готовым к жизни.</p>
+                    <div class="tech-tags-terminal">
+                        <div class="terminal-tag">Class A+</div>
+                        <div class="terminal-tag">Ready-to-Use</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Facility Info Section -->
+        <section class="facility-section" aria-labelledby="facility-title">
+            <div class="facility-grid">
+                <div class="facility-info-text">
+                    <span class="spec-id">ИНФРАСТРУКТУРА</span>
+                    <h2 id="facility-title">2000 м² ЦЕХОВ</h2>
+                    <p>
+                        Наш завод оснащен кран-балками грузоподъемностью 10 тонн, покрасочной камерой&nbsp;и складом сухой
+                        доски. Мы&nbsp;не зависим&nbsp;от погодных условий.
+                    </p>
+                    <div class="hero-capabilities-list">
+                        <div class="cap-item">> Собственная пилорама</div>
+                        <div class="cap-item">> Камера порошковой окраски</div>
+                        <div class="cap-item">> Лаборатория контроля качества</div>
+                    </div>
+                </div>
+                <div class="facility-stats">
+                    <div class="stat-card-animated">
+                        <div class="stat-content">
+                            <span class="stat-big">45</span>
+                            <span class="stat-desc">МОДУЛЕЙ&nbsp;В МЕСЯЦ</span>
+                        </div>
+                    </div>
+                    <div class="stat-card-animated">
+                        <div class="stat-content">
+                            <span class="stat-big">12</span>
+                            <span class="stat-desc">ЛЕТ ОПЫТА</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-info">
+                <div class="logo" aria-label="M38"><span>M38</span></div>
+                <p class="footer-desc">
+                    Производство высокотехнологичных модульных зданий<span class="mobile-break"> </span>&nbsp;в Иркутске.
+                </p>
+            </div>
+            <nav class="footer-links" aria-label="Навигация по сайту">
+                <div class="link-group">
+                    <h4>Производство</h4>
+                    <ul>
+                        <li><a href="catalog.html">Жилые</a></li>
+                        <li><a href="catalog.html">Коммерция</a></li>
+                        <li><a href="catalog.html">Спецназначение</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="production.html">Технология</a></li>
+                        <li><a href="docs.html">Документация</a></li>
+                        <li><a href="sro-gost.html">Сро/ГОСТ</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 M38. Все права защищены.</span>
+            <a href="#" class="footer-policy-link" data-privacy>Политика конфиденциальности</a>
+            <span>Дизайн&nbsp;и разработка: EgTroshin</span>
+        </div>
+    </footer>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay" role="dialog" aria-modal="true" aria-label="Меню навигации">
+        <button class="mobile-nav-close" aria-label="Закрыть меню">&times;</button>
+
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo" aria-hidden="true"><span>M38</span></div>
+            <div class="mobile-menu-typewriter" id="mobileTypewriter" aria-hidden="true"></div>
+        </div>
+
+        <nav class="mobile-nav-links" aria-label="Мобильная навигация">
+            <a href="catalog.html" class="mobile-nav-link">КАТАЛОГ</a>
+            <a href="production.html" class="mobile-nav-link" aria-current="page">ПРОИЗВОДСТВО</a>
+            <a href="docs.html" class="mobile-nav-link">ДОКУМЕНТЫ</a>
+            <a href="sro-gost.html" class="mobile-nav-link">СРО / ГОСТ</a>
+            <a href="contacts.html" class="mobile-nav-link">КОНТАКТЫ</a>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+crm/
+.claude/
+node_modules/
+*.txt
+nul
+.env

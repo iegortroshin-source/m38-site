@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M38 — Модульные здания нового поколения</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #FF4500;
+    --orange-light: #FF6A33;
+    --dark: #0A0A0A;
+    --dark2: #1A1A1A;
+    --dark3: #333;
+    --white: #FFFFFF;
+    --gray: #888;
+    --gray-light: #BBB;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: 'Inter', system-ui, Arial, sans-serif;
+    background: var(--dark);
+    color: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== PRINT BUTTON ===== */
+  .print-btn {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 9999;
+    background: var(--orange);
+    color: var(--white);
+    border: none;
+    padding: 16px 32px;
+    font-family: 'Inter', system-ui, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    box-shadow: 0 8px 32px rgba(255, 69, 0, 0.5);
+    transition: all 0.2s ease;
+  }
+  .print-btn:hover {
+    background: var(--orange-light);
+    box-shadow: 0 12px 40px rgba(255, 69, 0, 0.7);
+    transform: translateY(-2px);
+  }
+
+  /* ===== PAGE WRAPPER ===== */
+  .page {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ===== SECTION BASE ===== */
+  .section {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 80px;
+    background: var(--dark);
+    border: 1px solid #1C1C1C;
+    margin-bottom: 4px;
+    overflow: hidden;
+  }
+
+  /* ===== DECORATIVE ELEMENTS ===== */
+  .deco-corner {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-color: var(--orange);
+    border-style: solid;
+    opacity: 0.4;
+  }
+  .deco-corner.tl { top: 30px; left: 30px; border-width: 3px 0 0 3px; }
+  .deco-corner.tr { top: 30px; right: 30px; border-width: 3px 3px 0 0; }
+  .deco-corner.bl { bottom: 30px; left: 30px; border-width: 0 0 3px 3px; }
+  .deco-corner.br { bottom: 30px; right: 30px; border-width: 0 3px 3px 0; }
+
+  .deco-line-v {
+    position: absolute;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--orange), transparent);
+    opacity: 0.3;
+  }
+
+  .deco-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,69,0,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,69,0,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* ===== PAGE NUMBER ===== */
+  .page-num {
+    position: absolute;
+    bottom: 30px;
+    right: 80px;
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* ===== SECTION LABELS ===== */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 2px;
+    background: var(--orange);
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  h1 { font-size: clamp(48px, 7vw, 96px); font-weight: 900; line-height: 1; letter-spacing: -2px; }
+  h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 800; line-height: 1.1; letter-spacing: -1px; }
+  h3 { font-size: 22px; font-weight: 700; }
+  h4 { font-size: 16px; font-weight: 700; letter-spacing: 1px; }
+
+  .highlight { color: var(--orange); }
+
+  /* ===== DIVIDER ===== */
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: var(--orange);
+    margin: 24px 0;
+  }
+
+  /* ===== COVER SECTION ===== */
+  #cover {
+    background: var(--dark);
+    justify-content: space-between;
+    padding-top: 100px;
+    padding-bottom: 80px;
+  }
+
+  .cover-logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 80px;
+  }
+
+  .logo-mark {
+    width: 64px;
+    height: 64px;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .logo-text-main {
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+
+  .logo-sub {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+
+  .cover-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 32px;
+  }
+
+  .cover-title {
+    font-size: clamp(52px, 8vw, 108px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -3px;
+    margin-bottom: 0;
+  }
+
+  .cover-title span {
+    display: block;
+  }
+
+  .cover-title .line2 {
+    color: var(--orange);
+    -webkit-text-stroke: 0px;
+  }
+
+  .cover-tagline {
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--gray-light);
+    margin-top: 40px;
+    max-width: 600px;
+    border-left: 3px solid var(--orange);
+    padding-left: 24px;
+    line-height: 1.5;
+  }
+
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: auto;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 48px;
+  }
+
+  .cover-meta-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cover-meta-item .label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 4px;
+  }
+
+  .cover-meta-item .value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .cover-decor {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 380px;
+    overflow: hidden;
+  }
+
+  /* SVG Building illustration placeholder */
+  .building-svg {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.15;
+  }
+
+  /* ===== CONCEPT SECTION ===== */
+  #concept {
+    background: var(--dark);
+  }
+
+  .concept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-top: 48px;
+  }
+
+  .concept-text p {
+    font-size: 17px;
+    color: var(--gray-light);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  .concept-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .feature-card {
+    background: var(--dark2);
+    border: 1px solid var(--dark3);
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--orange);
+  }
+
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 16px;
+    color: var(--orange);
+  }
+
+  .feature-card h4 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .feature-card p {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  /* ===== ADVANTAGES SECTION ===== */
+  #advantages {
+    background: var(--dark2);
+  }
+
+  .adv-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 56px;
+  }
+
+  .adv-item {
+    background: var(--dark);
+    padding: 48px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .adv-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+  }
+
+  .adv-item:hover::after { transform: scaleX(1); }
+
+  .adv-number {
+    font-size: 60px;
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -2px;
+  }
+
+  .adv-unit {
+    font-size: 20px;
+    font-weight: 300;
+  }
+
+  .adv-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 12px;
+    margin-top: 16px;
+  }
+
+  .adv-desc {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  /* ===== PRODUCTS SECTION ===== */
+  #products {
+    background: var(--dark);
+    min-height: auto;
+    padding-bottom: 100px;
+  }
+
+  .products-header {
+    margin-bottom: 56px;
+  }
+
+  .category-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 20px;
+    margin-top: 48px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .category-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background: var(--orange);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .products-grid.two-col {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+  }
+
+  .product-card {
+    background: var(--dark2);
+    border: 1px solid var(--dark3);
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .product-card:hover {
+    border-color: var(--orange);
+    transform: translateY(-4px);
+  }
+
+  .product-visual {
+    height: 120px;
+    background: var(--dark3);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-info {
+    padding: 24px;
+  }
+
+  .product-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+  }
+
+  .product-area {
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 16px;
+  }
+
+  .product-price {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--orange);
+    letter-spacing: -1px;
+  }
+
+  .product-price span {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--gray);
+    margin-left: 4px;
+  }
+
+  /* ===== PRODUCTION SECTION ===== */
+  #production {
+    background: var(--dark2);
+  }
+
+  .production-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 56px;
+    margin-bottom: 60px;
+  }
+
+  .stat-block {
+    background: var(--dark);
+    padding: 48px 32px;
+    text-align: center;
+    position: relative;
+  }
+
+  .stat-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 3px;
+    background: var(--orange);
+  }
+
+  .stat-num {
+    font-size: 56px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+
+  .stat-unit {
+    font-size: 20px;
+    color: var(--orange);
+    font-weight: 300;
+  }
+
+  .stat-desc {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 12px;
+  }
+
+  .production-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .prod-feat {
+    padding: 28px;
+    border: 1px solid var(--dark3);
+    position: relative;
+  }
+
+  .prod-feat-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 12px;
+  }
+
+  .prod-feat p {
+    font-size: 14px;
+    color: var(--gray-light);
+    line-height: 1.7;
+  }
+
+  /* ===== PROJECTS SECTION ===== */
+  #projects {
+    background: var(--dark);
+  }
+
+  .projects-list {
+    margin-top: 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .project-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 40px;
+    align-items: center;
+    padding: 36px 40px;
+    background: var(--dark2);
+    border-left: 3px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .project-item:hover { border-left-color: var(--orange); }
+
+  .project-num {
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--dark3);
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+
+  .project-info h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .project-info p {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+  }
+
+  .project-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid var(--dark3);
+    color: var(--gray);
+    white-space: nowrap;
+  }
+
+  .project-tag.year {
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+
+  /* ===== CERTIFICATES SECTION ===== */
+  #certificates {
+    background: var(--dark2);
+    min-height: auto;
+    padding-bottom: 100px;
+  }
+
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .cert-card {
+    background: var(--dark);
+    border: 1px solid var(--dark3);
+    padding: 40px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cert-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--orange), transparent);
+  }
+
+  .cert-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 24px;
+    color: var(--orange);
+  }
+
+  .cert-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .cert-desc {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  /* ===== CONTACTS SECTION ===== */
+  #contacts {
+    background: var(--dark);
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .contacts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-top: 56px;
+    align-items: start;
+  }
+
+  .contact-item {
+    margin-bottom: 40px;
+  }
+
+  .contact-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 8px;
+  }
+
+  .contact-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  .contact-value.large {
+    font-size: 36px;
+    letter-spacing: -1px;
+  }
+
+  .contact-sub {
+    font-size: 13px;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+
+  .qr-placeholder {
+    width: 160px;
+    height: 160px;
+    border: 2px solid var(--dark3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 32px;
+  }
+
+  .closing-tagline {
+    margin-top: 48px;
+    padding-top: 48px;
+    border-top: 1px solid var(--dark3);
+  }
+
+  .closing-tagline p {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 500px;
+  }
+
+  .cta-text {
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+  }
+
+  .cta-text .accent { color: var(--orange); }
+
+  /* Building module visual */
+  .module-visual {
+    position: absolute;
+    right: 80px;
+    bottom: 80px;
+    opacity: 0.08;
+  }
+
+  /* ===== PRINT STYLES ===== */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  @media print {
+    html, body {
+      background: white !important;
+      color: #1a1a1a !important;
+      font-size: 14px;
+    }
+
+    .print-btn { display: none !important; }
+
+    .page {
+      max-width: 100%;
+      margin: 0;
+    }
+
+    .section {
+      background: white !important;
+      color: #1a1a1a !important;
+      border: none !important;
+      margin-bottom: 0 !important;
+      page-break-after: always;
+      page-break-inside: avoid;
+      min-height: 100vh;
+      padding: 60px 70px;
+    }
+
+    .section:last-child { page-break-after: avoid; }
+
+    /* Dark backgrounds become white */
+    .adv-item,
+    .feature-card,
+    .product-card,
+    .stat-block,
+    .cert-card,
+    .prod-feat,
+    .project-item {
+      background: #f7f7f7 !important;
+      border-color: #ddd !important;
+      color: #1a1a1a !important;
+    }
+
+    #advantages, #production, #certificates {
+      background: #f0f0f0 !important;
+    }
+
+    .deco-grid { display: none; }
+
+    h1, h2, h3, h4 { color: #1a1a1a !important; }
+    .highlight { color: #FF4500 !important; }
+    .section-label { color: #FF4500 !important; }
+    .section-label::before { background: #FF4500 !important; }
+
+    /* Text colors */
+    .adv-desc, .concept-text p, .feature-card p, .product-area,
+    .proj-desc, .cert-desc, .prod-feat p, .contact-sub,
+    .project-info p, .closing-tagline p {
+      color: #555 !important;
+    }
+
+    .adv-title, .prod-feat-title, .feature-card h4, .cert-title,
+    .contact-label, .category-label, .cover-eyebrow {
+      color: #FF4500 !important;
+    }
+
+    .adv-number, .stat-unit, .product-price, .project-num {
+      color: #FF4500 !important;
+    }
+
+    .project-num { color: #ccc !important; }
+
+    .project-item {
+      border-left: 3px solid #FF4500 !important;
+    }
+
+    .adv-item::after { display: none; }
+
+    .cover-logo, .cover-title, .cover-tagline { color: #1a1a1a !important; }
+    .cover-title .line2 { color: #FF4500 !important; }
+    .cover-tagline { border-left-color: #FF4500 !important; color: #444 !important; }
+    .cover-meta-item .label { color: #888 !important; }
+    .cover-meta-item .value { color: #1a1a1a !important; }
+    .logo-sub { color: #888 !important; }
+
+    .deco-corner { border-color: #FF4500 !important; opacity: 0.2 !important; }
+
+    .page-num { color: #aaa !important; }
+    .gray-text { color: #888 !important; }
+
+    .contact-value { color: #1a1a1a !important; }
+    .cta-text { color: #1a1a1a !important; }
+    .cta-text .accent { color: #FF4500 !important; }
+
+    .product-card { border-color: #ddd !important; }
+    .product-name { color: #1a1a1a !important; }
+    .product-price span { color: #888 !important; }
+
+    .project-tag { border-color: #ccc !important; color: #888 !important; }
+    .project-tag.year { border-color: #FF4500 !important; color: #FF4500 !important; }
+    .project-info h3 { color: #1a1a1a !important; }
+
+    .stat-num { color: #1a1a1a !important; }
+    .stat-desc { color: #888 !important; }
+
+    .cert-card::after { background: linear-gradient(90deg, transparent, #FF4500, transparent) !important; }
+
+    .divider { background: #FF4500 !important; }
+
+    .closing-tagline { border-top-color: #ddd !important; }
+
+    .feature-card::before { background: #FF4500 !important; }
+
+    .qr-placeholder { border-color: #ccc !important; }
+
+    .building-svg { opacity: 0.05 !important; }
+    .module-visual { opacity: 0.04 !important; }
+  }
+
+  /* ===== RESPONSIVE — TABLET (≤1024px) ===== */
+  @media (max-width: 1024px) {
+    .section {
+      padding: 60px 48px;
+    }
+
+    .concept-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .adv-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .products-grid.two-col {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 100%;
+    }
+
+    .production-stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .production-features {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contacts-grid {
+      gap: 48px;
+    }
+
+    .cover-decor {
+      width: 260px;
+      opacity: 0.5;
+    }
+
+    .cover-meta {
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+  }
+
+  /* ===== RESPONSIVE — MOBILE (≤768px) ===== */
+  @media (max-width: 768px) {
+    html { font-size: 14px; }
+
+    .section {
+      padding: 48px 24px;
+      min-height: unset;
+    }
+
+    /* Кнопка скачать — нижняя полоска на мобиле */
+    .print-btn {
+      bottom: 16px;
+      right: 16px;
+      left: 16px;
+      padding: 14px 20px;
+      font-size: 13px;
+      clip-path: none;
+      border-radius: 2px;
+      text-align: center;
+    }
+
+    h1 { font-size: clamp(36px, 10vw, 56px); letter-spacing: -1px; }
+    h2 { font-size: clamp(26px, 7vw, 38px); }
+
+    .cover-title {
+      font-size: clamp(40px, 11vw, 72px);
+      letter-spacing: -2px;
+    }
+
+    .cover-decor { display: none; }
+
+    .cover-logo { margin-bottom: 40px; }
+
+    .cover-meta {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cover-tagline {
+      font-size: 16px;
+      margin-top: 24px;
+    }
+
+    .cover-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    /* Концепция */
+    .concept-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .concept-features {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    /* Преимущества */
+    .adv-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .adv-item {
+      padding: 32px 20px;
+    }
+
+    .adv-number {
+      font-size: 44px;
+    }
+
+    /* Продукты */
+    .products-grid,
+    .products-grid.two-col {
+      grid-template-columns: 1fr;
+      max-width: 100%;
+    }
+
+    /* Производство */
+    .production-stats {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .stat-block {
+      padding: 32px 20px;
+    }
+
+    .stat-num {
+      font-size: 40px;
+    }
+
+    .production-features {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    /* Проекты */
+    .project-item {
+      grid-template-columns: 48px 1fr;
+      grid-template-rows: auto auto;
+      gap: 16px 20px;
+      padding: 24px 20px;
+    }
+
+    .project-tags {
+      grid-column: 2;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .project-num {
+      font-size: 32px;
+    }
+
+    /* Сертификаты */
+    .cert-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    /* Контакты */
+    .contacts-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .contact-value {
+      font-size: 22px;
+    }
+
+    .contact-value.large {
+      font-size: 26px;
+    }
+
+    .cta-text {
+      font-size: 32px;
+      letter-spacing: -1px;
+    }
+
+    .deco-corner {
+      width: 60px;
+      height: 60px;
+    }
+
+    .deco-corner.tl { top: 16px; left: 16px; }
+    .deco-corner.tr { top: 16px; right: 16px; }
+    .deco-corner.bl { bottom: 16px; left: 16px; }
+    .deco-corner.br { bottom: 16px; right: 16px; }
+
+    .page-num { right: 24px; bottom: 16px; }
+  }
+
+  /* ===== RESPONSIVE — SMALL MOBILE (≤480px) ===== */
+  @media (max-width: 480px) {
+    .section { padding: 40px 16px; }
+
+    .adv-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .production-stats {
+      grid-template-columns: 1fr;
+    }
+
+    .cover-title {
+      font-size: clamp(32px, 13vw, 52px);
+    }
+
+    .adv-number { font-size: 52px; }
+
+    .project-item {
+      grid-template-columns: 1fr;
+    }
+
+    .project-num { display: none; }
+
+    .project-tags {
+      grid-column: 1;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- PRINT BUTTON -->
+<button class="print-btn" onclick="window.print()">&#8595; СКАЧАТЬ PDF</button>
+
+<div class="page">
+
+  <!-- ======================== -->
+  <!-- PAGE 1: COVER            -->
+  <!-- ======================== -->
+  <section class="section" id="cover">
+    <div class="deco-grid"></div>
+    <div class="deco-corner tl"></div>
+    <div class="deco-corner tr"></div>
+    <div class="deco-corner bl"></div>
+    <div class="deco-corner br"></div>
+
+    <!-- Large architectural SVG in background -->
+    <svg class="building-svg" width="500" height="600" viewBox="0 0 500 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Main building frame -->
+      <rect x="50" y="100" width="400" height="480" stroke="#FF4500" stroke-width="1.5" fill="none"/>
+      <!-- Grid of modules -->
+      <line x1="183" y1="100" x2="183" y2="580" stroke="#FF4500" stroke-width="1"/>
+      <line x1="316" y1="100" x2="316" y2="580" stroke="#FF4500" stroke-width="1"/>
+      <line x1="50" y1="220" x2="450" y2="220" stroke="#FF4500" stroke-width="1"/>
+      <line x1="50" y1="340" x2="450" y2="340" stroke="#FF4500" stroke-width="1"/>
+      <line x1="50" y1="460" x2="450" y2="460" stroke="#FF4500" stroke-width="1"/>
+      <!-- Windows -->
+      <rect x="70" y="130" width="90" height="60" stroke="#FF4500" stroke-width="1" fill="none"/>
+      <rect x="200" y="130" width="90" height="60" stroke="#FF4500" stroke-width="1" fill="none"/>
+      <rect x="333" y="130" width="90" height="60" stroke="#FF4500" stroke-width="1" fill="none"/>
+      <rect x="70" y="250" width="90" height="60" stroke="#FF4500" stroke-width="1" fill="none"/>
+      <rect x="200" y="250" width="90" height="60" stroke="#FF4500" stroke-width="1" fill="none"/>
+      <rect x="333" y="250" width="90" height="60" stroke="#FF4500" stroke-width="1" fill="none"/>
+      <rect x="70" y="370" width="90" height="60" stroke="#FF4500" stroke-width="1" fill="none"/>
+      <rect x="333" y="370" width="90" height="60" stroke="#FF4500" stroke-width="1" fill="none"/>
+      <!-- Door -->
+      <rect x="200" y="480" width="90" height="100" stroke="#FF4500" stroke-width="1" fill="none"/>
+      <!-- Roof lines -->
+      <line x1="50" y1="100" x2="250" y2="20" stroke="#FF4500" stroke-width="1.5"/>
+      <line x1="450" y1="100" x2="250" y2="20" stroke="#FF4500" stroke-width="1.5"/>
+      <!-- Ground -->
+      <line x1="0" y1="580" x2="500" y2="580" stroke="#FF4500" stroke-width="2"/>
+    </svg>
+
+    <!-- Logo -->
+    <div class="cover-logo">
+      <svg class="logo-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="60" height="60" stroke="#FF4500" stroke-width="3"/>
+        <rect x="10" y="10" width="44" height="44" fill="#FF4500" opacity="0.1"/>
+        <text x="32" y="42" text-anchor="middle" fill="#FF4500" font-size="28" font-weight="900" font-family="Arial, sans-serif">M</text>
+        <rect x="10" y="50" width="44" height="3" fill="#FF4500"/>
+      </svg>
+      <div>
+        <div class="logo-text-main">M<span style="color:var(--orange)">38</span></div>
+        <div class="logo-sub">Модульные здания</div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 700px;">
+      <div class="cover-eyebrow">Коммерческая презентация · 2024</div>
+      <h1 class="cover-title">
+        <span class="line1">МОДУЛЬНЫЕ</span>
+        <span class="line2">ЗДАНИЯ</span>
+        <span class="line1" style="font-size: clamp(36px, 5vw, 72px); letter-spacing: -1px;">НОВОГО ПОКОЛЕНИЯ</span>
+      </h1>
+      <p class="cover-tagline">«Заводское качество. Сибирская надёжность.»</p>
+    </div>
+
+    <!-- Bottom meta -->
+    <div class="cover-bottom">
+      <div class="cover-meta">
+        <div class="cover-meta-item">
+          <span class="label">Местоположение</span>
+          <span class="value">Иркутск, Россия</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="label">Год</span>
+          <span class="value">2024</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="label">Опыт</span>
+          <span class="value">12 лет</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="label">Проектов</span>
+          <span class="value">200+</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-num">01 / 07</div>
+  </section>
+
+  <!-- ======================== -->
+  <!-- PAGE 2: CONCEPT          -->
+  <!-- ======================== -->
+  <section class="section" id="concept">
+    <div class="deco-grid"></div>
+    <div class="deco-corner tl"></div>
+    <div class="deco-corner br"></div>
+
+    <div class="section-label">Концепция компании</div>
+    <h2>Технологии<br><span class="highlight">промышленного</span><br>строительства</h2>
+    <div class="divider"></div>
+
+    <div class="concept-grid">
+      <div class="concept-text">
+        <p>M38 — производитель высокотехнологичных модульных зданий для жилого, коммерческого и специального назначения. Каждый модуль создаётся на заводе с соблюдением всех стандартов качества ГОСТ.</p>
+        <p>Наша технология позволяет возводить здания в кратчайшие сроки без потери качества: от разработки BIM-модели до полной готовности объекта — в рекордные сроки.</p>
+        <p>Мы работаем в условиях Сибири и Крайнего Севера, поэтому каждый модуль проходит арктическое тестирование при температурах до −50°C.</p>
+      </div>
+
+      <div class="concept-features">
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="8" width="36" height="28" stroke="currentColor" stroke-width="2"/>
+            <path d="M2 16h36M14 8v28M2 8L20 2l18 6" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <h4>BIM-моделирование</h4>
+          <p>Цифровое проектирование каждого объекта перед производством</p>
+        </div>
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="16" stroke="currentColor" stroke-width="2"/>
+            <path d="M20 4v4M20 32v4M4 20h4M32 20h4" stroke="currentColor" stroke-width="2"/>
+            <circle cx="20" cy="20" r="6" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M14 14l3 3M26 26l-3-3M26 14l-3 3M14 26l3-3" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <h4>Роботизированная сварка</h4>
+          <p>Автоматизированное производство гарантирует точность соединений</p>
+        </div>
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4L4 14v22h32V14L20 4z" stroke="currentColor" stroke-width="2" fill="none"/>
+            <rect x="14" y="24" width="12" height="12" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M20 14v4M16 18h8" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <h4>Арктический контур</h4>
+          <p>Тройное утепление и герметизация для работы при −50°C</p>
+        </div>
+        <!-- Feature 4 -->
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="10" width="32" height="24" stroke="currentColor" stroke-width="2"/>
+            <path d="M4 18h32M14 10v24M26 10v24" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M4 6h32" stroke="currentColor" stroke-width="2"/>
+            <rect x="8" y="22" width="4" height="8" fill="currentColor" opacity="0.5"/>
+            <rect x="18" y="22" width="4" height="8" fill="currentColor" opacity="0.5"/>
+          </svg>
+          <h4>Заводская отделка</h4>
+          <p>Полная готовность интерьера, инженерные системы под ключ</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-num">02 / 07</div>
+  </section>
+
+  <!-- ======================== -->
+  <!-- PAGE 3: ADVANTAGES       -->
+  <!-- ======================== -->
+  <section class="section" id="advantages">
+    <div class="deco-corner tl"></div>
+    <div class="deco-corner br"></div>
+
+    <div class="section-label">Преимущества M38</div>
+    <h2>Почему выбирают<br><span class="highlight">нас</span></h2>
+    <div class="divider"></div>
+
+    <div class="adv-grid">
+      <div class="adv-item">
+        <div class="adv-number">48<span class="adv-unit">ч</span></div>
+        <div class="adv-title">Скорость доставки</div>
+        <div class="adv-desc">Доставка модуля на объект в течение 48 часов после согласования. Собственный транспортный парк.</div>
+      </div>
+      <div class="adv-item">
+        <div class="adv-number" style="font-size:42px;">ГОСТ<br><span style="font-size:28px;letter-spacing:0;">23118</span></div>
+        <div class="adv-title">Стандарт качества</div>
+        <div class="adv-desc">Производство по ГОСТ 23118-2012. Каждый модуль проходит контроль качества на всех этапах.</div>
+      </div>
+      <div class="adv-item">
+        <div class="adv-number">−50<span class="adv-unit">°C</span></div>
+        <div class="adv-title">Энергоэффективность</div>
+        <div class="adv-desc">Эксплуатация в условиях арктического климата. Потери тепла снижены на 60% по сравнению с традиционным строительством.</div>
+      </div>
+      <div class="adv-item">
+        <div class="adv-number">5<span class="adv-unit">лет</span></div>
+        <div class="adv-title">Гарантия на каркас</div>
+        <div class="adv-desc">Пятилетняя гарантия на несущий каркас. Послепродажное обслуживание и сервисная поддержка.</div>
+      </div>
+    </div>
+
+    <div class="page-num">03 / 07</div>
+  </section>
+
+  <!-- ======================== -->
+  <!-- PAGE 4: PRODUCTS         -->
+  <!-- ======================== -->
+  <section class="section" id="products">
+    <div class="deco-grid"></div>
+    <div class="deco-corner tl"></div>
+    <div class="deco-corner br"></div>
+
+    <div class="products-header">
+      <div class="section-label">Готовые решения</div>
+      <h2>Каталог<br><span class="highlight">модульных зданий</span></h2>
+      <div class="divider"></div>
+    </div>
+
+    <!-- Residential -->
+    <div class="category-label">Жилые объекты</div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-visual">
+          <svg width="140" height="100" viewBox="0 0 140 100" fill="none">
+            <path d="M70 10L10 50v50h120V50L70 10z" stroke="#FF4500" stroke-width="1.5" fill="rgba(255,69,0,0.05)"/>
+            <rect x="30" y="60" width="30" height="40" stroke="#FF4500" stroke-width="1"/>
+            <rect x="80" y="60" width="30" height="40" stroke="#FF4500" stroke-width="1"/>
+            <rect x="52" y="72" width="16" height="28" stroke="#FF4500" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="product-name">А-фрейм «Призма»</div>
+          <div class="product-area">48 м² · 2 комнаты · 1 этаж</div>
+          <div class="product-price">2.1 M₽ <span>под ключ</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-visual">
+          <svg width="140" height="100" viewBox="0 0 140 100" fill="none">
+            <rect x="10" y="20" width="120" height="70" stroke="#FF4500" stroke-width="1.5" fill="rgba(255,69,0,0.05)"/>
+            <line x1="10" y1="45" x2="130" y2="45" stroke="#FF4500" stroke-width="1"/>
+            <rect x="25" y="55" width="25" height="35" stroke="#FF4500" stroke-width="1"/>
+            <rect x="90" y="55" width="25" height="35" stroke="#FF4500" stroke-width="1"/>
+            <rect x="58" y="60" width="24" height="30" stroke="#FF4500" stroke-width="1"/>
+            <rect x="20" y="28" width="30" height="14" stroke="#FF4500" stroke-width="1"/>
+            <rect x="90" y="28" width="30" height="14" stroke="#FF4500" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Лофт «Тайга»</div>
+          <div class="product-area">72 м² · 3 комнаты · 2 этажа</div>
+          <div class="product-price">3.4 M₽ <span>под ключ</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-visual">
+          <svg width="140" height="100" viewBox="0 0 140 100" fill="none">
+            <rect x="5" y="15" width="130" height="75" stroke="#FF4500" stroke-width="1.5" fill="rgba(255,69,0,0.05)"/>
+            <line x1="5" y1="40" x2="135" y2="40" stroke="#FF4500" stroke-width="1"/>
+            <line x1="5" y1="65" x2="135" y2="65" stroke="#FF4500" stroke-width="1"/>
+            <line x1="46" y1="15" x2="46" y2="90" stroke="#FF4500" stroke-width="1"/>
+            <line x1="92" y1="15" x2="92" y2="90" stroke="#FF4500" stroke-width="1"/>
+            <rect x="58" y="72" width="22" height="18" stroke="#FF4500" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Дом «Сибирь»</div>
+          <div class="product-area">96 м² · 4 комнаты · 2 этажа</div>
+          <div class="product-price">4.8 M₽ <span>под ключ</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commercial -->
+    <div class="category-label">Коммерческие объекты</div>
+    <div class="products-grid two-col">
+      <div class="product-card">
+        <div class="product-visual">
+          <svg width="140" height="100" viewBox="0 0 140 100" fill="none">
+            <rect x="10" y="20" width="120" height="70" stroke="#FF4500" stroke-width="1.5" fill="rgba(255,69,0,0.05)"/>
+            <line x1="10" y1="40" x2="130" y2="40" stroke="#FF4500" stroke-width="1"/>
+            <rect x="20" y="50" width="20" height="15" stroke="#FF4500" stroke-width="1"/>
+            <rect x="50" y="50" width="20" height="15" stroke="#FF4500" stroke-width="1"/>
+            <rect x="80" y="50" width="20" height="15" stroke="#FF4500" stroke-width="1"/>
+            <rect x="55" y="72" width="30" height="18" stroke="#FF4500" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Офис «Портал»</div>
+          <div class="product-area">54 м² · open space · 1 этаж</div>
+          <div class="product-price">2.8 M₽ <span>под ключ</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-visual">
+          <svg width="140" height="100" viewBox="0 0 140 100" fill="none">
+            <ellipse cx="70" cy="55" rx="60" ry="40" stroke="#FF4500" stroke-width="1.5" fill="rgba(255,69,0,0.05)"/>
+            <ellipse cx="70" cy="55" rx="40" ry="25" stroke="#FF4500" stroke-width="1"/>
+            <line x1="70" y1="15" x2="70" y2="95" stroke="#FF4500" stroke-width="1"/>
+            <line x1="10" y1="55" x2="130" y2="55" stroke="#FF4500" stroke-width="1"/>
+            <rect x="58" y="78" width="24" height="17" stroke="#FF4500" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Кафе «Купол»</div>
+          <div class="product-area">80 м² · зал + кухня · панорамные окна</div>
+          <div class="product-price">4.2 M₽ <span>под ключ</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Special -->
+    <div class="category-label">Спецназначение</div>
+    <div class="products-grid two-col">
+      <div class="product-card">
+        <div class="product-visual">
+          <svg width="140" height="100" viewBox="0 0 140 100" fill="none">
+            <rect x="10" y="30" width="120" height="60" stroke="#FF4500" stroke-width="1.5" fill="rgba(255,69,0,0.05)"/>
+            <rect x="10" y="20" width="30" height="20" stroke="#FF4500" stroke-width="1" fill="rgba(255,69,0,0.08)"/>
+            <line x1="10" y1="55" x2="130" y2="55" stroke="#FF4500" stroke-width="1"/>
+            <line x1="50" y1="30" x2="50" y2="90" stroke="#FF4500" stroke-width="1"/>
+            <rect x="60" y="68" width="20" height="22" stroke="#FF4500" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Штаб «Полюс»</div>
+          <div class="product-area">36 м² · командный пункт</div>
+          <div class="product-price">1.9 M₽ <span>под ключ</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-visual">
+          <svg width="140" height="100" viewBox="0 0 140 100" fill="none">
+            <rect x="10" y="25" width="120" height="65" stroke="#FF4500" stroke-width="1.5" fill="rgba(255,69,0,0.05)"/>
+            <path d="M10 25h30v-15h60v15h20" stroke="#FF4500" stroke-width="1"/>
+            <rect x="20" y="40" width="30" height="25" stroke="#FF4500" stroke-width="1"/>
+            <rect x="90" y="40" width="30" height="25" stroke="#FF4500" stroke-width="1"/>
+            <path d="M65 40a10 10 0 0 1 10 10" stroke="#FF4500" stroke-width="1.5"/>
+            <rect x="58" y="72" width="24" height="18" stroke="#FF4500" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Медпункт «Арктик»</div>
+          <div class="product-area">45 м² · 2 кабинета + приёмная</div>
+          <div class="product-price">2.4 M₽ <span>под ключ</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-num">04 / 07</div>
+  </section>
+
+  <!-- ======================== -->
+  <!-- PAGE 5: PRODUCTION       -->
+  <!-- ======================== -->
+  <section class="section" id="production">
+    <div class="deco-corner tl"></div>
+    <div class="deco-corner br"></div>
+
+    <div class="section-label">Производственные мощности</div>
+    <h2>Завод<br><span class="highlight">полного цикла</span></h2>
+    <div class="divider"></div>
+
+    <div class="production-stats">
+      <div class="stat-block">
+        <div class="stat-num">2000<span class="stat-unit">м²</span></div>
+        <div class="stat-desc">Производственные площади</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">45<span class="stat-unit">шт</span></div>
+        <div class="stat-desc">Модулей в месяц</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">12<span class="stat-unit">лет</span></div>
+        <div class="stat-desc">Опыта в отрасли</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">10<span class="stat-unit">т</span></div>
+        <div class="stat-desc">Грузоподъёмность кран-балок</div>
+      </div>
+    </div>
+
+    <div class="production-features">
+      <div class="prod-feat">
+        <div class="prod-feat-title">Конструкторский отдел</div>
+        <p>Собственное КБ с опытными инженерами. BIM-проектирование в Revit и AutoCAD. Разработка индивидуальных решений под задачу заказчика.</p>
+      </div>
+      <div class="prod-feat">
+        <div class="prod-feat-title">Заготовительный цех</div>
+        <p>Плазменный и лазерный раскрой металла. Роботизированная сварка каркаса с точностью ±0.5мм. Антикоррозийная обработка.</p>
+      </div>
+      <div class="prod-feat">
+        <div class="prod-feat-title">Сборочное производство</div>
+        <p>Монтаж тепло- и звукоизоляции. Установка инженерных систем: электрика, водоснабжение, отопление, вентиляция.</p>
+      </div>
+      <div class="prod-feat">
+        <div class="prod-feat-title">Отделочный цех</div>
+        <p>Полный цикл чистовой отделки. Монтаж окон и дверей. Окраска фасадов, установка сэндвич-панелей или других облицовочных материалов.</p>
+      </div>
+      <div class="prod-feat">
+        <div class="prod-feat-title">Отдел контроля качества</div>
+        <p>Проверка каждого модуля перед отгрузкой. Испытания сварных швов, теплопроводности, герметичности. Соответствие ГОСТ.</p>
+      </div>
+      <div class="prod-feat">
+        <div class="prod-feat-title">Транспортный отдел</div>
+        <p>Собственный парк спецтехники. Доставка на любые расстояния. Подъём и монтаж модулей на объекте с помощью манипуляторов.</p>
+      </div>
+    </div>
+
+    <div class="page-num">05 / 07</div>
+  </section>
+
+  <!-- ======================== -->
+  <!-- PAGE 6: PROJECTS         -->
+  <!-- ======================== -->
+  <section class="section" id="projects">
+    <div class="deco-grid"></div>
+    <div class="deco-corner tl"></div>
+    <div class="deco-corner br"></div>
+
+    <div class="section-label">Портфолио</div>
+    <h2>Реализованные<br><span class="highlight">проекты</span></h2>
+    <div class="divider"></div>
+
+    <div class="projects-list">
+      <div class="project-item">
+        <div class="project-num">01</div>
+        <div class="project-info">
+          <h3>Жилой комплекс «Кедровый»</h3>
+          <p>Комплекс из 12 жилых модулей класса «Комфорт» для сотрудников лесозаготовительного предприятия. Общая площадь 576 м². Полная автономность: собственные системы водоснабжения, электроснабжения и утилизации отходов. Срок монтажа — 14 дней.</p>
+        </div>
+        <div class="project-tags">
+          <span class="project-tag year">2023</span>
+          <span class="project-tag">12 модулей</span>
+          <span class="project-tag">Байкальский р-н</span>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-num">02</div>
+        <div class="project-info">
+          <h3>Штаб горнодобывающей компании</h3>
+          <p>Административный комплекс из 8 модулей для горнодобывающего предприятия в условиях Крайнего Севера. Включает командный пункт, конференц-зал, столовую и бытовые помещения. Арктическое исполнение для работы при −50°C.</p>
+        </div>
+        <div class="project-tags">
+          <span class="project-tag year">2022</span>
+          <span class="project-tag">8 модулей</span>
+          <span class="project-tag">Братский р-н</span>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-num">03</div>
+        <div class="project-info">
+          <h3>Торговый павильон «Сибирь Молл»</h3>
+          <p>Коммерческий объект из 6 модулей — торговый центр с панорамным остеклением, системой кондиционирования и современной отделкой. Установлен без остановки работы прилегающей территории. Срок монтажа — 5 дней.</p>
+        </div>
+        <div class="project-tags">
+          <span class="project-tag year">2023</span>
+          <span class="project-tag">6 модулей</span>
+          <span class="project-tag">Иркутск</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-num">06 / 07</div>
+  </section>
+
+  <!-- ======================== -->
+  <!-- PAGE 7: CERTS + CONTACTS -->
+  <!-- ======================== -->
+  <section class="section" id="certificates">
+    <div class="deco-corner tl"></div>
+    <div class="deco-corner br"></div>
+
+    <div class="section-label">Документация и стандарты</div>
+    <h2>Сертификаты<br><span class="highlight">и членство в СРО</span></h2>
+    <div class="divider"></div>
+
+    <div class="cert-grid">
+      <div class="cert-card">
+        <svg class="cert-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="4" width="48" height="56" stroke="currentColor" stroke-width="2"/>
+          <path d="M20 20h24M20 28h24M20 36h16" stroke="currentColor" stroke-width="2"/>
+          <path d="M38 44l4 4 8-8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <div class="cert-title">ГОСТ 23118-2012</div>
+        <div class="cert-desc">Конструкции стальные строительные. Общие технические условия. Полное соответствие стандарту производства.</div>
+      </div>
+      <div class="cert-card">
+        <svg class="cert-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="2"/>
+          <path d="M32 18v14l8 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="32" cy="32" r="4" fill="currentColor"/>
+        </svg>
+        <div class="cert-title">ГОСТ Р 56942-2016</div>
+        <div class="cert-desc">Системы модульного строительства. Основные положения. Соответствие требованиям к модульным конструкциям.</div>
+      </div>
+      <div class="cert-card">
+        <svg class="cert-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 4L8 16v18c0 14 11 27 24 30 13-3 24-16 24-30V16L32 4z" stroke="currentColor" stroke-width="2"/>
+          <path d="M22 32l6 6 14-14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <div class="cert-title">Членство в СРО</div>
+        <div class="cert-desc">Состоим в саморегулируемой организации строителей. Полный пакет допусков для производства работ любой сложности.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contacts">
+    <div class="deco-grid"></div>
+    <div class="deco-corner tl"></div>
+    <div class="deco-corner tr"></div>
+    <div class="deco-corner bl"></div>
+    <div class="deco-corner br"></div>
+
+    <!-- Large module SVG -->
+    <svg class="module-visual" width="400" height="300" viewBox="0 0 400 300" fill="none">
+      <rect x="20" y="40" width="360" height="220" stroke="#FF4500" stroke-width="2"/>
+      <rect x="60" y="40" width="120" height="220" stroke="#FF4500" stroke-width="1"/>
+      <rect x="220" y="40" width="120" height="220" stroke="#FF4500" stroke-width="1"/>
+      <rect x="40" y="80" width="80" height="60" stroke="#FF4500" stroke-width="1"/>
+      <rect x="160" y="80" width="80" height="60" stroke="#FF4500" stroke-width="1"/>
+      <rect x="280" y="80" width="80" height="60" stroke="#FF4500" stroke-width="1"/>
+      <rect x="155" y="180" width="90" height="80" stroke="#FF4500" stroke-width="1"/>
+      <line x1="0" y1="260" x2="400" y2="260" stroke="#FF4500" stroke-width="2"/>
+    </svg>
+
+    <div class="section-label">Контакты</div>
+
+    <div class="cta-text">
+      Готовы начать<br>
+      <span class="accent">ваш проект?</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="contacts-grid">
+      <div>
+        <div class="contact-item">
+          <div class="contact-label">Телефон</div>
+          <div class="contact-value large">+7.3952.00.00.00</div>
+          <div class="contact-sub">Звонки: пн–пт 8:00–18:00 (UTC+8)</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Сайт</div>
+          <div class="contact-value">m38-modules.ru</div>
+          <div class="contact-sub">Каталог, проекты, онлайн-заявка</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Местоположение</div>
+          <div class="contact-value">Иркутск, Россия</div>
+          <div class="contact-sub">Производство и шоурум в Иркутске</div>
+        </div>
+      </div>
+      <div>
+        <div class="qr-placeholder">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+            <!-- QR-style decorative grid -->
+            <rect x="5" y="5" width="50" height="50" stroke="#FF4500" stroke-width="2"/>
+            <rect x="15" y="15" width="30" height="30" stroke="#FF4500" stroke-width="1.5"/>
+            <rect x="20" y="20" width="20" height="20" fill="#FF4500" opacity="0.3"/>
+            <rect x="65" y="5" width="50" height="50" stroke="#FF4500" stroke-width="2"/>
+            <rect x="75" y="15" width="30" height="30" stroke="#FF4500" stroke-width="1.5"/>
+            <rect x="80" y="20" width="20" height="20" fill="#FF4500" opacity="0.3"/>
+            <rect x="5" y="65" width="50" height="50" stroke="#FF4500" stroke-width="2"/>
+            <rect x="15" y="75" width="30" height="30" stroke="#FF4500" stroke-width="1.5"/>
+            <rect x="20" y="80" width="20" height="20" fill="#FF4500" opacity="0.3"/>
+            <rect x="65" y="65" width="12" height="12" fill="#FF4500" opacity="0.5"/>
+            <rect x="82" y="65" width="12" height="12" fill="#FF4500" opacity="0.5"/>
+            <rect x="99" y="65" width="16" height="12" fill="#FF4500" opacity="0.5"/>
+            <rect x="65" y="82" width="20" height="8" fill="#FF4500" opacity="0.5"/>
+            <rect x="90" y="82" width="25" height="8" fill="#FF4500" opacity="0.5"/>
+            <rect x="65" y="95" width="12" height="20" fill="#FF4500" opacity="0.5"/>
+            <rect x="82" y="95" width="33" height="8" fill="#FF4500" opacity="0.5"/>
+            <rect x="99" y="108" width="16" height="7" fill="#FF4500" opacity="0.5"/>
+          </svg>
+        </div>
+        <div style="margin-top: 16px;">
+          <div class="contact-label">QR-код на сайт</div>
+          <div style="font-size:13px; color: var(--gray);">Отсканируйте для перехода на m38-modules.ru</div>
+        </div>
+
+        <div class="closing-tagline">
+          <p>M38 — это не просто производство. Это партнёрство, которое начинается с первого звонка и продолжается весь срок эксплуатации вашего объекта.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-num">07 / 07</div>
+  </section>
+
+</div><!-- end .page -->
+
+</body>
+</html>

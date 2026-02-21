@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M38 | Конфигуратор модуля</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header role="banner">
+        <a href="index.html" class="logo" style="text-decoration: none; color: inherit;" aria-label="M38 — главная страница">
+            <span>M38</span>
+        </a>
+        <button class="burger-menu" aria-label="Открыть меню навигации" aria-expanded="false" aria-controls="mobileNavOverlay">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav aria-label="Основная навигация">
+            <a href="catalog.html">Каталог</a>
+            <a href="production.html">Производство</a>
+            <a href="docs.html">Тех. документация</a>
+            <a href="sro-gost.html">Сро/ГОСТ</a>
+            <a href="contacts.html">Контакты</a>
+        </nav>
+        <div class="header-right">
+            <div class="contact-info">
+                <span class="phone">+7.3952.00.00.00</span>
+                <span class="location">РЕГИОН_38 / ИРКУТСК</span>
+            </div>
+            <a href="configurator.html" class="btn-primary" style="text-decoration:none;">Начать проект</a>
+        </div>
+    </header>
+
+    <main id="main-content" class="cfg-main">
+
+        <div class="cfg-wrapper">
+
+            <!-- ПРОГРЕСС-БАР -->
+            <div class="cfg-progress" aria-label="Шаги конфигуратора">
+                <div class="cfg-progress-track">
+                    <div class="cfg-progress-fill" id="cfgProgressFill"></div>
+                </div>
+                <div class="cfg-steps-labels">
+                    <span class="cfg-step-label active" data-step="1">01 / ТИП</span>
+                    <span class="cfg-step-label" data-step="2">02 / ПЛОЩАДЬ</span>
+                    <span class="cfg-step-label" data-step="3">03 / КОМПЛЕКТАЦИЯ</span>
+                    <span class="cfg-step-label" data-step="4">04 / РЕГИОН</span>
+                    <span class="cfg-step-label" data-step="5">05 / ИТОГ</span>
+                </div>
+            </div>
+
+            <!-- ШАГ 1: ТИП ЗДАНИЯ -->
+            <div class="cfg-step" id="step1" data-step="1">
+                <div class="cfg-step-header">
+                    <span class="spec-id">ШАГ 01 / 04</span>
+                    <h1 class="cfg-title">Тип здания</h1>
+                    <p class="cfg-subtitle">Выберите назначение вашего модульного объекта</p>
+                </div>
+
+                <div class="cfg-cards-grid">
+                    <button class="cfg-option-card" data-field="type" data-value="residential">
+                        <div class="cfg-card-icon"><i class="fa fa-home" aria-hidden="true"></i></div>
+                        <div class="cfg-card-title">ЖИЛОЕ</div>
+                        <div class="cfg-card-desc">Дома, дачи, коттеджи, гостевые домики</div>
+                        <div class="cfg-card-check"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    </button>
+                    <button class="cfg-option-card" data-field="type" data-value="commercial">
+                        <div class="cfg-card-icon"><i class="fa fa-building" aria-hidden="true"></i></div>
+                        <div class="cfg-card-title">КОММЕРЦИЯ</div>
+                        <div class="cfg-card-desc">Офисы, магазины, кафе, шоурумы</div>
+                        <div class="cfg-card-check"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    </button>
+                    <button class="cfg-option-card" data-field="type" data-value="special">
+                        <div class="cfg-card-icon"><i class="fa fa-industry" aria-hidden="true"></i></div>
+                        <div class="cfg-card-title">СПЕЦНАЗНАЧЕНИЕ</div>
+                        <div class="cfg-card-desc">Охранные посты, бытовки, медпункты, штабы</div>
+                        <div class="cfg-card-check"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    </button>
+                </div>
+
+                <div class="cfg-nav">
+                    <span></span>
+                    <button class="cfg-btn-next btn-primary" id="next1" disabled>ДАЛЕЕ <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                </div>
+            </div>
+
+            <!-- ШАГ 2: ПЛОЩАДЬ -->
+            <div class="cfg-step hidden" id="step2" data-step="2">
+                <div class="cfg-step-header">
+                    <span class="spec-id">ШАГ 02 / 04</span>
+                    <h1 class="cfg-title">Площадь</h1>
+                    <p class="cfg-subtitle">Укажите необходимую площадь объекта</p>
+                </div>
+
+                <div class="cfg-cards-grid">
+                    <button class="cfg-option-card" data-field="area" data-value="small">
+                        <div class="cfg-card-icon"><span class="cfg-area-num">25</span><span class="cfg-area-unit">м²</span></div>
+                        <div class="cfg-card-title">ДО 50 М²</div>
+                        <div class="cfg-card-desc">Компактные решения — 1&nbsp;или 2 модуля</div>
+                        <div class="cfg-card-check"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    </button>
+                    <button class="cfg-option-card" data-field="area" data-value="medium">
+                        <div class="cfg-card-icon"><span class="cfg-area-num">75</span><span class="cfg-area-unit">м²</span></div>
+                        <div class="cfg-card-title">50 — 100 М²</div>
+                        <div class="cfg-card-desc">Стандартные объекты — 2–4 модуля</div>
+                        <div class="cfg-card-check"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    </button>
+                    <button class="cfg-option-card" data-field="area" data-value="large">
+                        <div class="cfg-card-icon"><span class="cfg-area-num">150+</span><span class="cfg-area-unit">м²</span></div>
+                        <div class="cfg-card-title">100 М²&nbsp;И БОЛЕЕ</div>
+                        <div class="cfg-card-desc">Крупные комплексы — 5+ модулей</div>
+                        <div class="cfg-card-check"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    </button>
+                </div>
+
+                <div class="cfg-nav">
+                    <button class="cfg-btn-back" id="back2"><i class="fa fa-arrow-left" aria-hidden="true"></i> НАЗАД</button>
+                    <button class="cfg-btn-next btn-primary" id="next2" disabled>ДАЛЕЕ <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                </div>
+            </div>
+
+            <!-- ШАГ 3: КОМПЛЕКТАЦИЯ -->
+            <div class="cfg-step hidden" id="step3" data-step="3">
+                <div class="cfg-step-header">
+                    <span class="spec-id">ШАГ 03 / 04</span>
+                    <h1 class="cfg-title">Комплектация</h1>
+                    <p class="cfg-subtitle">Выберите уровень отделки&nbsp;и оснащения</p>
+                </div>
+
+                <div class="cfg-cards-grid cfg-cards-grid--3col">
+                    <button class="cfg-option-card" data-field="kit" data-value="base">
+                        <div class="cfg-card-icon"><i class="fa fa-cube" aria-hidden="true"></i></div>
+                        <div class="cfg-card-title">БАЗОВАЯ</div>
+                        <div class="cfg-card-desc">Каркас + утепление + черновая отделка. Финишную отделку выполняете сами</div>
+                        <div class="cfg-card-tag">от 45 000 ₽/м²</div>
+                        <div class="cfg-card-check"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    </button>
+                    <button class="cfg-option-card" data-field="kit" data-value="standard">
+                        <div class="cfg-card-icon"><i class="fa fa-cubes" aria-hidden="true"></i></div>
+                        <div class="cfg-card-title">СТАНДАРТ</div>
+                        <div class="cfg-card-desc">Полная чистовая отделка + инженерные системы. Готов к заезду</div>
+                        <div class="cfg-card-tag">от 65 000 ₽/м²</div>
+                        <div class="cfg-card-check"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    </button>
+                    <button class="cfg-option-card" data-field="kit" data-value="premium">
+                        <div class="cfg-card-icon"><i class="fa fa-gem" aria-hidden="true"></i></div>
+                        <div class="cfg-card-title">ПРЕМИУМ</div>
+                        <div class="cfg-card-desc">Дизайн-проект + премиальные материалы + умный дом.&nbsp;Под ключ</div>
+                        <div class="cfg-card-tag">от 95 000 ₽/м²</div>
+                        <div class="cfg-card-check"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    </button>
+                </div>
+
+                <div class="cfg-nav">
+                    <button class="cfg-btn-back" id="back3"><i class="fa fa-arrow-left" aria-hidden="true"></i> НАЗАД</button>
+                    <button class="cfg-btn-next btn-primary" id="next3" disabled>ДАЛЕЕ <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                </div>
+            </div>
+
+            <!-- ШАГ 4: РЕГИОН ДОСТАВКИ -->
+            <div class="cfg-step hidden" id="step4" data-step="4">
+                <div class="cfg-step-header">
+                    <span class="spec-id">ШАГ 04 / 04</span>
+                    <h1 class="cfg-title">Регион доставки</h1>
+                    <p class="cfg-subtitle">Укажите, куда нужно доставить объект</p>
+                </div>
+
+                <div class="cfg-cards-grid">
+                    <button class="cfg-option-card" data-field="region" data-value="irkutsk">
+                        <div class="cfg-card-icon"><i class="fa fa-map-marker-alt" aria-hidden="true"></i></div>
+                        <div class="cfg-card-title">ИРКУТСК</div>
+                        <div class="cfg-card-desc">Город&nbsp;и ближайшие пригороды&nbsp;до 50 км</div>
+                        <div class="cfg-card-tag">Бесплатная доставка</div>
+                        <div class="cfg-card-check"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    </button>
+                    <button class="cfg-option-card" data-field="region" data-value="region">
+                        <div class="cfg-card-icon"><i class="fa fa-map" aria-hidden="true"></i></div>
+                        <div class="cfg-card-title">ИРКУТСКАЯ ОБЛ.</div>
+                        <div class="cfg-card-desc">Ангарск, Братск, Усть-Илимск&nbsp;и другие города области</div>
+                        <div class="cfg-card-tag">Рассчитывается индивидуально</div>
+                        <div class="cfg-card-check"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    </button>
+                    <button class="cfg-option-card" data-field="region" data-value="other">
+                        <div class="cfg-card-icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
+                        <div class="cfg-card-title">ДРУГОЙ РЕГИОН</div>
+                        <div class="cfg-card-desc">Красноярск, Улан-Удэ, Якутск&nbsp;и другие регионы России</div>
+                        <div class="cfg-card-tag">По запросу</div>
+                        <div class="cfg-card-check"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    </button>
+                </div>
+
+                <div class="cfg-nav">
+                    <button class="cfg-btn-back" id="back4"><i class="fa fa-arrow-left" aria-hidden="true"></i> НАЗАД</button>
+                    <button class="cfg-btn-next btn-primary" id="next4" disabled>ПОСМОТРЕТЬ ИТОГ <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                </div>
+            </div>
+
+            <!-- ШАГ 5: ИТОГ -->
+            <div class="cfg-step hidden" id="step5" data-step="5">
+                <div class="cfg-step-header">
+                    <span class="spec-id">КОНФИГУРАЦИЯ СОБРАНА</span>
+                    <h1 class="cfg-title">Ваш проект</h1>
+                    <p class="cfg-subtitle">Специалист M38 подберёт подходящие модели&nbsp;и рассчитает точную стоимость</p>
+                </div>
+
+                <!-- Сводка -->
+                <div class="cfg-summary">
+                    <div class="cfg-summary-row">
+                        <span class="cfg-summary-label">ТИП ЗДАНИЯ</span>
+                        <span class="cfg-summary-value" id="sum-type">—</span>
+                    </div>
+                    <div class="cfg-summary-row">
+                        <span class="cfg-summary-label">ПЛОЩАДЬ</span>
+                        <span class="cfg-summary-value" id="sum-area">—</span>
+                    </div>
+                    <div class="cfg-summary-row">
+                        <span class="cfg-summary-label">КОМПЛЕКТАЦИЯ</span>
+                        <span class="cfg-summary-value" id="sum-kit">—</span>
+                    </div>
+                    <div class="cfg-summary-row">
+                        <span class="cfg-summary-label">РЕГИОН ДОСТАВКИ</span>
+                        <span class="cfg-summary-value" id="sum-region">—</span>
+                    </div>
+                    <div class="cfg-summary-row cfg-summary-row--price">
+                        <span class="cfg-summary-label">ОРИЕНТИРОВОЧНАЯ СТОИМОСТЬ</span>
+                        <span class="cfg-summary-value cfg-price" id="sum-price">—</span>
+                    </div>
+                </div>
+
+                <!-- Форма -->
+                <div class="cfg-contact-block">
+                    <p class="cfg-contact-hint">Оставьте контакт — специалист свяжется&nbsp;в течение 30 минут</p>
+                    <form class="cfg-form" id="cfgForm" novalidate aria-label="Форма связи со специалистом">
+                        <div class="cfg-form-row">
+                            <div class="form-group">
+                                <label for="cfgName">Имя</label>
+                                <input type="text" id="cfgName" name="name" placeholder="Ваше имя" autocomplete="name" aria-required="true" aria-describedby="cfgNameError">
+                                <span class="field-error" id="cfgNameError" role="alert"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="cfgPhone">Телефон</label>
+                                <input type="tel" id="cfgPhone" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" aria-required="true" aria-describedby="cfgPhoneError">
+                                <span class="field-error" id="cfgPhoneError" role="alert"></span>
+                            </div>
+                        </div>
+                        <div class="cfg-form-actions">
+                            <button class="cfg-btn-back" type="button" id="back5"><i class="fa fa-arrow-left" aria-hidden="true"></i> ИЗМЕНИТЬ</button>
+                            <button type="submit" class="btn-primary cfg-submit-btn">
+                                СВЯЗАТЬСЯ&nbsp;СО СПЕЦИАЛИСТОМ <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="cfg-success hidden" id="cfgSuccess" role="alert" aria-live="polite">
+                        <div class="cfg-success-icon"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+                        <h2 class="cfg-success-title">Заявка отправлена!</h2>
+                        <p class="cfg-success-text">Специалист M38 свяжется с вами&nbsp;в течение 30 минут.<br>Конфигурация вашего проекта уже у нас.</p>
+                        <a href="catalog.html" class="btn-primary" style="text-decoration:none; display:inline-block; margin-top:30px;">СМОТРЕТЬ КАТАЛОГ</a>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /cfg-wrapper -->
+
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-info">
+                <div class="logo" aria-label="M38"><span>M38</span></div>
+                <p class="footer-desc">Производство высокотехнологичных модульных зданий<span class="mobile-break"> </span>&nbsp;в Иркутске.</p>
+            </div>
+            <nav class="footer-links" aria-label="Навигация по сайту">
+                <div class="link-group">
+                    <h4>Производство</h4>
+                    <ul>
+                        <li><a href="catalog.html">Жилые</a></li>
+                        <li><a href="catalog.html">Коммерция</a></li>
+                        <li><a href="catalog.html">Спецназначение</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="production.html">Технология</a></li>
+                        <li><a href="docs.html">Документация</a></li>
+                        <li><a href="sro-gost.html">Сро/ГОСТ</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 M38. Все права защищены.</span>
+            <a href="#" class="footer-policy-link" data-privacy>Политика конфиденциальности</a>
+            <span>Дизайн&nbsp;и разработка: EgTroshin</span>
+        </div>
+    </footer>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay" role="dialog" aria-modal="true" aria-label="Меню навигации">
+        <button class="mobile-nav-close" aria-label="Закрыть меню">&times;</button>
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo" aria-hidden="true"><span>M38</span></div>
+            <div class="mobile-menu-typewriter" id="mobileTypewriter" aria-hidden="true"></div>
+        </div>
+        <nav class="mobile-nav-links" aria-label="Мобильная навигация">
+            <a href="catalog.html" class="mobile-nav-link">КАТАЛОГ</a>
+            <a href="production.html" class="mobile-nav-link">ПРОИЗВОДСТВО</a>
+            <a href="docs.html" class="mobile-nav-link">ДОКУМЕНТЫ</a>
+            <a href="sro-gost.html" class="mobile-nav-link">СРО / ГОСТ</a>
+            <a href="contacts.html" class="mobile-nav-link">КОНТАКТЫ</a>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+    (function () {
+
+        // ─── СОСТОЯНИЕ ───────────────────────────────────────────────
+        const config = { type: null, area: null, kit: null, region: null };
+        let currentStep = 1;
+        const totalSteps = 4;
+
+        // ─── ЛЕЙБЛЫ ──────────────────────────────────────────────────
+        const labels = {
+            type:   { residential: 'Жилое', commercial: 'Коммерческое', special: 'Спецназначение' },
+            area:   { small: 'До 50 м²', medium: '50 — 100 м²', large: '100 м² и более' },
+            kit:    { base: 'Базовая', standard: 'Стандарт', premium: 'Премиум' },
+            region: { irkutsk: 'Иркутск', region: 'Иркутская область', other: 'Другой регион' }
+        };
+
+        // ─── ЦЕНЫ (ориентировочно) ────────────────────────────────────
+        const priceMatrix = {
+            // [kit][area]
+            base:     { small: '1.1 — 2.3 млн ₽', medium: '2.3 — 4.5 млн ₽', large: 'от 4.5 млн ₽' },
+            standard: { small: '1.6 — 3.3 млн ₽', medium: '3.3 — 6.5 млн ₽', large: 'от 6.5 млн ₽' },
+            premium:  { small: '2.4 — 4.8 млн ₽', medium: '4.8 — 9.5 млн ₽', large: 'от 9.5 млн ₽' }
+        };
+
+        // ─── НАВИГАЦИЯ ПО ШАГАМ ───────────────────────────────────────
+        function goTo(n) {
+            document.getElementById('step' + currentStep).classList.add('hidden');
+            currentStep = n;
+            document.getElementById('step' + currentStep).classList.remove('hidden');
+            updateProgress();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateProgress() {
+            const pct = ((currentStep - 1) / totalSteps) * 100;
+            document.getElementById('cfgProgressFill').style.width = pct + '%';
+
+            document.querySelectorAll('.cfg-step-label').forEach(el => {
+                const s = parseInt(el.dataset.step);
+                el.classList.toggle('active', s === currentStep);
+                el.classList.toggle('done', s < currentStep);
+            });
+        }
+
+        // ─── ВЫБОР КАРТОЧКИ ──────────────────────────────────────────
+        document.querySelectorAll('.cfg-option-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const field = card.dataset.field;
+                const val   = card.dataset.value;
+
+                // Снять выбор у соседних карточек того же поля
+                document.querySelectorAll(`.cfg-option-card[data-field="${field}"]`).forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                config[field] = val;
+
+                // Активировать кнопку «Далее» текущего шага
+                const stepEl = card.closest('.cfg-step');
+                const nextBtn = stepEl.querySelector('.cfg-btn-next');
+                if (nextBtn) nextBtn.disabled = false;
+            });
+        });
+
+        // ─── КНОПКИ НАВИГАЦИИ ────────────────────────────────────────
+        document.getElementById('next1').addEventListener('click', () => goTo(2));
+        document.getElementById('next2').addEventListener('click', () => goTo(3));
+        document.getElementById('next3').addEventListener('click', () => goTo(4));
+        document.getElementById('next4').addEventListener('click', () => { fillSummary(); goTo(5); });
+
+        document.getElementById('back2').addEventListener('click', () => goTo(1));
+        document.getElementById('back3').addEventListener('click', () => goTo(2));
+        document.getElementById('back4').addEventListener('click', () => goTo(3));
+        document.getElementById('back5').addEventListener('click', () => goTo(4));
+
+        // ─── ЗАПОЛНЕНИЕ ИТОГА ────────────────────────────────────────
+        function fillSummary() {
+            document.getElementById('sum-type').textContent   = labels.type[config.type]   || '—';
+            document.getElementById('sum-area').textContent   = labels.area[config.area]   || '—';
+            document.getElementById('sum-kit').textContent    = labels.kit[config.kit]     || '—';
+            document.getElementById('sum-region').textContent = labels.region[config.region] || '—';
+
+            const price = (priceMatrix[config.kit] && priceMatrix[config.kit][config.area])
+                ? priceMatrix[config.kit][config.area]
+                : 'Рассчитывается индивидуально';
+            document.getElementById('sum-price').textContent = price;
+        }
+
+        // ─── ФОРМА СВЯЗИ ─────────────────────────────────────────────
+        const cfgForm = document.getElementById('cfgForm');
+
+        function showFieldError(inputId, errorId, msg) {
+            const input = document.getElementById(inputId);
+            const err   = document.getElementById(errorId);
+            input.classList.add('error');
+            input.setAttribute('aria-invalid', 'true');
+            err.textContent = msg;
+            err.style.opacity = '1';
+            err.style.transform = 'translateY(0)';
+        }
+
+        function clearFieldError(inputId, errorId) {
+            const input = document.getElementById(inputId);
+            const err   = document.getElementById(errorId);
+            input.classList.remove('error');
+            input.removeAttribute('aria-invalid');
+            err.textContent = '';
+            err.style.opacity = '0';
+        }
+
+        function validateCfgForm() {
+            let valid = true;
+            const name  = document.getElementById('cfgName').value.trim();
+            const phone = document.getElementById('cfgPhone').value.trim();
+
+            if (name.length < 2) {
+                showFieldError('cfgName', 'cfgNameError', 'Введите ваше имя (минимум 2 символа)');
+                valid = false;
+            } else {
+                clearFieldError('cfgName', 'cfgNameError');
+            }
+
+            if (phone.replace(/\D/g, '').length < 10) {
+                showFieldError('cfgPhone', 'cfgPhoneError', 'Введите корректный номер телефона');
+                valid = false;
+            } else {
+                clearFieldError('cfgPhone', 'cfgPhoneError');
+            }
+
+            return valid;
+        }
+
+        cfgForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!validateCfgForm()) return;
+            cfgForm.style.display = 'none';
+            document.getElementById('cfgSuccess').classList.remove('hidden');
+        });
+
+        // Live-валидация
+        document.getElementById('cfgName').addEventListener('blur', () => {
+            const v = document.getElementById('cfgName').value.trim();
+            v.length < 2
+                ? showFieldError('cfgName', 'cfgNameError', 'Введите имя (минимум 2 символа)')
+                : clearFieldError('cfgName', 'cfgNameError');
+        });
+
+        document.getElementById('cfgPhone').addEventListener('blur', () => {
+            const v = document.getElementById('cfgPhone').value.trim().replace(/\D/g, '');
+            v.length < 10
+                ? showFieldError('cfgPhone', 'cfgPhoneError', 'Введите корректный номер телефона')
+                : clearFieldError('cfgPhone', 'cfgPhoneError');
+        });
+
+        // Инициализация
+        updateProgress();
+
+    })();
+    </script>
+
+</body>
+</html>
