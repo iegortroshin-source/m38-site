@@ -2883,121 +2883,20 @@ footer {
         gap: 20px;
     }
 
-    /* Fix Advantages Layout for Tablet (Center the orphan) */
+    /* Fix Advantages Layout for Tablet — 2 карточки в ряд */
     .advantages-grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
 
     .advantages-grid .adv-card {
-        flex: 1 1 280px;
-        max-width: 400px;
+        width: 100%;
+        max-width: 100%;
     }
 
-    /* --- TABLET HEADER REDESIGN (Vertical 2-Level) --- */
-    @media (min-width: 769px) {
-        header {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            row-gap: 15px;
-            padding: 20px 5%;
-            height: auto;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo {
-            grid-column: 1 / -1;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 5px;
-        }
-
-        .burger-menu {
-            display: none !important;
-        }
-
-        header nav {
-            display: flex !important;
-        }
-
-        /* Top Level: Catalog, Prod, Docs */
-        header nav a:nth-of-type(1) {
-            grid-row: 2;
-            grid-column: 1;
-            text-align: center;
-        }
-
-        /* Catalog */
-        header nav a:nth-of-type(2) {
-            grid-row: 2;
-            grid-column: 2;
-            text-align: center;
-        }
-
-        /* Production */
-        header nav a:nth-of-type(3) {
-            grid-row: 2;
-            grid-column: 3;
-            text-align: center;
-        }
-
-        /* Docs */
-
-        /* Bottom Level: SRO, Contacts, Phone */
-        header nav a:nth-of-type(4) {
-            grid-row: 3;
-            grid-column: 1;
-            text-align: center;
-        }
-
-        /* SRO */
-        header nav a:nth-of-type(5) {
-            grid-row: 3;
-            grid-column: 2;
-            text-align: center;
-        }
-
-        /* Contacts */
-
-        .header-right {
-            display: contents;
-        }
-
-        .contact-info {
-            grid-row: 3;
-            grid-column: 3;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .contact-info .phone {
-            font-size: 0.9rem;
-            white-space: nowrap;
-        }
-
-        .contact-info .location {
-            display: none;
-            /* Hide location to save space if needed, or keep small */
-        }
-
-        .header-right .btn-primary {
-            display: none;
-            /* Hide button to fit "Phone" request */
-        }
-
-        /* Ensure links are visible */
-        header nav a {
-            font-size: 0.8rem;
-            white-space: nowrap;
-            display: block;
-            /* Ensure text formatting works */
-        }
-    }
+    /* --- TABLET HEADER: бургер-меню, не десктопная навигация --- */
+    /* Убран вложенный @media (min-width: 769px) который ломал меню на планшете */
 }
 
 @media (max-width: 768px) {
@@ -4946,6 +4845,37 @@ footer {
    Устраняет пляску текста и поломку сеток на планшетах
 ════════════════════════════════════════════════════════════ */
 @media (min-width: 769px) and (max-width: 1024px) {
+
+    /* --- Header: только бургер, десктопное меню скрыто --- */
+    header {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        height: 70px !important;
+        padding: 0 24px !important;
+        grid-template-columns: none !important;
+    }
+
+    header nav,
+    .header-right,
+    .contact-info,
+    .spec-id-display {
+        display: none !important;
+    }
+
+    .burger-menu {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+    }
+
+    .logo {
+        grid-column: unset !important;
+        justify-content: flex-start !important;
+    }
 
     /* --- Production grid: 4 колонки → 2 колонки --- */
     .production-grid-detailed {
