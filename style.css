@@ -525,6 +525,15 @@ input[type="range"].industrial-range::-webkit-slider-thumb:hover {
     flex-direction: column;
 }
 
+/* Описание растягивается — теги всегда на одном уровне снизу */
+.gallery-item-detailed .step-desc-small {
+    flex-grow: 1;
+}
+
+.gallery-item-detailed .tech-tags-terminal {
+    margin-top: auto;
+}
+
 .step-num-small {
     font-size: 2.5rem;
     font-weight: 900;
@@ -3723,45 +3732,42 @@ footer {
     /* Tablet Vertical Adaptation (iPad / Pro) */
     @media (min-width: 768px) and (max-width: 1180px) {
 
-        /* 1. Simplify Header: Logo + Menu Only */
+        /* 1. Burger menu instead of desktop nav */
         .header-right {
             display: none !important;
         }
 
-        header {
-            justify-content: space-between !important;
-            padding: 0 40px !important;
-            /* Ensure padding */
-        }
-
         header nav {
-            display: flex !important;
-            gap: 20px !important;
-            white-space: nowrap;
-            /* Force one line */
+            display: none !important;
         }
 
-        header nav a {
-            font-size: 0.8rem !important;
-            /* Slightly smaller to ensure fit */
+        .burger-menu {
+            display: flex !important;
         }
 
-        /* 2. Center 'Guarantee' Card (4th item) */
-        .advantages-grid {
+        header {
             display: flex !important;
-            flex-wrap: wrap !important;
-            justify-content: center !important;
+            flex-direction: row !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 0 32px !important;
             grid-template-columns: none !important;
-            /* Override grid */
+        }
+
+        /* 2. Advantages grid — 2 columns on tablet portrait */
+        .advantages-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 20px !important;
+            flex-wrap: unset !important;
+            justify-content: unset !important;
         }
 
         .adv-card {
-            flex: 0 1 300px;
-            /* Base width */
-            min-width: 280px;
-            max-width: 32%;
-            /* Fit 3 in a row approx */
-            flex-grow: 1;
+            flex: unset !important;
+            min-width: unset !important;
+            max-width: 100% !important;
+            width: 100% !important;
         }
     }
 
