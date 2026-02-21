@@ -4946,12 +4946,16 @@ footer {
         overflow: visible;
     }
 
-    /* --- Слайдеры: не фиксированная ширина --- */
-    .slider-group-sm {
-        width: clamp(120px, 18vw, 200px);
+    /* --- Слайдеры: в столбик, на всю ширину --- */
+    .controls-right-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
     }
+
+    .slider-group-sm,
     .slider-group-xs {
-        width: clamp(100px, 14vw, 150px);
+        width: 100%;
     }
 
     /* --- Catalog grid (страница каталога) --- */
@@ -4984,15 +4988,49 @@ footer {
         gap: 16px;
     }
 
-    .slider-group-sm {
-        width: 130px;
-    }
+    .slider-group-sm,
     .slider-group-xs {
-        width: 100px;
+        width: 100%;
     }
 
     .loader-title {
         white-space: normal;
         font-size: 0.95rem;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   КАТАЛОГ — АДАПТАЦИЯ ПАНЕЛИ УПРАВЛЕНИЯ
+   Фильтры + ползунки перестраиваются на мобильных и планшетах
+════════════════════════════════════════════════════════════ */
+
+/* Планшет и мобильный: панель управления в столбик */
+@media (max-width: 1024px) {
+    .catalog-controls-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+    }
+
+    /* Фильтры — перенос на новую строку если не влезают */
+    .filters-row {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    /* Ползунки — в столбик, на всю ширину */
+    .controls-right-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+    }
+
+    .slider-group-sm,
+    .slider-group-xs {
+        width: 100%;
+    }
+
+    .industrial-slider-group {
+        width: 100% !important;
     }
 }
