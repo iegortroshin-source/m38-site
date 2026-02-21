@@ -459,6 +459,32 @@
         cfgForm.addEventListener('submit', (e) => {
             e.preventDefault();
             if (!validateCfgForm()) return;
+
+            const name  = document.getElementById('cfgName').value.trim();
+            const phone = document.getElementById('cfgPhone').value.trim();
+
+            // Собираем конфигурацию в читаемый текст
+            const configText = [
+                'Тип: '        + (labels.type[config.type]     || '—'),
+                'Площадь: '    + (labels.area[config.area]     || '—'),
+                'Комплектация: '+ (labels.kit[config.kit]      || '—'),
+                'Регион: '     + (labels.region[config.region] || '—'),
+                'Стоимость: '  + (document.getElementById('sum-price').textContent || '—')
+            ].join('\n');
+
+            const CRM_URL = 'https://m38-crm-production.up.railway.app';
+            fetch(CRM_URL + '/api/leads', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name,
+                    phone,
+                    email: '',
+                    message: configText,
+                    source: 'configurator'
+                })
+            }).catch(() => {}); // не блокируем UI при ошибке сети
+
             cfgForm.style.display = 'none';
             document.getElementById('cfgSuccess').classList.remove('hidden');
         });
