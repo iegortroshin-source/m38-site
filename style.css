@@ -103,6 +103,12 @@ nav a:hover {
     text-transform: uppercase;
 }
 
+/* Первая строка хедера (логотип + бургер + телефон) */
+/* На десктопе — прозрачная обёртка, визуально не меняет ничего */
+.header-top-row {
+    display: contents; /* дети участвуют в flex родителя как будто враппера нет */
+}
+
 /* Burger скрыт на десктопе по умолчанию */
 .burger-menu {
     display: none;
@@ -3732,28 +3738,6 @@ footer {
     /* Tablet Vertical Adaptation (iPad / Pro) */
     @media (min-width: 768px) and (max-width: 1180px) {
 
-        /* 1. Burger menu instead of desktop nav */
-        .header-right {
-            display: none !important;
-        }
-
-        header nav {
-            display: none !important;
-        }
-
-        .burger-menu {
-            display: flex !important;
-        }
-
-        header {
-            display: flex !important;
-            flex-direction: row !important;
-            justify-content: space-between !important;
-            align-items: center !important;
-            padding: 0 32px !important;
-            grid-template-columns: none !important;
-        }
-
         /* 2. Advantages grid — 2 columns on tablet portrait */
         .advantages-grid {
             display: grid !important;
@@ -4842,6 +4826,67 @@ footer {
 @media (max-width: 768px) {
     .mobile-break {
         display: block;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ГОРИЗОНТАЛЬНЫЙ ПЛАНШЕТ (1025px – 1180px)
+   Двухуровневый хедер: логотип+телефон сверху, nav снизу
+════════════════════════════════════════════════════════════ */
+@media (min-width: 1025px) and (max-width: 1180px) {
+
+    header {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: stretch !important;
+        height: auto !important;
+        padding: 12px 32px !important;
+        gap: 8px !important;
+    }
+
+    /* Первая строка: логотип + бургер(скрыт) + телефон */
+    .header-top-row {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+
+    /* Nav — вторая строка, все ссылки подряд */
+    header nav {
+        display: flex !important;
+        justify-content: flex-start !important;
+        gap: 24px !important;
+        border-top: 1px solid rgba(255,255,255,0.08) !important;
+        padding-top: 8px !important;
+        flex-wrap: nowrap !important;
+    }
+
+    header nav a {
+        font-size: 0.75rem !important;
+        letter-spacing: 0.5px !important;
+        opacity: 0.75 !important;
+        white-space: nowrap !important;
+    }
+
+    header nav a:hover,
+    header nav a.active {
+        opacity: 1 !important;
+    }
+
+    /* Скрываем кнопку «Начать проект», оставляем только телефон */
+    .btn-primary {
+        display: none !important;
+    }
+
+    .header-right {
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .burger-menu {
+        display: none !important;
     }
 }
 
