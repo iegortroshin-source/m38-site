@@ -44,8 +44,8 @@
             <div class="hero-content">
                 <span class="spec-id">ЦЕНТР_СВЯЗИ</span>
                 <h1>Контакты</h1>
-                <p class="hero-desc">Мы всегда&nbsp;на связи&nbsp;для обсуждения
-                    ваших проектов<br>&nbsp;и ответов&nbsp;на технические вопросы.</p>
+                <p class="hero-desc">Мы всегда&nbsp;на&nbsp;связи&nbsp;для&nbsp;обсуждения
+                    ваших проектов<br>&nbsp;и&nbsp;ответов&nbsp;на&nbsp;технические вопросы.</p>
             </div>
         </section>
 
@@ -74,7 +74,7 @@
                         <div class="contact-item-card">
                             <span>Email</span>
                             <p><a href="mailto:info@modul38.ru" style="color: inherit; text-decoration: none;">info@modul38.ru</a></p>
-                            <span class="contact-sub">Для коммерческих предложений</span>
+                            <span class="contact-sub">Для&nbsp;коммерческих предложений</span>
                         </div>
                     </div>
 
@@ -85,14 +85,14 @@
                 <div class="contact-form-panel">
                     <div class="section-title-wrap">
                         <span class="spec-id">ЗАПРОС_ПРОЕКТА</span>
-                        <h2 class="section-title-wrap--lg">Связаться с нами</h2>
+                        <h2 class="section-title-wrap--lg">Связаться с&nbsp;нами</h2>
                     </div>
 
                     <!-- Success message (hidden by default) -->
                     <div class="form-success" id="formSuccess" role="alert" aria-live="polite">
                         <div class="form-success-icon" aria-hidden="true">&#10003;</div>
                         <h3>Запрос отправлен</h3>
-                        <p>Мы свяжемся с вами&nbsp;в течение рабочего дня.</p>
+                        <p>Мы свяжемся с&nbsp;вами&nbsp;в&nbsp;течение рабочего дня.</p>
                     </div>
 
                     <form class="industrial-form" id="contactForm" novalidate aria-label="Форма обратной связи">
@@ -147,7 +147,7 @@
             <div class="footer-info">
                 <div class="logo" aria-label="M38"><span>M38</span></div>
                 <p class="footer-desc">
-                    Производство высокотехнологичных модульных зданий<span class="mobile-break"> </span>&nbsp;в Иркутске.
+                    Производство высокотехнологичных модульных зданий<span class="mobile-break"> </span>&nbsp;в&nbsp;Иркутске.
                 </p>
             </div>
             <nav class="footer-links" aria-label="Навигация по сайту">
@@ -170,9 +170,9 @@
             </nav>
         </div>
         <div class="footer-bottom">
-            <span>&copy; 2026 M38. Все права защищены.</span>
+            <span>&copy; 2026 M38. Все&nbsp;права защищены.</span>
             <a href="#" class="footer-policy-link" data-privacy>Политика конфиденциальности</a>
-            <span>Дизайн&nbsp;и разработка: EgTroshin</span>
+            <span>Дизайн&nbsp;и&nbsp;разработка: EgTroshin</span>
         </div>
     </footer>
 
@@ -286,7 +286,7 @@
                     submitBtn.disabled = true;
                     submitBtn.textContent = 'Отправка...';
 
-                    // ── Отправка заявки в CRM ──────────────────────────────
+                    // ── Отправка заявки в&nbsp;CRM ──────────────────────────────
                     const CRM_URL = 'https://m38-crm-production.up.railway.app';
                     fetch(CRM_URL + '/api/leads', {
                         method: 'POST',
@@ -299,7 +299,7 @@
                             source:  'contacts-form'
                         })
                     })
-                    .catch(() => {}) // не блокируем UI даже при ошибке сети
+                    .catch(() => {}) // не&nbsp;блокируем UI даже&nbsp;при&nbsp;ошибке сети
                     .finally(() => {
                         form.style.display = 'none';
                         successBlock.classList.add('visible');
