@@ -138,7 +138,7 @@ nav a:hover {
     display: flex;
     align-items: center;
     padding: 0 5%;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('image/Главное фото.png') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('Image/glavnoe_foto.png') no-repeat center center/cover;
 }
 
 .facility-info {
@@ -223,23 +223,23 @@ nav a:hover {
 }
 
 .catalog-hero::before {
-    background-image: url('image/Каталог.png');
+    background-image: url('Image/katalog.png');
 }
 
 .production-hero::before {
-    background-image: url('image/Производство.png');
+    background-image: url('Image/proizvodstvo.png');
 }
 
 .docs-hero::before {
-    background-image: url('image/Тех.\ документация.png');
+    background-image: url('Image/tekh_dokumentatsiya.png');
 }
 
 .sro-hero::before {
-    background-image: url('image/СроГОСТ.png');
+    background-image: url('Image/srogost.png');
 }
 
 .contacts-hero::before {
-    background-image: url('image/Контакты.png');
+    background-image: url('Image/kontakty.png');
 }
 
 .page-hero .hero-content {
@@ -1865,19 +1865,19 @@ footer {
 
 /* Specific Images */
 .adv-card-northern::before {
-    background-image: url('image/СЕВЕРНОЕ ИСПОЛНЕНИЕ.png');
+    background-image: url('Image/severnoe_ispolnenie.png');
 }
 
 .adv-card-speed::before {
-    background-image: url('image/СКОРОСТЬ.png');
+    background-image: url('Image/skorost.png');
 }
 
 .adv-card-design::before {
-    background-image: url('image/ДИЗАЙН.png');
+    background-image: url('Image/dizajn.png');
 }
 
 .adv-card-guarantee::before {
-    background-image: url('image/ГАРАНТИЯ.png');
+    background-image: url('Image/garantiya.png');
 }
 
 /* Hover Effect */
@@ -2148,7 +2148,7 @@ footer {
 .cta-section {
     padding: 140px 0;
     text-align: center;
-    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.6) 0%, #000 100%), url('image/1. А-фрейм.png');
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.6) 0%, #000 100%), url('Image/1_a-frejm.png');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
@@ -2523,23 +2523,23 @@ footer {
 
 /* Hero Backgrounds - Explicit URLs */
 .catalog-hero {
-    background-image: url('image/Каталог.png');
+    background-image: url('Image/katalog.png');
 }
 
 .production-hero {
-    background-image: url('image/Производство.png');
+    background-image: url('Image/proizvodstvo.png');
 }
 
 .docs-hero {
-    background-image: url('image/Тех. документация.png');
+    background-image: url('Image/tekh_dokumentatsiya.png');
 }
 
 .sro-hero {
-    background-image: url('image/СроГОСТ.png');
+    background-image: url('Image/srogost.png');
 }
 
 .contacts-hero {
-    background-image: url('image/Контакты.png');
+    background-image: url('Image/kontakty.png');
 }
 
 /* --- FRESH MOBILE ADAPTATION (AUDIO FEEDBACK INCLUDED) --- */
