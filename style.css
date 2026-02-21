@@ -4939,3 +4939,124 @@ footer {
         display: block;
     }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   ПЛАНШЕТ / TABLET FIXES  (768px – 1024px)
+   ─────────────────────────────────────────────────────────
+   Устраняет пляску текста и поломку сеток на планшетах
+════════════════════════════════════════════════════════════ */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    /* --- Production grid: 4 колонки → 2 колонки --- */
+    .production-grid-detailed {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        padding: 60px 4%;
+    }
+
+    /* --- Catalog grid: не допускаем горизонтального скролла --- */
+    .catalog-grid-auto {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+    }
+
+    /* --- Docs sidebar: убираем фиксированную ширину 350px --- */
+    .docs-container-refined {
+        grid-template-columns: 260px 1fr;
+        gap: 32px;
+    }
+
+    /* --- Modal: одна колонка на планшете --- */
+    .modal-container {
+        grid-template-columns: 1fr;
+        max-width: 92%;
+    }
+
+    /* --- Process steps: 3 → 2 колонки --- */
+    .process-steps {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    /* --- Advantages cards: auto-fit не ломается --- */
+    .adv-card {
+        min-width: 0;
+    }
+
+    /* --- Hero capabilities: скрываем плавающий блок --- */
+    .hero-capabilities-list {
+        display: none;
+    }
+
+    /* --- Текст в hero --- */
+    .hero h1 {
+        font-size: clamp(2rem, 4vw, 3.2rem);
+    }
+
+    .sub-title {
+        font-size: clamp(0.8rem, 1.5vw, 1rem);
+    }
+
+    /* --- Section titles не выходят за края --- */
+    .section-title,
+    .section-title-large {
+        font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+        word-break: break-word;
+    }
+
+    /* --- Loader title overflow fix --- */
+    .loader-title {
+        white-space: normal;
+        overflow: visible;
+    }
+
+    /* --- Слайдеры: не фиксированная ширина --- */
+    .slider-group-sm {
+        width: clamp(120px, 18vw, 200px);
+    }
+    .slider-group-xs {
+        width: clamp(100px, 14vw, 150px);
+    }
+
+    /* --- Catalog grid (страница каталога) --- */
+    .catalog-grid,
+    .catalog-grid-refined {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+
+    /* --- Контакты: форма и карта в столбик --- */
+    .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    /* --- Конфигуратор слайдеры --- */
+    .cfg-summary-label {
+        white-space: normal;
+        overflow-wrap: break-word;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   МОБИЛЬНЫЙ FIX  (< 480px)
+   Устраняем горизонтальный скролл от minmax(380px)
+════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+    .catalog-grid-auto {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .slider-group-sm {
+        width: 130px;
+    }
+    .slider-group-xs {
+        width: 100px;
+    }
+
+    .loader-title {
+        white-space: normal;
+        font-size: 0.95rem;
+    }
+}
