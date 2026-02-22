@@ -5063,10 +5063,48 @@ footer {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   КАТАЛОГ — КНОПКА «ПОКАЗАТЬ ЕЩЁ» (только мобильный)
+════════════════════════════════════════════════════════════ */
+.catalog-load-more {
+    display: none; /* скрыта по умолчанию, JS управляет через inline style */
+    justify-content: center;
+    margin-top: 32px;
+    padding: 0 20px;
+}
+
+.btn-load-more {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    cursor: pointer;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: background 0.2s, color 0.2s;
+    width: 100%;
+    max-width: 340px;
+}
+
+.btn-load-more:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+/* ═══════════════════════════════════════════════════════════
    ДОКУМЕНТЫ — МОБИЛЬНАЯ АДАПТАЦИЯ (< 768px)
    Карточки не выходят за правый край экрана
 ════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
+
+    /* Каталог — одна колонка */
+    .catalog-grid-auto {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
 
     /* Контейнер: одна колонка, симметричный отступ 20px */
     .docs-container-refined {

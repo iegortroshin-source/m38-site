@@ -882,6 +882,14 @@
 
 
             </div>
+
+            <!-- Кнопка «Показать ещё» — только на мобильном -->
+            <div class="catalog-load-more" id="loadMoreWrap">
+                <button class="btn-load-more" id="loadMoreBtn">
+                    ПОКАЗАТЬ ЕЩЁ <span id="loadMoreCount"></span>
+                </button>
+            </div>
+
         </section>
     </main>
 
@@ -944,42 +952,93 @@
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const grid = document.getElementById('catalogGrid');
-            const cards = Array.from(grid.querySelectorAll('.catalog-card-industrial'));
-            const filterBtns = document.querySelectorAll('.filter-btn-industrial');
+            const grid        = document.getElementById('catalogGrid');
+            const cards       = Array.from(grid.querySelectorAll('.catalog-card-industrial'));
+            const filterBtns  = document.querySelectorAll('.filter-btn-industrial');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const loadMoreWrap = document.getElementById('loadMoreWrap');
+            const loadMoreCount = document.getElementById('loadMoreCount');
 
             const priceSlider = document.getElementById('priceSlider');
-            const areaSlider = document.getElementById('areaSlider');
-            const priceVal = document.getElementById('priceVal');
-            const areaVal = document.getElementById('areaVal');
+            const areaSlider  = document.getElementById('areaSlider');
+            const priceVal    = document.getElementById('priceVal');
+            const areaVal     = document.getElementById('areaVal');
 
             let activeCategory = 'all';
+            const MOBILE_BATCH = 3; // сколько карточек показываем за раз на мобильном
+            let visibleCount = MOBILE_BATCH; // сколько сейчас показано
+
+            function isMobile() {
+                return window.innerWidth < 768;
+            }
 
             function updateFilters() {
                 const maxPrice = parseFloat(priceSlider.value);
-                const maxArea = parseFloat(areaSlider.value);
+                const maxArea  = parseFloat(areaSlider.value);
 
                 priceVal.textContent = maxPrice.toFixed(1) + 'M';
-                areaVal.textContent = maxArea;
+                areaVal.textContent  = maxArea;
 
+                // Сбрасываем счётчик при смене фильтра
+                visibleCount = MOBILE_BATCH;
+
+                applyVisibility(maxPrice, maxArea);
+            }
+
+            function applyVisibility(maxPrice, maxArea) {
+                // Если maxPrice/maxArea не переданы — берём текущие значения слайдеров
+                if (maxPrice === undefined) maxPrice = parseFloat(priceSlider.value);
+                if (maxArea  === undefined) maxArea  = parseFloat(areaSlider.value);
+
+                // Определяем какие карточки подходят под фильтры
+                const matched = [];
                 cards.forEach(card => {
-                    const price = parseFloat(card.dataset.price);
-                    const area = parseFloat(card.dataset.area);
+                    const price    = parseFloat(card.dataset.price);
+                    const area     = parseFloat(card.dataset.area);
                     const category = card.dataset.category;
+                    const fits = (activeCategory === 'all' || category === activeCategory)
+                                  && price <= maxPrice
+                                  && area  <= maxArea;
+                    card._fits = fits;
+                    if (fits) matched.push(card);
+                });
 
-                    const matchesCategory = activeCategory === 'all' || category === activeCategory;
-                    const matchesPrice = price <= maxPrice;
-                    const matchesArea = area <= maxArea;
-
-                    if (matchesCategory && matchesPrice && matchesArea) {
-                        card.style.display = 'block';
-                        setTimeout(() => card.style.opacity = '1', 10);
-                    } else {
+                // Показываем/скрываем с учётом мобильной пагинации
+                let shownSoFar = 0;
+                cards.forEach(card => {
+                    if (!card._fits) {
                         card.style.display = 'none';
                         card.style.opacity = '0';
+                        return;
+                    }
+                    shownSoFar++;
+                    if (isMobile() && shownSoFar > visibleCount) {
+                        card.style.display = 'none';
+                        card.style.opacity = '0';
+                    } else {
+                        card.style.display = 'block';
+                        setTimeout(() => card.style.opacity = '1', 10);
                     }
                 });
+
+                // Обновляем кнопку «Показать ещё»
+                const remaining = matched.length - (isMobile() ? Math.min(visibleCount, matched.length) : matched.length);
+                if (isMobile() && remaining > 0) {
+                    loadMoreWrap.style.display = 'flex';
+                    loadMoreCount.textContent  = '(' + remaining + ')';
+                } else {
+                    loadMoreWrap.style.display = 'none';
+                }
             }
+
+            // Кнопка «Показать ещё»
+            loadMoreBtn.addEventListener('click', () => {
+                visibleCount += MOBILE_BATCH;
+                applyVisibility();
+            });
+
+            // При изменении размера окна — пересчитываем
+            window.addEventListener('resize', () => applyVisibility());
 
             // Category Filter Click
             filterBtns.forEach(btn => {
