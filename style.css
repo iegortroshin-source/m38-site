@@ -2635,12 +2635,14 @@ footer {
         height: 100vh;
         background: rgba(10, 10, 10, 0.98);
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
+        padding: 80px 40px 50px;
         opacity: 0;
         pointer-events: none;
         transition: 0.3s;
         z-index: 2000;
+        box-sizing: border-box;
     }
 
     .mobile-nav-overlay.active {
@@ -2653,6 +2655,8 @@ footer {
         flex-direction: column;
         gap: 30px;
         text-align: center;
+        flex: 1;
+        justify-content: center;
     }
 
     .mobile-nav-link {
@@ -2661,6 +2665,43 @@ footer {
         text-transform: uppercase;
         text-decoration: none;
         font-weight: 900;
+        transition: color 0.2s;
+    }
+
+    .mobile-nav-link:hover,
+    .mobile-nav-link.active {
+        color: var(--primary-color);
+    }
+
+    /* Телефон внизу мобильного меню */
+    .mobile-nav-phone {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        width: 100%;
+    }
+
+    .mobile-nav-phone-link {
+        font-size: 1.3rem;
+        font-weight: 900;
+        color: #fff;
+        text-decoration: none;
+        letter-spacing: 1px;
+        transition: color 0.2s;
+    }
+
+    .mobile-nav-phone-link:hover {
+        color: var(--primary-color);
+    }
+
+    .mobile-nav-location {
+        font-size: 0.65rem;
+        color: var(--text-dim);
+        text-transform: uppercase;
+        letter-spacing: 2px;
     }
 }
 
@@ -4830,74 +4871,13 @@ footer {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   ГОРИЗОНТАЛЬНЫЙ ПЛАНШЕТ (1025px – 1180px)
-   Двухуровневый хедер: логотип+телефон сверху, nav снизу
+   ПЛАНШЕТ + МОБИЛЬНЫЙ — БУРГЕР-МЕНЮ (< 1180px)
+   Десктоп (≥ 1180px): полный хедер — логотип | nav | телефон+кнопка
+   Всё остальное: логотип слева, бургер справа
 ════════════════════════════════════════════════════════════ */
-@media (min-width: 1025px) and (max-width: 1180px) {
+@media (max-width: 1179px) {
 
-    header {
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        align-items: stretch !important;
-        height: auto !important;
-        padding: 12px 32px !important;
-        gap: 8px !important;
-    }
-
-    /* Первая строка: логотип + бургер(скрыт) + телефон */
-    .header-top-row {
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        width: 100% !important;
-    }
-
-    /* Nav — вторая строка, все ссылки подряд */
-    header nav {
-        display: flex !important;
-        justify-content: flex-start !important;
-        gap: 24px !important;
-        border-top: 1px solid rgba(255,255,255,0.08) !important;
-        padding-top: 8px !important;
-        flex-wrap: nowrap !important;
-    }
-
-    header nav a {
-        font-size: 0.75rem !important;
-        letter-spacing: 0.5px !important;
-        opacity: 0.75 !important;
-        white-space: nowrap !important;
-    }
-
-    header nav a:hover,
-    header nav a.active {
-        opacity: 1 !important;
-    }
-
-    /* Скрываем кнопку «Начать проект», оставляем только телефон */
-    .btn-primary {
-        display: none !important;
-    }
-
-    .header-right {
-        display: flex !important;
-        align-items: center !important;
-    }
-
-    .burger-menu {
-        display: none !important;
-    }
-}
-
-/* ═══════════════════════════════════════════════════════════
-   ПЛАНШЕТ / TABLET FIXES  (768px – 1024px)
-   ─────────────────────────────────────────────────────────
-   Устраняет пляску текста и поломку сеток на планшетах
-════════════════════════════════════════════════════════════ */
-@media (min-width: 769px) and (max-width: 1024px) {
-
-    /* --- Header: только бургер, десктопное меню скрыто --- */
+    /* --- Header: строка с логотипом и бургером --- */
     header {
         display: flex !important;
         flex-direction: row !important;
@@ -4905,9 +4885,10 @@ footer {
         align-items: center !important;
         height: 70px !important;
         padding: 0 24px !important;
-        grid-template-columns: none !important;
+        background: #0A0A0A !important;
     }
 
+    /* Скрываем десктопные элементы */
     header nav,
     .header-right,
     .contact-info,
@@ -4915,12 +4896,13 @@ footer {
         display: none !important;
     }
 
+    /* Показываем бургер */
     .burger-menu {
         display: flex !important;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 20px;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        width: 30px !important;
+        height: 20px !important;
     }
 
     .logo {
