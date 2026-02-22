@@ -47,6 +47,15 @@ header nav {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 0;
+}
+
+/* Логотип и правый блок поверх абсолютного nav — кнопка кликабельна */
+.header-right,
+.logo,
+.burger-menu {
+    position: relative;
+    z-index: 1;
 }
 
 .logo {
