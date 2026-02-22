@@ -5061,3 +5061,58 @@ footer {
         width: 100% !important;
     }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   ДОКУМЕНТЫ — МОБИЛЬНАЯ АДАПТАЦИЯ (< 768px)
+   Карточки не выходят за правый край экрана
+════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+    /* Контейнер: одна колонка, симметричный отступ 20px */
+    .docs-container-refined {
+        grid-template-columns: 1fr !important;
+        padding: 40px 20px !important;
+        gap: 30px !important;
+    }
+
+    /* Карточка: не выходит за правый край */
+    .doc-card-refined {
+        grid-template-columns: 48px 1fr !important;
+        gap: 16px !important;
+        padding: 20px !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        overflow: hidden !important;
+    }
+
+    /* Блок действий — на всю ширину снизу */
+    .doc-actions-refined {
+        grid-column: 1 / -1 !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        min-width: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Кнопка скачать не выходит за край */
+    .doc-actions-refined .btn-action,
+    .btn-download-refined {
+        white-space: normal !important;
+        word-break: break-word !important;
+        min-width: 0 !important;
+    }
+
+    /* Иконка типа документа */
+    .doc-type-icon {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 1.1rem !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* Сайдбар сверху, не sticky */
+    .docs-sidebar-refined {
+        position: static !important;
+    }
+}
