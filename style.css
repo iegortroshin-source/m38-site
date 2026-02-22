@@ -42,6 +42,13 @@ header {
     backdrop-filter: blur(10px);
 }
 
+/* Навигация строго по центру хедера */
+header nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .logo {
     display: flex;
     align-items: center;
